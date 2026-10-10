@@ -66,7 +66,10 @@ served `gemini-3.5-flash-lite`, temp 0, 380 calls, 0 parse failures; prompt in `
    Era routing is automatic via each commit's `engines.node` (`image_for()` in pilot.py).
 4. **Docker volumes** `impactnet-pnpm-store`, `impactnet-root-cache` — auto-created;
    they just make repeat installs faster (cold on first run).
-5. Python 3.14 used; deps are stdlib-only for the stages below (mutation harness needs node inside docker).
+5. **`ts-morph` for the mutator** — `stages/m2_labeller/node_modules` is a committed symlink to
+   `stages/m1_extractor/node_modules`; run `cd stages/m1_extractor && npm install` once
+   (package-lock committed) so the symlink resolves.
+6. Python 3.14 used; deps are stdlib-only for the stages below (mutation harness needs node inside docker).
 
 ## Resume
 
