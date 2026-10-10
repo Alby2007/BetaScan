@@ -6,7 +6,7 @@ import argparse, json, pathlib, subprocess, tempfile, time
 ap = argparse.ArgumentParser(); ap.add_argument("repo"); ap.add_argument("commit"); ap.add_argument("out")
 ap.add_argument("--files", required=True); ap.add_argument("--image", default="impactnet-node"); ap.add_argument("--concurrency", default="4"); ap.add_argument("--exclude", default="test/utils.test.ts,test/rules/match.test.ts", help="test files not green at P (excluded; Stryker needs a green dry run)")
 a = ap.parse_args(); repo = pathlib.Path(a.repo).resolve()
-sha = subprocess.run(["git", "-C", str(repo), "rev-parse", a.commit], capture_output=True, text=True, check=True).stdout.strip()
+sha = subprocess.run(["git", "-C", str(repo), "rev-parse", a.commit], capture_output=True, text=True, encoding="utf-8", errors="replace", check=True).stdout.strip()
 mut = json.dumps(a.files.split(","))
 exc = json.dumps([e for e in a.exclude.split(",") if e])
 CFG = f'''export default {{ testRunner: "vitest", plugins: ["@stryker-mutator/vitest-runner"], coverageAnalysis: "perTest",
@@ -27,7 +27,7 @@ with tempfile.TemporaryDirectory() as tmp:
     subprocess.run(["git", "-C", str(repo), "archive", "-o", str(tmp / "src.tar"), sha], check=True)
     t0 = time.time()
     p = subprocess.run(["docker", "run", "--rm", "-v", f"{tmp}:/in", "-v", f"{tmp}/out:/out", "-v", "impactnet-pnpm-store:/root/.local/share/pnpm",
-                        "-e", "CI=true", a.image, "bash", "-c", SCRIPT], capture_output=True, text=True)
+                        "-e", "CI=true", a.image, "bash", "-c", SCRIPT], capture_output=True, text=True, encoding="utf-8", errors="replace")
     (pathlib.Path(a.out).with_suffix(".log")).write_text(p.stderr[-20000:])
     rep = json.loads((tmp / "out/report.json").read_text())
     tests = {t["id"]: f for f, fd in rep.get("testFiles", {}).items() for t in fd["tests"]}

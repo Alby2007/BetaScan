@@ -1,0 +1,31 @@
+{
+ "train_repo": "h3",
+ "features": [
+  "call_dist",
+  "imp_dist",
+  "direct_import",
+  "lex_overlap",
+  "lex_jaccard",
+  "log_covsize",
+  "covsize_rel",
+  "targeted_lines",
+  "targeted_rel",
+  "fan_in_mut",
+  "log_dur",
+  "log_ncov"
+ ],
+ "params": {
+  "max_iter": 150,
+  "learning_rate": 0.05,
+  "max_leaf_nodes": 15,
+  "l2_regularization": 1.0,
+  "random_state": 0
+ },
+ "model": "HistGradientBoostingClassifier",
+ "sklearn": "1.7.2",
+ "min_cov": 11,
+ "folds": 5,
+ "n_pairs": 6202,
+ "n_mutants": 280,
+ "n_src_files": 39
+}

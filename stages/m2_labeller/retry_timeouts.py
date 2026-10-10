@@ -2,7 +2,7 @@
 """Mutants whose batch run hit the 120s limit (status Error, secs>=100) are hangs, i.e. effectively killed, and dropping them would bias labels toward quiet failures.
 Re-run each one file-by-file (45s per file; fail or timeout = failing, confirmed twice) and update the mutant JSON in place (status Killed/Survived, via=split-timeout).
 Usage: retry_timeouts.py REPO MUTDIR [MUTDIR...]"""
-import json, pathlib, subprocess, sys, tempfile
+import json, pathlib, subprocess, sys, tarfile, tempfile
 H = pathlib.Path(__file__).resolve().parent; repo = sys.argv[1]
 for md in sys.argv[2:]:
     for f in sorted(pathlib.Path(md).glob("*.json")):
@@ -10,8 +10,11 @@ for md in sys.argv[2:]:
         if not bad: continue
         P = d["parent"]
         with tempfile.TemporaryDirectory() as wt:
-            subprocess.run(f"git -C {repo} archive {P} src | tar -x -C {wt}", shell=True, check=True)
-            gm = {f"{x['file']}:{x['start']}:{x['mutator']}": x for x in json.loads(subprocess.run(["node", str(H / "gen_mutants.mjs"), wt, *sorted({m['file'] for m in bad})], capture_output=True, text=True, check=True).stdout)}
+            tar = pathlib.Path(wt) / "src.tar"
+            subprocess.run(["git", "-C", repo, "archive", "-o", str(tar), P, "src"], check=True)
+            with tarfile.open(tar) as tf:
+                tf.extractall(wt, filter="data", members=[m for m in tf.getmembers() if not (m.issym() or m.islnk())])
+            gm = {f"{x['file']}:{x['start']}:{x['mutator']}": x for x in json.loads(subprocess.run(["node", str(H / "gen_mutants.mjs"), wt, *sorted({m['file'] for m in bad})], capture_output=True, text=True, encoding="utf-8", errors="replace", check=True).stdout)}
         jobs = [{"id": m["id"], "file": m["file"], "start": gm[m["id"]]["start"], "end": gm[m["id"]]["end"], "replacement": m["replacement"], "tests": m["tests"], "split": True} for m in bad]
         with tempfile.TemporaryDirectory() as tmp:
             tmp = pathlib.Path(tmp); (tmp / "out").mkdir()

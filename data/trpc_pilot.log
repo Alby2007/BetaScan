@@ -1,1 +1,159 @@
 49 candidates
+done bc215fe6 {'Killed': 20, 'Survived': 5}
+done 78629d52 {'Killed': 18, 'Survived': 7}
+done 4f531521 {'Killed': 22, 'Survived': 3}
+skip 9109554a RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip e472df16 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip e272d689 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 6a118b0b RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip b802056b RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 172b6aa1 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 6ccaf04b RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 77fc9919 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip c6a4f9b0 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip ffa88b0f RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 66d05445 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 7661fc0d RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip cd64ab3b RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 2c5b6a8c RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 3d21d2c1 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip ec32cdd9 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip f3ddc3a1 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 352da1c2 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip ef684c82 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 72af4afd RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 9b274114 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 466a924b RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 4c9efbb5 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 2b8a4f82 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip d92cc45b RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 029196be RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip d1a9ec68 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip d7adb371 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip a2f90fc9 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 6408c54b RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip 7f0f1e42 RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+skip dfbafa8e RuntimeError("combined container failed: docker: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n\nRun 'docker run --help' 
+done 9a17cef9 {'Killed': 19, 'Flaky': 2, 'Survived': 4}
+{
+ "n_commits": 7,
+ "per_commit": [
+  {
+   "commit": "4f531521",
+   "parent": "6a70335e",
+   "date": "2026-08-31T13:20:15+01:00",
+   "image": "impactnet-node",
+   "combined_s": 642.2,
+   "mutation_s": 1357.2,
+   "n_cov_files": 100,
+   "n_mutant_files": 25,
+   "excluded": [],
+   "mutants": 25,
+   "status": {
+    "Killed": 22,
+    "Survived": 3
+   }
+  },
+  {
+   "commit": "78629d52",
+   "parent": "f476d399",
+   "date": "2025-12-13T15:30:42Z",
+   "image": "impactnet-node22",
+   "combined_s": 584.1,
+   "mutation_s": 970.3,
+   "n_cov_files": 98,
+   "n_mutant_files": 25,
+   "excluded": [],
+   "mutants": 25,
+   "status": {
+    "Killed": 18,
+    "Survived": 7
+   }
+  },
+  {
+   "commit": "8b649ad8",
+   "parent": "fcc6bca0",
+   "date": "2026-09-17T08:05:26+00:00",
+   "image": "impactnet-node",
+   "combined_s": null,
+   "mutation_s": 390.6,
+   "n_cov_files": 100,
+   "n_mutant_files": null,
+   "excluded": [
+    "packages/tests/server/websockets.test.ts"
+   ],
+   "mutants": 8,
+   "status": {
+    "Killed": 4,
+    "Survived": 4
+   }
+  },
+  {
+   "commit": "9a17cef9",
+   "parent": "fd3350cd",
+   "date": "2025-12-12T18:51:22Z",
+   "image": "impactnet-node22",
+   "combined_s": 599.2,
+   "mutation_s": 2175.9,
+   "n_cov_files": 98,
+   "n_mutant_files": 25,
+   "excluded": [],
+   "mutants": 25,
+   "status": {
+    "Killed": 19,
+    "Flaky": 2,
+    "Survived": 4
+   }
+  },
+  {
+   "commit": "aac35fbd",
+   "parent": "7f0f1e42",
+   "date": "2025-09-23T22:13:15+02:00",
+   "image": "impactnet-node22",
+   "combined_s": null,
+   "mutation_s": 1854.6999999999998,
+   "n_cov_files": 96,
+   "n_mutant_files": null,
+   "excluded": [
+    "packages/tests/server/websockets.test.ts"
+   ],
+   "mutants": 8,
+   "status": {
+    "Killed": 8
+   }
+  },
+  {
+   "commit": "bc215fe6",
+   "parent": "caee09de",
+   "date": "2026-02-04T15:39:09+01:00",
+   "image": "impactnet-node22",
+   "combined_s": 519.6,
+   "mutation_s": 1328.6,
+   "n_cov_files": 99,
+   "n_mutant_files": 25,
+   "excluded": [],
+   "mutants": 25,
+   "status": {
+    "Killed": 20,
+    "Survived": 5
+   }
+  },
+  {
+   "commit": "f8f0c0e3",
+   "parent": "c7360d4e",
+   "date": "2026-06-13T12:40:56+01:00",
+   "image": "impactnet-node",
+   "combined_s": 691.9,
+   "mutation_s": 2395.9,
+   "n_cov_files": 100,
+   "n_mutant_files": 25,
+   "excluded": [],
+   "mutants": 25,
+   "status": {
+    "Killed": 19,
+    "Survived": 5,
+    "Flaky": 1
+   }
+  }
+ ]
+}

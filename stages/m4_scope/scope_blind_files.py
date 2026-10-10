@@ -4,7 +4,7 @@ Usage: scope_blind_files.py REPO GRAPH.db COMMIT. Counts, per support file, test
 or reference it by a path string (assets/config). No mutation is run."""
 import collections, re, sqlite3, subprocess, sys
 repo, db, commit = sys.argv[1:4]
-git = lambda *a: subprocess.run(["git", "-C", repo, *a], capture_output=True, text=True, check=True).stdout
+git = lambda *a: subprocess.run(["git", "-C", repo, *a], capture_output=True, text=True, encoding="utf-8", errors="replace", check=True).stdout
 files = git("ls-tree", "-r", "--name-only", commit).split()
 is_test = lambda f: re.search(r"\.test(-d)?\.[cm]?tsx?$", f)
 tests = [f for f in files if is_test(f) and not f.startswith("test/bench/")] ; tests_all = [f for f in files if is_test(f)]

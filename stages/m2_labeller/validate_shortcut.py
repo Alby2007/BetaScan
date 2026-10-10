@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check the 'only run covering tests' shortcut: for sampled mutants run the NON-covering green tests too and count failures.
 Usage: validate_shortcut.py REPO M2DIR MUTDIR OUT.json [--parents 3] [--per-parent 8] [--seed 0]"""
-import argparse, json, pathlib, random, subprocess, sys, tempfile
+import argparse, json, pathlib, random, subprocess, sys, tarfile, tempfile
 H = pathlib.Path(__file__).resolve().parent
 ap = argparse.ArgumentParser(); ap.add_argument("repo"); ap.add_argument("m2dir"); ap.add_argument("mutdir"); ap.add_argument("out")
 ap.add_argument("--parents", type=int, default=3); ap.add_argument("--per-parent", type=int, default=8); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--risky", default="", help="graphs.db: pick high-risk mutants (hub files, module top-level code) instead of random; --per-parent-random extra random ones"); ap.add_argument("--per-parent-random", type=int, default=0)
@@ -9,7 +9,7 @@ a = ap.parse_args(); repo = pathlib.Path(a.repo).resolve(); rng = random.Random(
 files = sorted(pathlib.Path(a.mutdir).glob("*.json")); rng.shuffle(files); report = []
 import sqlite3
 con = sqlite3.connect(a.risky) if a.risky else None
-gen = lambda wt, fs: json.loads(subprocess.run(["node", str(H / "gen_mutants.mjs"), wt, *fs], capture_output=True, text=True, check=True).stdout)
+gen = lambda wt, fs: json.loads(subprocess.run(["node", str(H / "gen_mutants.mjs"), wt, *fs], capture_output=True, text=True, encoding="utf-8", errors="replace", check=True).stdout)
 for f in files[: a.parents]:
     d = json.load(open(f)); rec = json.load(open(pathlib.Path(a.m2dir) / f"{d['commit']}.json")); P = d["parent"]
     green = [t for t, v in rec["suite_P"]["files"].items() if v["status"] == "pass"]
@@ -24,7 +24,10 @@ for f in files[: a.parents]:
         for m in ms: m["_risk"] = risk(m)
     else: ms = ms[: a.per_parent]
     with tempfile.TemporaryDirectory() as wt:
-        subprocess.run(f"git -C {repo} archive {P} src | tar -x -C {wt}", shell=True, check=True)
+        tar = pathlib.Path(wt) / "src.tar"
+        subprocess.run(["git", "-C", str(repo), "archive", "-o", str(tar), P, "src"], check=True)
+        with tarfile.open(tar) as tf:
+            tf.extractall(wt, filter="data", members=[m for m in tf.getmembers() if not (m.issym() or m.islnk())])
         allm = {f"{m['file']}:{m['start']}:{m['mutator']}": m for m in gen(wt, sorted({m['file'] for m in ms}))}
     jobs = [{"id": m["id"], "file": m["file"], "start": allm[m["id"]]["start"], "end": allm[m["id"]]["end"], "replacement": m["replacement"],
              "tests": [t for t in green if t not in set(m["tests"])]} for m in ms]

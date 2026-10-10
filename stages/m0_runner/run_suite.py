@@ -8,7 +8,7 @@ original checkout is never mutated.
 import argparse, json, subprocess, sys, tempfile, time, pathlib
 
 def sh(cmd, **kw):
-    return subprocess.run(cmd, check=True, text=True, **kw)
+    return subprocess.run(cmd, check=True, text=True, encoding="utf-8", errors="replace", **kw)
 
 def main():
     ap = argparse.ArgumentParser()
@@ -27,7 +27,7 @@ def main():
         script = f"tar -xf /in/src.tar -C /repo && cd /repo && {a.install} >&2 && ({a.test} >&2 || true) && cat /tmp/vitest.json"
         t0 = time.time()
         p = subprocess.run(["docker", "run", "--rm", "-v", f"{tmp}:/in:ro", "-v", "impactnet-pnpm-store:/root/.local/share/pnpm",
-                            "-e", "CI=true", a.image, "bash", "-c", script], text=True, capture_output=True)
+                            "-e", "CI=true", a.image, "bash", "-c", script], text=True, encoding="utf-8", errors="replace", capture_output=True)
         sys.stderr.write(p.stderr[-3000:])
         if p.returncode: sys.exit(p.returncode)
     raw = json.loads(p.stdout[p.stdout.index("{"):])

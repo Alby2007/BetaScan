@@ -5,6 +5,7 @@ Everything a ranker sees comes from the parent commit P (graph at P, coverage at
 import argparse, collections, json, math, os, random, sqlite3, statistics, sys
 ap = argparse.ArgumentParser(); ap.add_argument("rows"); ap.add_argument("db"); ap.add_argument("out")
 ap.add_argument("--m2dir", default="data/m2"); ap.add_argument("--test-parents", type=int, default=4); ap.add_argument("--seeds", type=int, default=5)
+ap.add_argument("--b3dir", default="data/b3")
 a = ap.parse_args()
 rows = [json.loads(l) for l in open(a.rows)]
 changes = collections.OrderedDict()
@@ -16,7 +17,7 @@ con = sqlite3.connect(a.db)
 import glob
 covsize = {}
 for f in [g for d in a.m2dir.split(",") for g in glob.glob(os.path.join(d, "[0-9a-f]*.json"))]:
-    r = json.load(open(f)); covsize[r["parent"]] = {t: sum(len(l) for l in v["covered"].values()) for t, v in r["cov_P"]["tests"].items()}
+    r = json.load(open(f)); covsize[r["parent"]] = {t: sum(len(l) for l in v["covered"].values()) for t, v in r.get("cov_P", {}).get("tests", {}).items()}
 
 class G:
     def __init__(s, P):
@@ -53,7 +54,7 @@ def hist_model(train_changes):
     return key
 
 B3 = {}
-for _f in glob.glob("data/b3/b3_*.jsonl"):
+for _f in glob.glob(a.b3dir + "/b3_*.jsonl"):
     for _l in open(_f):
         _j = json.loads(_l); B3.setdefault(f"B3 LLM variant {_j['variant']} ({_j['model']})", {})[_j["change_id"]] = {t: i for i, t in enumerate(_j["ranking"])}
 
@@ -227,6 +228,7 @@ rob = ["\n## Robustness of the >10 stratum result to clustering (ALL mutants, ca
        f"Stratum >10: {len(st)} killed mutants; distinct commits {len({x['_p'] for x in st})}, distinct source files {len({x['_f'] for x in st})}, distinct mutated functions {len({x['_fn'] for x in st})}.\n",
        "| ranker | metric | cluster by | paired diff vs B5a [95% CI] | paired diff vs B4 [95% CI] |", "|---|---|---|---|---|"]
 for name in ["B4 reverse-call reachability", "B1 import-proximity", "B5d coverage, broadest first", "B6 call distance, ties broadest first", "B5b coverage, most targeted first", "B7 lexical overlap", "B8 RRF(B3,B4)", "ORACLE (perfect order)"] + sorted(B3):
+    if not accR[name][">10"]: continue
     for metric in ["n95", "recall@5", "APFD"]:
         for lab, key in [("commit", "_p"), ("source file", "_f"), ("function", "_fn")]:
             d = boot(accR, name, ">10", metric, "B5a coverage, random order", key=key)

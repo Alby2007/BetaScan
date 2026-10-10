@@ -8,7 +8,7 @@ ap.add_argument("repo"); ap.add_argument("commit"); ap.add_argument("out")
 ap.add_argument("--files", default=""); ap.add_argument("--image", default="impactnet-node")
 a = ap.parse_args()
 repo = pathlib.Path(a.repo).resolve()
-sha = subprocess.run(["git", "-C", str(repo), "rev-parse", a.commit], capture_output=True, text=True, check=True).stdout.strip()
+sha = subprocess.run(["git", "-C", str(repo), "rev-parse", a.commit], capture_output=True, text=True, encoding="utf-8", errors="replace", check=True).stdout.strip()
 LOOP = r'''
 set -u
 tar -xf /in/src.tar -C /repo && cd /repo && pnpm install --frozen-lockfile >&2

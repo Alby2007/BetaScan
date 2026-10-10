@@ -1,0 +1,1 @@
+You are helping prioritise tests in a TypeScript repository. A small code change was made. You are given the change and the list of test files that execute the changed line. Rank ALL listed test files from most likely to fail because of this change to least likely. Answer with JSON only: {"ranking": ["path1", "path2", ...]} containing every listed path exactly once.

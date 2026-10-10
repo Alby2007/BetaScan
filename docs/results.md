@@ -1,0 +1,85 @@
+# Results
+
+## h3 — complete
+
+52 parents, 664 usable mutants (488 killed, 176 survived, 1 unresolved; unresolved counted both
+ways — verdict unchanged). `>10`-stratum n=280 killed mutants from 51 commits, 39 source files,
+89 mutated functions (effective n ≈ clusters, not 280).
+
+Pre-registered go/no-go (`>10`, commit-clustered): oracle n95/ncov 0.417 [0.354, 0.484] < 0.5 and
+B5a 0.796 [0.768, 0.825] > 0.7 → **GO**. Other strata have no headroom (oracle ≥ 0.83).
+
+### Covering-set ranking, `>10` stratum (n=280)
+
+| Ranker | n95 | recall@5 | APFD |
+|---|---|---|---|
+| ORACLE | 7.90 | 0.746 | 0.789 |
+| B8 RRF(B3,B4) — free | 11.84 | 0.554 | 0.683 |
+| B3-A LLM (gemini-flash-lite) | 11.89 | 0.556 | 0.682 |
+| B4 reverse call-graph — free, deterministic | 12.71 | 0.497 | 0.649 |
+| B7 lexical overlap | 14.74 | 0.426 | 0.594 |
+| B5a coverage-random | 17.05 | 0.264 | 0.501 |
+
+Key comparisons (commit-clustered paired diffs; same direction under file/function clustering):
+
+- **B8 vs B4**: n95 −0.87, recall@5 +0.056, APFD +0.034 — fusion significantly beats B4.
+- **B8 vs B3-A**: n95 −0.05, recall@5 −0.002, APFD +0.0004 — **statistical tie** on every metric.
+  B3 already contains what B4 adds; uniform fusion captures nothing extra.
+- **B3-A vs B4**: n95 −0.82 (tie), recall@5 +0.059, APFD +0.034 — LLM narrowly ahead; it reads
+  most of the structure signal from names + diff alone.
+- B7 << B4 — the LLM's edge is semantic, not string matching (B7 recovers ~40% of the B5a→oracle
+  recall@5 gap, B4 ~57%, B3-A ~71%).
+- B3/B4 complementarity was **corrected**: union-of-top-5s is a budget artifact; best-top-10 wins.
+
+**M1 bar (pre-registered):** beat best of B3/B4/B7/B8 → effectively B3-A ≈ B8
+(n95 ~11.8, recall@5 ~0.556, APFD ~0.682). B4 stays reported separately (free, instant,
+deterministic — vs B3's per-change API cost).
+
+B3 details: `gemini-flash-lite-latest` (served `gemini-3.5-flash-lite`), temp 0, 380 calls, 0 parse
+failures; prompt verbatim in `data/b3/SYSTEM_PROMPT.txt`, raw responses logged.
+
+Full tables incl. all clusterings: `data/m3_b3.md`.
+
+## trpc — held-out results (clean dataset, `>10` stratum)
+
+Pilot complete: 7 commits, 141 mutants, 110 killed, 58 distinct src files. Go/no-go **GO**
+(oracle n95/ncov 0.430, B5a 0.846; worst-case unchanged). Baselines inside the covering set:
+
+| Ranker | n95 | recall@5 | APFD |
+|---|---|---|---|
+| ORACLE | 15.47 | 0.565 | 0.779 |
+| B4 reverse-call — free | 27.15 | 0.340 | 0.641 |
+| B8 RRF(B3,B4) — free | 27.75 | 0.347 | 0.644 |
+| B1 import | 28.36 | 0.261 | 0.609 |
+| B3-A LLM (same model+prompt as h3) | 29.83 | 0.351 | 0.627 |
+| B7 lexical | 31.73 | 0.252 | 0.556 |
+| B5a coverage-random | 35.28 | 0.139 | 0.488 |
+
+(B3-A/B8 cover 99/110 mutants — the 11 dropped are non-regenerating old-config mutants; see
+`docs/caveats.md`.)
+
+- **B4 vs B5a**: n95 −8.13, recall@5 +0.201, APFD +0.153 — survives source-file and function
+  clustering (n95 file [−11.70, −4.96]); 7 commits is too few to cluster on, 50 files is the unit.
+- **Ordering flips vs h3**: there B3-A ≈ B8 > B4; on trpc B4 ≈ B8 and B3-A is *worse* than B4 on
+  n95 (+2.67, CI excludes 0; ties on recall@5/APFD). The structural heuristic is the cross-repo
+  stable ranker; the diff-reading LLM is not. trpc contamination risk applies to B3's favour, so
+  this is conservative evidence for structure.
+- **Gap-closed share by B4** (random→oracle): recall@5 ~47% (h3 ~47%), APFD ~53% (h3 ~51%),
+  n95 ~41% (h3 ~47%) — the cross-repo consistency is the headline result.
+
+## M1 — trained on h3, frozen before trpc scoring
+
+sklearn HistGradientBoostingClassifier (max_iter 150, lr 0.05, leaves 15, L2 1.0), 12
+repo-agnostic features, GroupKFold(5) by src_file — spec: `data/m1/m1_spec.json`.
+
+h3 grouped-CV sanity (`>10`, n=280): no-B3 variant n95 12.59 / r@5 0.494 / APFD 0.641 (≈B4);
++B3-stack 11.62 / 0.533 / 0.663 (below B3-A). Consistent with "no complementary signal to
+harvest". Pre-registered trpc tiers: **WIN** paired n95 CI excludes 0 in M1's favour; **MATCH**
+within ±10% of best-of-B3-A/B8 n95 (zero inference cost); **LOSS** otherwise → ship B4.
+
+## What has NOT been measured yet
+
+- M1 on trpc (stop gate: after augment batch + B3 delta, before scoring)
+- Reverse direction (train trpc → test h3) — secondary check
+- Stronger-model B3 rerun on trpc (prompts now persisted; explicit versioned model name)
+- Real-commit stratum (coverage undefined: config/fixtures) — h3 has 3/12 commits, 0 labels; too thin

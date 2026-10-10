@@ -7,7 +7,7 @@ H = pathlib.Path(__file__).resolve().parent; R0 = H.parent / "m0_runner" / "run_
 ap = argparse.ArgumentParser(); ap.add_argument("repo"); ap.add_argument("outdir")
 ap.add_argument("--n", type=int, default=12); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--since", default="2025-01-01"); ap.add_argument("--skip-c", action="store_true", help="skip the suite run at C (mutant-only use)"); ap.add_argument("--exclude-dir", default="")
 a = ap.parse_args(); out = pathlib.Path(a.outdir); out.mkdir(parents=True, exist_ok=True)
-git = lambda *x: subprocess.run(["git", "-C", a.repo, *x], capture_output=True, text=True, check=True).stdout
+git = lambda *x: subprocess.run(["git", "-C", a.repo, *x], capture_output=True, text=True, encoding="utf-8", errors="replace", check=True).stdout
 cands = []
 for c in git("rev-list", "--no-merges", f"--since={a.since}", "HEAD").split():
     fs = git("diff-tree", "--no-commit-id", "--name-only", "-r", c).split()

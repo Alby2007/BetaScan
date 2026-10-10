@@ -4,7 +4,7 @@ Usage: b3_llm.py ROWS.jsonl GRAPHS.db REPO OUTDIR --variant A|B [--model MODEL -
 Variant A: diff + source context + covering test paths (the same covering set and budget B4/B5 get; no labels, parent commit only).
 Variant B: A + for each test, the src files it imports directly (a compact repo map, to check whether any gain is just "more context").
 Fixed prompt, temperature 0, raw responses logged. Resumable. --dry-run writes prompts only (no API call). Key from ANTHROPIC_API_KEY / OPENAI_API_KEY."""
-import argparse, collections, difflib, glob, json, os, pathlib, sqlite3, subprocess, sys, tempfile, urllib.request
+import argparse, collections, difflib, glob, json, os, pathlib, sqlite3, subprocess, sys, tarfile, tempfile, urllib.request
 GEN = pathlib.Path(__file__).resolve().parents[1] / "m2_labeller" / "gen_mutants.mjs"
 ap = argparse.ArgumentParser(); ap.add_argument("rows"); ap.add_argument("db"); ap.add_argument("repo"); ap.add_argument("outdir")
 ap.add_argument("--variant", default="A"); ap.add_argument("--model", default=""); ap.add_argument("--provider", default="anthropic")
@@ -22,25 +22,33 @@ muts = {}
 for d in a.mutdirs.split(","):
     for f in glob.glob(d + "/*.json"):
         j = json.load(open(f))
+        if "parent" not in j or "mutants" not in j: continue
         for m in j["mutants"]: muts[f"{j['parent'][:10]}:{m['id']}"] = (j["parent"], m)
 con = sqlite3.connect(a.db)
-def src_at(P, f): return subprocess.run(["git", "-C", a.repo, "show", f"{P}:{f}"], capture_output=True, text=True).stdout.splitlines()
-def imports(P, t): return sorted(r[0][5:] for r in con.execute("SELECT dst FROM edges WHERE commit_hash=? AND type='imports' AND src=? AND dst LIKE 'file:src/%'", (P, f"file:{t}")))
+def src_at(P, f): return subprocess.run(["git", "-C", a.repo, "show", f"{P}:{f}"], capture_output=True, text=True, encoding="utf-8", errors="replace").stdout.splitlines()
+def imports(P, t, top): return sorted(r[0][5:] for r in con.execute(f"SELECT dst FROM edges WHERE commit_hash=? AND type='imports' AND src=? AND dst LIKE 'file:{top}/%'", (P, f"file:{t}")))
 _gen = {}
 def mutated_diff(P, m):
     k = (P, m["file"])
     if k not in _gen:
         with tempfile.TemporaryDirectory() as wt:
-            subprocess.run(f"git -C {a.repo} archive {P} src | tar -x -C {wt}", shell=True, check=True)
-            _gen[k] = {f"{x['file']}:{x['start']}:{x['mutator']}": x for x in json.loads(subprocess.run(["node", str(GEN), wt, m["file"]], capture_output=True, text=True, check=True).stdout)}
-    g = _gen[k][m["id"]]; text = "\n".join(src_at(P, m["file"])) + "\n"
+            tar = pathlib.Path(wt) / "src.tar"
+            subprocess.run(["git", "-C", a.repo, "archive", "-o", str(tar), P, m["file"].split("/")[0]], check=True)
+            with tarfile.open(tar) as tf:
+                tf.extractall(wt, filter="data", members=[m for m in tf.getmembers() if not (m.issym() or m.islnk())])
+            _gen[k] = {f"{x['file']}:{x['start']}:{x['mutator']}": x for x in json.loads(subprocess.run(["node", str(GEN), wt, m["file"]], capture_output=True, text=True, encoding="utf-8", errors="replace", check=True).stdout)}
+    g = _gen[k].get(m["id"])
+    if g is None: return None
+    text = "\n".join(src_at(P, m["file"])) + "\n"
     new = text[: g["start"]] + g["replacement"] + text[g["end"]:]
     return "\n".join(difflib.unified_diff(text.splitlines(), new.splitlines(), f"a/{m['file']}", f"b/{m['file']}", n=12, lineterm=""))
 def prompt(c):
     P, m = muts[c]
     tests = sorted(r["test_file"] for r in rows[c] if r["covers"])
-    p = f"Change ({m['file']}, line {m['line']}):\n{mutated_diff(P, m)}\n\nCovering test files ({len(tests)}):\n"
-    p += "\n".join((f"- {t}  (imports: {', '.join(imports(P, t)) or 'none'})" if a.variant == "B" else f"- {t}") for t in tests)
+    d = mutated_diff(P, m)
+    if d is None: return None, tests
+    p = f"Change ({m['file']}, line {m['line']}):\n{d}\n\nCovering test files ({len(tests)}):\n"
+    p += "\n".join((f"- {t}  (imports: {', '.join(imports(P, t, m['file'].split('/')[0])) or 'none'})" if a.variant == "B" else f"- {t}") for t in tests)
     return p, tests
 todo = [c for c, rs in rows.items() if c in muts and any(r["fails"] for r in rs) and sum(r["covers"] for r in rs) >= a.min_cov]
 if a.sample: import random; todo = random.Random(a.seed).sample(todo, min(a.sample, len(todo)))
@@ -81,9 +89,10 @@ print(len(todo), "changes in scope;", len(done), "done", file=sys.stderr)
 for c in todo:
     if c in done: continue
     p, tests = prompt(c)
+    if p is None: continue
     if a.dry_run:
         (out / f"prompt_{a.variant}_{c.replace('/', '_').replace(':', '_')[:80]}.txt").write_text(p); continue
     raw = call(p)
     try: rk = json.loads(raw[raw.index("{"): raw.rindex("}") + 1])["ranking"]
     except Exception: rk = []
-    open(fo, "a").write(json.dumps({"change_id": c, "model": a.model, "variant": a.variant, "ranking": rk, "n_tests": len(tests), "raw": raw}) + "\n")
+    open(fo, "a").write(json.dumps({"change_id": c, "model": a.model, "variant": a.variant, "ranking": rk, "n_tests": len(tests), "prompt": p, "raw": raw}) + "\n")

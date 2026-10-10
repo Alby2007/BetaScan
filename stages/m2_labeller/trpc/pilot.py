@@ -3,7 +3,7 @@
 packages/{server,client,tests}; mutation targets packages/{server,client}/src only.
 Same mutation operators as h3 (gen_mutants.mjs, unchanged). Output: OUTDIR/<C>.json per commit (resumable)
 plus OUTDIR/summary.json. Usage: pilot.py REPO OUTDIR [--n 3] [--since 2025-09-01] [--min-cov 11] [--per-commit 8] [--files-per-commit 6]"""
-import argparse, collections, json, pathlib, random, subprocess, sys, tempfile, time
+import argparse, collections, json, pathlib, random, subprocess, sys, tarfile, tempfile, time
 
 H = pathlib.Path(__file__).resolve().parent
 M2 = H.parent
@@ -15,9 +15,10 @@ ap.add_argument("repo"); ap.add_argument("outdir")
 ap.add_argument("--n", type=int, default=3); ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--since", default="2025-09-01")
 ap.add_argument("--min-cov", type=int, default=11); ap.add_argument("--per-commit", type=int, default=25)
+ap.add_argument("--augment", type=int, default=0, help="append up to N mutants on not-yet-mutated files to each existing record (needs cov_P/suite_P; skips suite/coverage stages)")
 a = ap.parse_args()
 repo = pathlib.Path(a.repo).resolve(); out = pathlib.Path(a.outdir); out.mkdir(parents=True, exist_ok=True)
-git = lambda *x: subprocess.run(["git", "-C", str(repo), *x], capture_output=True, text=True, check=True).stdout
+git = lambda *x: subprocess.run(["git", "-C", str(repo), *x], capture_output=True, text=True, encoding="utf-8", errors="replace", check=True).stdout
 INSTALL = "COREPACK_ENABLE_STRICT=0 pnpm install --frozen-lockfile"
 IMAGE = {"22": "impactnet-node22", "24": "impactnet-node"}
 _cur_image = "impactnet-node"
@@ -31,7 +32,7 @@ def docker(script, tmp, extra_env=None, timeout=None):
     for k, v in (extra_env or {}).items(): env += ["-e", f"{k}={v}"]
     return subprocess.run(["docker", "run", "--rm", "-v", f"{tmp}:/in", "-v", f"{tmp}/out:/out",
                            "-v", "impactnet-pnpm-store:/root/.local/share/pnpm", "-v", "impactnet-root-cache:/root/.cache",
-                           "-e", "CI=true", *env, _cur_image, "bash", "-c", script], capture_output=True, text=True, timeout=timeout)
+                           "-e", "CI=true", *env, _cur_image, "bash", "-c", script], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout)
 
 COMBINED = r'''
 set -u
@@ -86,8 +87,11 @@ def suite_and_cov(sha, all_files):
 
 def gen_mutants(P, files):
     with tempfile.TemporaryDirectory() as wt:
-        subprocess.run(f"git -C {repo} archive {P} packages | tar -x -C {wt}", shell=True, check=True)
-        r = subprocess.run(["node", str(M2 / "gen_mutants.mjs"), wt, *files], capture_output=True, text=True, check=True)
+        tar = pathlib.Path(wt) / "src.tar"
+        subprocess.run(["git", "-C", str(repo), "archive", "-o", str(tar), P, "packages"], check=True)
+        with tarfile.open(tar) as tf:
+            tf.extractall(wt, filter="data", members=[m for m in tf.getmembers() if not (m.issym() or m.islnk())])
+        r = subprocess.run(["node", str(M2 / "gen_mutants.mjs"), wt, *files], capture_output=True, text=True, encoding="utf-8", errors="replace", check=True)
         return json.loads(r.stdout)
 
 def run_mutants(P, jobs, tag):
@@ -111,8 +115,54 @@ for c in git("rev-list", "--no-merges", f"--since={a.since}", "HEAD").split():
 random.Random(a.seed).shuffle(cands)
 print(len(cands), "candidates", file=sys.stderr)
 
+# augment pass: extra mutants on files not yet mutated, reusing persisted suite/coverage (no reruns)
+if a.augment:
+    for of in sorted(out.glob("[0-9a-f]*.json")):
+        rec = json.loads(of.read_text())
+        if "cov_P" not in rec or "suite_P" not in rec: continue
+        if rec.get("augmented", 0) >= a.augment: continue
+        P = rec["parent"]; _cur_image = rec.get("image") or image_for(P)
+        covered = {t: v["covered"] for t, v in rec["cov_P"]["tests"].items()
+                   if rec["suite_P"]["files"].get(t, {}).get("status") == "pass" and v["exit"] == 0}
+        cnt = {}
+        for t in covered:
+            for f_, ls in covered[t].items():
+                for l in ls: cnt[(f_, l)] = cnt.get((f_, l), 0) + 1
+        already = {m["file"] for m in rec["mutants"]}
+        srcs = sorted({f_ for (f_, l), n in cnt.items() if n >= a.min_cov and any(f_.startswith(p) for p in SRC_PREFIXES) and f_.endswith(".ts")} - already)
+        ms = gen_mutants(P, srcs)
+        byf = collections.defaultdict(list); rec["augment_below_min_cov"] = 0
+        for m in ms:
+            m["tests"] = sorted(t for t in covered if m["line"] in set(covered[t].get(m["file"], [])))
+            if len(m["tests"]) >= a.min_cov: byf[m["file"]].append(m)
+            else: rec["augment_below_min_cov"] += 1
+        rng = random.Random(f"{a.seed}{P}:augment")
+        order = sorted(byf); rng.shuffle(order)
+        for f_ in order: rng.shuffle(byf[f_])
+        meta = []
+        while len(meta) < a.augment and any(byf[f_] for f_ in order):
+            for f_ in order:
+                if byf[f_] and len(meta) < a.augment: meta.append(byf[f_].pop())
+        if not meta:
+            rec["augmented"] = a.augment; of.write_text(json.dumps(rec)); continue
+        jobs = [{"id": f"{m['file']}:{m['start']}:{m['mutator']}", "file": m["file"], "start": m["start"],
+                 "end": m["end"], "replacement": m["replacement"], "tests": m["tests"]} for m in meta]
+        res, mut_s = run_mutants(P, jobs, "augment")
+        retry = [dict(j, split=True) for j in jobs if res.get(j["id"], {}).get("status") == "Error" and float(res[j["id"]].get("secs", 0)) >= 100]
+        if retry:
+            r2, s2b = run_mutants(P, retry, "augment-split"); mut_s += s2b
+            res.update({k: v for k, v in r2.items()})
+        rec.setdefault("stages", {})["augment_s"] = mut_s
+        rec["mutants"].extend([{**{k: m[k] for k in ("file", "mutator", "line", "original", "replacement", "tests")},
+                                "id": jobs[i]["id"], **{k: res.get(jobs[i]["id"], {}).get(k) for k in ("status", "killed_by_files", "secs", "via")}}
+                               for i, m in enumerate(meta)])
+        rec["n_mutant_files"] = len({m["file"] for m in rec["mutants"]})
+        rec["augmented"] = rec.get("augmented", 0) + len(meta)
+        of.write_text(json.dumps(rec))
+        print("augmented", rec["commit"][:8], len(meta), "mutants on", len({m["file"] for m in meta}), "new files", file=sys.stderr)
+
 done = 0
-for c in cands:
+for c in ([] if a.augment else cands):
     if done >= a.n: break
     of = out / f"{c}.json"
     if of.exists(): done += 1; continue
@@ -130,6 +180,9 @@ for c in cands:
         allf = sorted(set(s1) | set(s2))
         green = {f for f in allf if s1.get(f, {}).get("status") == "pass" and s2.get(f, {}).get("status") == "pass"}
         rec["excluded_files"] = sorted(set(allf) - green)
+        rec["suite_P"] = {"files": {t: {"status": "pass" if t in green else "fail",
+                                        "duration_ms": s1.get(t, s2.get(t, {})).get("duration_ms", 0)} for t in allf}}
+        rec["cov_P"] = {"tests": comb["tests"]}
         rec["n_cov_files"] = len(comb["tests"])
         covered = {t: v["covered"] for t, v in comb["tests"].items() if t in green and v["exit"] == 0}
         cnt = {}

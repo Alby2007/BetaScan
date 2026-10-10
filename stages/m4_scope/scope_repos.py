@@ -13,8 +13,8 @@ for r in repos:
     d = root / "targets_scope" / r.replace("/", "__")
     try:
         if not d.exists(): subprocess.run(["git", "clone", "--depth", "1", "-q", f"https://github.com/{r}", str(d)], check=True, timeout=300)
-        commits = subprocess.run(["git", "-C", str(d), "rev-list", "--count", "HEAD"], capture_output=True, text=True).stdout.strip()
-        p = subprocess.run(["node", str(M1 / "extract.mjs"), str(d)], capture_output=True, text=True, timeout=300)
+        commits = subprocess.run(["git", "-C", str(d), "rev-list", "--count", "HEAD"], capture_output=True, text=True, encoding="utf-8", errors="replace").stdout.strip()
+        p = subprocess.run(["node", str(M1 / "extract.mjs"), str(d)], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300)
         g = json.loads(p.stdout)
     except Exception as e:
         rows.append(f"| {r} | - | - | - | - | - | failed: {str(e)[:60]} |"); continue

@@ -3,10 +3,10 @@
 import { Project, SyntaxKind, Node } from "ts-morph";
 import path from "node:path";
 
-const root = path.resolve(process.argv[2]);
+const root = path.resolve(process.argv[2]).replaceAll("\\", "/");
 const project = new Project({ tsConfigFilePath: path.join(root, "tsconfig.json"), skipFileDependencyResolution: false });
-const rel = (p) => path.relative(root, p);
-const inRepo = (sf) => sf && !sf.isInNodeModules() && !sf.isDeclarationFile() && sf.getFilePath().startsWith(root + "/");
+const rel = (p) => path.relative(root, p).replaceAll("\\", "/");
+const inRepo = (sf) => sf && !sf.isInNodeModules() && !sf.isDeclarationFile() && sf.getFilePath().replaceAll("\\", "/").startsWith(root + "/");
 const isTest = (f) => /\.(test|spec)(-d)?\.[cm]?[tj]sx?$/.test(f);
 
 const nodes = new Map(), edges = new Set(), declId = new Map();

@@ -41,15 +41,31 @@ best of B3/B4/B7/B8 → effectively B3-A ≈ B8. B4 stays reported separately (f
 Full tables + all clusterings: `data/m3_b3.md`. B3 logs: `data/b3/` (model `gemini-flash-lite-latest`,
 served `gemini-3.5-flash-lite`, temp 0, 380 calls, 0 parse failures; prompt in `data/b3/SYSTEM_PROMPT.txt`).
 
-### trpc — labelling in progress (PAUSED here)
+### trpc — labelled + baselined; augment batch running
 
 - `data/trpc_pilot/*.json`, one record per commit, resumable (existing records are skipped).
-- Done: 2 records under OLD config (8 mutants each): `aac35fbd…` (node22, 8K/0S),
-  `8b649ad…` (node24, 4K/4S). Covering sets 13–85 tests — much denser than h3.
-- In flight when paused: first NEW-config commit — 25 mutants × 25 distinct files,
-  mutant stage ~6/25 done. That commit's record is absent → it will rerun on resume.
-- Target: `--n 7 --per-commit 25` → ~141 mutants (16 + 125), ≥30 distinct files wanted;
-  the two old parents only had 6 eligible files each — watch `n_src_files_eligible`.
+- DONE: 7 commits, 141 mutants, 110 killed clean / 113 worst-case, 58 distinct src files.
+  Rows `data/trpc_rows{,_worst}.jsonl`, graphs `data/trpc_graphs.db`, eval `data/trpc_eval.md`.
+- Go/no-go GO (clean + worst-case). B4 beats B5a (n95 −8.13, r@5 +0.20, APFD +0.15); the
+  random→oracle gap-closed share ≈ h3's on every metric — the cross-repo headline.
+- **B3-A on trpc DONE** (99/110 regenerable killed mutants; identical model `gemini-flash-lite-latest`,
+  variant A, prompts persisted in `data/trpc_b3/b3_A.jsonl`). Ordering FLIPS vs h3:
+  B4 ≈ B8 and B3-A is WORSE than B4 on n95 (+2.67, CI excl. 0; ties r@5/APFD).
+- Cluster CIs by source file (50) / function (69), not commit (7): B4-vs-B5a still excludes 0.
+- Regeneration integrity: 176 mutants verify byte-identical, 0 mismatches, 15 non-regenerable
+  (all in the 2 old-config records; 11 of them are the B3 dropped set).
+- Augment in flight: `pilot.py --augment 25` adds mutants on not-yet-mutated files for the 4
+  records carrying `suite_P`/`cov_P` (~+100 mutants expected). Afterwards: rebuild rows,
+  B3-A delta on the new change_ids (resumable), re-eval — then STOP before M1-on-trpc.
+
+### M1 — trained on h3, FROZEN (not yet scored on trpc)
+
+- sklearn HistGradientBoostingClassifier (LightGBM has no cp314 wheels), 12 repo-agnostic
+  features, GroupKFold(5) by src_file. Spec `data/m1/m1_spec.json`; models `data/m1/m1_h3{,_b3stack}.pkl`.
+- Features/graphs versioned: ts-morph pinned 28.0.0; h3 re-extracted → `data/graphs_v28_h3.db`.
+- h3 grouped-CV: no-B3 ≈ B4 (12.59/0.494/0.641); +B3-stack below B3-A (11.62/0.533/0.663).
+- Pre-registered tiers (DECISIONS.md): WIN paired n95 CI excl. 0; MATCH within ±10% of
+  best-of-B3-A/B8 n95; LOSS → ship B4.
 
 ## What is NOT in this repo (restore on the PC)
 
@@ -74,28 +90,30 @@ served `gemini-3.5-flash-lite`, temp 0, 380 calls, 0 parse failures; prompt in `
 ## Resume
 
 ```
-python3 stages/m2_labeller/trpc/pilot.py targets_scope/full__trpc__trpc data/trpc_pilot --n 7 --per-commit 25
+python3 stages/m2_labeller/trpc/pilot.py targets_scope/full__trpc__trpc data/trpc_pilot --augment 25
 ```
 
-~1–1.25 h/commit on this machine (combined install+suite×2+coverage container, then a mutant
-container). On completion check: killed count 100–150, `n_mutant_files` union ≥30,
-`src_files_below_min_cov`/`mutants_below_min_cov` fields for the selection-effect audit.
+Augment is resumable per record (`augmented` field). Then:
+
+```
+python3 stages/m2_labeller/trpc/build_rows.py data/trpc_pilot data/trpc_rows.jsonl data/trpc_rows_worst.jsonl
+python3 stages/m3_baselines/b3_llm.py data/trpc_rows.jsonl data/trpc_graphs.db targets_scope/full__trpc__trpc data/trpc_b3 \
+  --variant A --provider gemini --model gemini-flash-lite-latest --mutdirs data/trpc_pilot --sleep 7   # GEMINI_API_KEY env
+python3 stages/m3_baselines/evaluate.py data/trpc_rows.jsonl data/trpc_graphs.db data/trpc_eval --m2dir data/trpc_pilot --b3dir data/trpc_b3
+```
 
 ## Next steps (agreed order)
 
-1. When 3+ new parents land: report trpc `>10`-stratum oracle headroom; stop for review.
-2. Build trpc `rows.jsonl` + `graphs.db` equivalents (extractor is repo-agnostic —
-   check how `data/graphs.db` was made in `stages/`).
-3. Run B3-A on trpc mutants with the IDENTICAL model+prompt (`stages/m3_baselines/b3_llm.py`,
-   resumable, throttle ~6s/call; flash-lite free-tier quota is large — h3 did 380 calls).
-4. M1: small regularised LightGBM ranker, grouped k-fold BY SOURCE FILE, repo-agnostic
-   features only, history from earlier commits only. FREEZE features+hyperparameters
-   before scoring trpc. Ablations: structure+lexical / +history / +B3-rank feature / B3-only.
-   Bar: beat best of B3/B4/B7/B8 (B3-A ≈ B8: n95 ~11.8, recall@5 ~0.556).
-5. After M1: stratified 60–100 mutant B3-A subsample with a stronger paid model; log cost.
+1. Augment lands → rebuild rows → B3-A delta (new change_ids only, resumable) → re-eval.
+2. **STOP for review before scoring M1 on trpc** (features/hyperparams already frozen; nothing
+   about M1 may be tuned against trpc numbers).
+3. Score M1 (h3-trained, frozen) on trpc → report vs pre-registered WIN/MATCH/LOSS tiers;
+   report B5b-style `targeted_*` features separately (sign unstable across repos).
+4. Reverse direction: train trpc → test h3, secondary check (trpc is small; weaker evidence).
+5. Stronger-model B3 rerun on a trpc subsample (prompts persisted; use explicit versioned
+   model name; also measures alias drift vs the saved flash-lite rankings).
 6. Write-up caveats already logged: trpc round-robin weights files equally (not population rates);
-   h3 is public code (possible LLM contamination); B3 used a lite free model (baseline likely
-   underestimated).
+   both repos public (LLM contamination possible; hurts B3, not structure); B3 = lite free model.
 
 ## Key paths
 
