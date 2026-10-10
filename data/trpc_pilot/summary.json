@@ -9,12 +9,12 @@
    "combined_s": 642.2,
    "mutation_s": 1357.2,
    "n_cov_files": 100,
-   "n_mutant_files": 25,
+   "n_mutant_files": 50,
    "excluded": [],
-   "mutants": 25,
+   "mutants": 50,
    "status": {
-    "Killed": 22,
-    "Survived": 3
+    "Killed": 41,
+    "Survived": 9
    }
   },
   {
@@ -25,12 +25,12 @@
    "combined_s": 584.1,
    "mutation_s": 970.3,
    "n_cov_files": 98,
-   "n_mutant_files": 25,
+   "n_mutant_files": 50,
    "excluded": [],
-   "mutants": 25,
+   "mutants": 50,
    "status": {
-    "Killed": 18,
-    "Survived": 7
+    "Killed": 39,
+    "Survived": 11
    }
   },
   {
@@ -59,13 +59,13 @@
    "combined_s": 599.2,
    "mutation_s": 2175.9,
    "n_cov_files": 98,
-   "n_mutant_files": 25,
+   "n_mutant_files": 50,
    "excluded": [],
-   "mutants": 25,
+   "mutants": 50,
    "status": {
-    "Killed": 19,
-    "Flaky": 2,
-    "Survived": 4
+    "Killed": 35,
+    "Flaky": 5,
+    "Survived": 10
    }
   },
   {
@@ -93,12 +93,13 @@
    "combined_s": 519.6,
    "mutation_s": 1328.6,
    "n_cov_files": 99,
-   "n_mutant_files": 25,
+   "n_mutant_files": 50,
    "excluded": [],
-   "mutants": 25,
+   "mutants": 50,
    "status": {
-    "Killed": 20,
-    "Survived": 5
+    "Killed": 38,
+    "Survived": 10,
+    "Flaky": 2
    }
   },
   {

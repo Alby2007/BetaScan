@@ -96,7 +96,8 @@ python3 stages/m2_labeller/trpc/pilot.py targets_scope/full__trpc__trpc data/trp
 Augment is resumable per record (`augmented` field). Then:
 
 ```
-python3 stages/m2_labeller/trpc/build_rows.py data/trpc_pilot data/trpc_rows.jsonl data/trpc_rows_worst.jsonl
+python3 stages/m2_labeller/trpc/build_rows.py targets_scope/full__trpc__trpc data/trpc_pilot data/trpc_rows.jsonl
+python3 stages/m2_labeller/trpc/build_rows.py targets_scope/full__trpc__trpc data/trpc_pilot data/trpc_rows_worst.jsonl --worst-case
 python3 stages/m3_baselines/b3_llm.py data/trpc_rows.jsonl data/trpc_graphs.db targets_scope/full__trpc__trpc data/trpc_b3 \
   --variant A --provider gemini --model gemini-flash-lite-latest --mutdirs data/trpc_pilot --sleep 7   # GEMINI_API_KEY env
 python3 stages/m3_baselines/evaluate.py data/trpc_rows.jsonl data/trpc_graphs.db data/trpc_eval --m2dir data/trpc_pilot --b3dir data/trpc_b3
