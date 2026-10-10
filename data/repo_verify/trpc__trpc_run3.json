@@ -1,0 +1,1092 @@
+{
+ "commit": "d756e591a5e37ef20b8d75ecd4d736c195497289",
+ "wall_s": 1000.0,
+ "files": {
+  "packages/tanstack-react-query/test/client.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 1115
+  },
+  "packages/tanstack-react-query/test/infiniteQueryOptions.test.tsx": {
+   "status": "fail",
+   "tests": 6,
+   "failed": 1,
+   "duration_ms": 4957
+  },
+  "packages/tanstack-react-query/test/multipleTrpcProviders.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 466
+  },
+  "packages/tanstack-react-query/test/mutationOptions.test.tsx": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 1477
+  },
+  "packages/tanstack-react-query/test/polymorphism.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 1908
+  },
+  "packages/tanstack-react-query/test/procedureErrors.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 684
+  },
+  "packages/tanstack-react-query/test/queryKeyable.test.tsx": {
+   "status": "pass",
+   "tests": 11,
+   "failed": 0,
+   "duration_ms": 397
+  },
+  "packages/tanstack-react-query/test/queryOptions.test.tsx": {
+   "status": "pass",
+   "tests": 22,
+   "failed": 0,
+   "duration_ms": 1734
+  },
+  "packages/tanstack-react-query/test/skipToken.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 172
+  },
+  "packages/tanstack-react-query/test/useSubscription.test.tsx": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 3068
+  },
+  "packages/tanstack-react-query/test/utils.test.ts": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 58
+  },
+  "packages/tests/showcase/dataloader.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 326
+  },
+  "packages/tests/showcase/tinyrpc.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 294
+  },
+  "packages/tests/server/TRPCError.test.ts": {
+   "status": "pass",
+   "tests": 15,
+   "failed": 0,
+   "duration_ms": 84
+  },
+  "packages/tests/server/abortQuery.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 51
+  },
+  "packages/tests/server/batching.test.ts": {
+   "status": "pass",
+   "tests": 25,
+   "failed": 0,
+   "duration_ms": 966
+  },
+  "packages/tests/server/callRouter.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 11
+  },
+  "packages/tests/server/caller.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 40
+  },
+  "packages/tests/server/children.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 448
+  },
+  "packages/tests/server/clientInternals.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 14
+  },
+  "packages/tests/server/contentTypeHeaders.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 301
+  },
+  "packages/tests/server/createCaller.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 193
+  },
+  "packages/tests/server/createClient.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 12
+  },
+  "packages/tests/server/createUntypedClient.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 13
+  },
+  "packages/tests/server/dataloader.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 150
+  },
+  "packages/tests/server/errorFormatting.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 585
+  },
+  "packages/tests/server/errors.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 1400
+  },
+  "packages/tests/server/getRawInput.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 71
+  },
+  "packages/tests/server/getUntypedClient.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 283
+  },
+  "packages/tests/server/headers.test.tsx": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 483
+  },
+  "packages/tests/server/httpSubscriptionLink.headers.retryLink.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 1566
+  },
+  "packages/tests/server/httpSubscriptionLink.memory.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 441
+  },
+  "packages/tests/server/httpSubscriptionLink.test.ts": {
+   "status": "pass",
+   "tests": 18,
+   "failed": 0,
+   "duration_ms": 6861
+  },
+  "packages/tests/server/index.test.ts": {
+   "status": "pass",
+   "tests": 27,
+   "failed": 0,
+   "duration_ms": 1290
+  },
+  "packages/tests/server/inferenceHelpers.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 17
+  },
+  "packages/tests/server/input.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 1523
+  },
+  "packages/tests/server/isDev.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 405
+  },
+  "packages/tests/server/jsonify.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 398
+  },
+  "packages/tests/server/links.test.ts": {
+   "status": "pass",
+   "tests": 25,
+   "failed": 0,
+   "duration_ms": 1110
+  },
+  "packages/tests/server/meta.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 313
+  },
+  "packages/tests/server/methodOverride.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 386
+  },
+  "packages/tests/server/middlewares.test.ts": {
+   "status": "pass",
+   "tests": 12,
+   "failed": 0,
+   "duration_ms": 108
+  },
+  "packages/tests/server/outputParser.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 1404
+  },
+  "packages/tests/server/parseTRPCMessage.test.ts": {
+   "status": "pass",
+   "tests": 11,
+   "failed": 0,
+   "duration_ms": 59
+  },
+  "packages/tests/server/procedureErrors.client.test.ts": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 426
+  },
+  "packages/tests/server/procedureErrors.test.ts": {
+   "status": "pass",
+   "tests": 52,
+   "failed": 0,
+   "duration_ms": 1885
+  },
+  "packages/tests/server/rawFetch.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 260
+  },
+  "packages/tests/server/responseMeta.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 280
+  },
+  "packages/tests/server/routerMeta.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 542
+  },
+  "packages/tests/server/smoke.test.ts": {
+   "status": "pass",
+   "tests": 13,
+   "failed": 0,
+   "duration_ms": 1260
+  },
+  "packages/tests/server/streaming.test.ts": {
+   "status": "pass",
+   "tests": 19,
+   "failed": 0,
+   "duration_ms": 1348
+  },
+  "packages/tests/server/transformer.test.ts": {
+   "status": "pass",
+   "tests": 22,
+   "failed": 0,
+   "duration_ms": 844
+  },
+  "packages/tests/server/validators.test.ts": {
+   "status": "pass",
+   "tests": 29,
+   "failed": 0,
+   "duration_ms": 1883
+  },
+  "packages/tests/server/websockets.encoder.test.ts": {
+   "status": "pass",
+   "tests": 16,
+   "failed": 0,
+   "duration_ms": 1463
+  },
+  "packages/tests/server/websockets.memory.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 319
+  },
+  "packages/tests/server/websockets.test.ts": {
+   "status": "pass",
+   "tests": 44,
+   "failed": 0,
+   "duration_ms": 13846
+  },
+  "packages/tests/server/adapters/awsLambda.test.tsx": {
+   "status": "pass",
+   "tests": 16,
+   "failed": 0,
+   "duration_ms": 665
+  },
+  "packages/tests/server/adapters/express.test.tsx": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 362
+  },
+  "packages/tests/server/adapters/fastify.test.ts": {
+   "status": "pass",
+   "tests": 16,
+   "failed": 0,
+   "duration_ms": 3168
+  },
+  "packages/tests/server/adapters/fetch.test.ts": {
+   "status": "pass",
+   "tests": 11,
+   "failed": 0,
+   "duration_ms": 585
+  },
+  "packages/tests/server/adapters/next.test.ts": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 332
+  },
+  "packages/tests/server/adapters/standalone.http2.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 776
+  },
+  "packages/tests/server/adapters/standalone.test.ts": {
+   "status": "pass",
+   "tests": 9,
+   "failed": 0,
+   "duration_ms": 876
+  },
+  "packages/tests/server/regression/issue-2506-headers-throwing.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 67
+  },
+  "packages/tests/server/regression/issue-2540-undefined-mutation.test.ts": {
+   "status": "pass",
+   "tests": 24,
+   "failed": 0,
+   "duration_ms": 921
+  },
+  "packages/tests/server/regression/issue-2842-createSSGHelpers-promise.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 20
+  },
+  "packages/tests/server/regression/issue-2856-middleware-infer.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 6
+  },
+  "packages/tests/server/regression/issue-3085-bad-responses.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 209
+  },
+  "packages/tests/server/regression/issue-3351-TRPCError.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 5
+  },
+  "packages/tests/server/regression/issue-3359-http-status-413-payload-too-large.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 188
+  },
+  "packages/tests/server/regression/issue-3453-meta-interface.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 8
+  },
+  "packages/tests/server/regression/issue-3710-client.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 308
+  },
+  "packages/tests/server/regression/issue-4049-stripped-undefined.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 307
+  },
+  "packages/tests/server/regression/issue-4217-throw-non-errors.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 283
+  },
+  "packages/tests/server/regression/issue-4321-context-union-inference.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 11
+  },
+  "packages/tests/server/regression/issue-4527-nested-middleware-root-context.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 18
+  },
+  "packages/tests/server/regression/issue-4645-inferProcedureOutput.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 14
+  },
+  "packages/tests/server/regression/issue-4673-url-encoded-batching.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 358
+  },
+  "packages/tests/server/regression/issue-4783-charset.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 218
+  },
+  "packages/tests/server/regression/issue-4794-error-bad-access.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 33
+  },
+  "packages/tests/server/regression/issue-4947-merged-middleware-inputs.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 23
+  },
+  "packages/tests/server/regression/issue-5020-inference-middleware.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 9
+  },
+  "packages/tests/server/regression/issue-5034-input-with-index-signature.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 11
+  },
+  "packages/tests/server/regression/issue-5037-context-inference.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 25
+  },
+  "packages/tests/server/regression/issue-5056-input-parser-standalone-mw-inference.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 20
+  },
+  "packages/tests/server/regression/issue-5297-description-key-on-input-turns-to-void.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 6
+  },
+  "packages/tests/server/regression/issue-5945-stream-null.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 429
+  },
+  "packages/tests/server/regression/issue-6461-stream-error.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 388
+  },
+  "packages/tests/server/regression/issue-7272-node-vm-error-message.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 30
+  },
+  "packages/tests/server/regression/serializable-inference.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 248
+  },
+  "packages/next/test/issue-4130-ssr-different-transformers.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 446
+  },
+  "packages/next/src/app-dir/client.test.tsx": {
+   "status": "pass",
+   "tests": 9,
+   "failed": 0,
+   "duration_ms": 1096
+  },
+  "packages/next/src/app-dir/procedureErrors.test.tsx": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 175
+  },
+  "packages/react-query/test/abortOnUnmount.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 1564
+  },
+  "packages/react-query/test/createClient.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 318
+  },
+  "packages/react-query/test/createQueryUtils.test.ts": {
+   "status": "pass",
+   "tests": 13,
+   "failed": 0,
+   "duration_ms": 921
+  },
+  "packages/react-query/test/dehydrate.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 190
+  },
+  "packages/react-query/test/ensureQueryData.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 420
+  },
+  "packages/react-query/test/errors.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 1111
+  },
+  "packages/react-query/test/formData.test.tsx": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 613
+  },
+  "packages/react-query/test/formatError.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 501
+  },
+  "packages/react-query/test/getQueryKey.test.tsx": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 651
+  },
+  "packages/react-query/test/invalidateQueries.test.tsx": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 2346
+  },
+  "packages/react-query/test/invalidateRouters.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 1805
+  },
+  "packages/react-query/test/multiple-trpc-providers.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 5971
+  },
+  "packages/react-query/test/mutationkey.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 1126
+  },
+  "packages/react-query/test/next.procedureErrors.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 841
+  },
+  "packages/react-query/test/octetStreams.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 346
+  },
+  "packages/react-query/test/offline.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 1778
+  },
+  "packages/react-query/test/overrides.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 2226
+  },
+  "packages/react-query/test/polymorphism.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 2720
+  },
+  "packages/react-query/test/prefetchQuery.test.tsx": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 1086
+  },
+  "packages/react-query/test/procedureErrors.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 905
+  },
+  "packages/react-query/test/queryClientDefaults.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 2215
+  },
+  "packages/react-query/test/queryOptions.test.tsx": {
+   "status": "pass",
+   "tests": 9,
+   "failed": 0,
+   "duration_ms": 2226
+  },
+  "packages/react-query/test/rsc-prefetch.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 298
+  },
+  "packages/react-query/test/setInfiniteQueryData.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 1706
+  },
+  "packages/react-query/test/setQueriesData.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 1056
+  },
+  "packages/react-query/test/setQueryData.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 1041
+  },
+  "packages/react-query/test/ssg.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 48
+  },
+  "packages/react-query/test/ssgExternal.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 1059
+  },
+  "packages/react-query/test/trpc-options.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 1155
+  },
+  "packages/react-query/test/useInfiniteQuery.test.tsx": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 2933
+  },
+  "packages/react-query/test/useMutation.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 683
+  },
+  "packages/react-query/test/useQueries.test.tsx": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 1312
+  },
+  "packages/react-query/test/useQuery.test.tsx": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 2036
+  },
+  "packages/react-query/test/useSubscription.test.tsx": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 3146
+  },
+  "packages/react-query/test/useSuspenseInfiniteQuery.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 1392
+  },
+  "packages/react-query/test/useSuspenseQueries.test.tsx": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 956
+  },
+  "packages/react-query/test/useSuspenseQuery.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 369
+  },
+  "packages/react-query/test/useUtils.test.tsx": {
+   "status": "pass",
+   "tests": 17,
+   "failed": 0,
+   "duration_ms": 3525
+  },
+  "packages/react-query/test/withTRPC.test.tsx": {
+   "status": "pass",
+   "tests": 21,
+   "failed": 0,
+   "duration_ms": 2438
+  },
+  "packages/react-query/src/internals/getQueryKey.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 153
+  },
+  "packages/react-query/test/regression/issue-1645-setErrorStatusSSR.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 475
+  },
+  "packages/react-query/test/regression/issue-2942-useInfiniteQuery-setData.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 1931
+  },
+  "packages/react-query/test/regression/issue-2996-defined-data.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 6037
+  },
+  "packages/react-query/test/regression/issue-3455-56-invalidate-queries.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 5025
+  },
+  "packages/react-query/test/regression/issue-3461-reserved-properties.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 199
+  },
+  "packages/react-query/test/regression/issue-4360-useInfiniteQuery-placeHolderData.test.tsx": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 72
+  },
+  "packages/react-query/test/regression/issue-4486-initialData-types.test.tsx": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 153
+  },
+  "packages/react-query/test/regression/issue-4519-invalid-select-as-transform.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 753
+  },
+  "packages/react-query/test/regression/issue-5357-input-always-required.test.tsx": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 60
+  },
+  "packages/react-query/test/regression/issue-5808-proxy-in-dep-array.test.tsx": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 659
+  },
+  "packages/upgrade/test/transforms.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 7046
+  },
+  "packages/client/src/safe.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 64
+  },
+  "packages/client/src/internals/types.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 8
+  },
+  "packages/client/src/links/localLink.procedureErrors.test.ts": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 113
+  },
+  "packages/client/src/links/localLink.test.ts": {
+   "status": "pass",
+   "tests": 11,
+   "failed": 0,
+   "duration_ms": 119
+  },
+  "packages/client/src/links/splitLink.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 13
+  },
+  "packages/client/src/links/internals/createChain.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 43
+  },
+  "packages/client/src/links/internals/dedupeLink.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 119
+  },
+  "packages/openapi/test/amazonIon.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 289
+  },
+  "packages/openapi/test/cli.test.ts": {
+   "status": "fail",
+   "tests": 13,
+   "failed": 4,
+   "duration_ms": 715114
+  },
+  "packages/openapi/test/cyclicTypes.test.ts": {
+   "status": "fail",
+   "tests": 19,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/openapi/test/edgeCases.test.ts": {
+   "status": "fail",
+   "tests": 36,
+   "failed": 1,
+   "duration_ms": 38285
+  },
+  "packages/openapi/test/generate.test.ts": {
+   "status": "fail",
+   "tests": 40,
+   "failed": 2,
+   "duration_ms": 111793
+  },
+  "packages/openapi/test/heyapi.test.ts": {
+   "status": "pass",
+   "tests": 35,
+   "failed": 0,
+   "duration_ms": 332
+  },
+  "packages/openapi/test/mongoEjson.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 197
+  },
+  "packages/openapi/test/nodeModulesJsDoc.test.ts": {
+   "status": "fail",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/openapi/test/openApiCompat.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 6
+  },
+  "packages/openapi/test/procedureErrors.test.ts": {
+   "status": "fail",
+   "tests": 18,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/openapi/test/schemaExtraction.test.ts": {
+   "status": "pass",
+   "tests": 27,
+   "failed": 0,
+   "duration_ms": 176
+  },
+  "packages/server/src/adapters/next-app-dir.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 18
+  },
+  "packages/server/src/observable/behaviorSubject.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 13
+  },
+  "packages/server/src/observable/observable.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 66
+  },
+  "packages/server/src/observable/operators.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 87
+  },
+  "packages/server/src/unstable-core-do-not-import/createProxy.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 61
+  },
+  "packages/server/src/unstable-core-do-not-import/initTRPC.test.ts": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 35
+  },
+  "packages/server/src/unstable-core-do-not-import/procedureBuilder.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 144
+  },
+  "packages/server/src/unstable-core-do-not-import/router.mergeRouters.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 74
+  },
+  "packages/server/src/unstable-core-do-not-import/router.test.ts": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 74
+  },
+  "packages/server/src/adapters/node-http/incomingMessageToRequest.test.ts": {
+   "status": "pass",
+   "tests": 12,
+   "failed": 0,
+   "duration_ms": 331
+  },
+  "packages/server/src/unstable-core-do-not-import/clientish/inference.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 15
+  },
+  "packages/server/src/unstable-core-do-not-import/clientish/serialize.test.ts": {
+   "status": "pass",
+   "tests": 19,
+   "failed": 0,
+   "duration_ms": 115
+  },
+  "packages/server/src/unstable-core-do-not-import/http/formDataToObject.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 51
+  },
+  "packages/server/src/unstable-core-do-not-import/stream/jsonl.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 914
+  },
+  "packages/server/src/unstable-core-do-not-import/stream/sse.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 2688
+  },
+  "packages/server/src/unstable-core-do-not-import/stream/utils/disposable.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 13
+  },
+  "packages/server/src/unstable-core-do-not-import/stream/utils/mergeAsyncIterables.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 77
+  },
+  "packages/server/src/unstable-core-do-not-import/stream/utils/readableStreamFrom.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 48
+  },
+  "packages/server/src/unstable-core-do-not-import/stream/utils/withPing.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 81
+  }
+ }
+}

@@ -1,0 +1,3956 @@
+[
+ {
+  "change": "0c7429e8b7:src/rules/handlers/redirect.ts:930:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/middleware.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "0c7429e8b7:src/rules/handlers/redirect.ts:1011:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "0c7429e8b7:src/rules/handlers/redirect.ts:800:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "0c7429e8b7:src/rules/handlers/redirect.ts:930:NegationRemoval",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "0c7429e8b7:src/rules/handlers/redirect.ts:1060:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "130130daca:src/adapters/node/event.ts:1092:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [],
+  "b4_found": [
+   "test/integrations.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "130130daca:src/adapters/node/event.ts:688:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "130130daca:src/adapters/node/event.ts:1167:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "130130daca:src/utils/cors.ts:531:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/unit/cors.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/cors.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "130130daca:src/utils/cors.ts:1420:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/unit/cors.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/cors.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "130130daca:src/adapters/node/internal/utils.ts:1593:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/iterable.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 4
+ },
+ {
+  "change": "130130daca:src/adapters/node/internal/utils.ts:797:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts",
+   "test/status.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "55a2c9b139:src/utils/internal/encoding.ts:2379:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/encoding.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/encoding.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "55a2c9b139:src/utils/route.ts:1476:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/route.test.ts"
+  ],
+  "b4_found": [
+   "test/route.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "55a2c9b139:src/utils/internal/mime.ts:274:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/static.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "55a2c9b139:src/utils/internal/mime.ts:1011:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/static.test.ts",
+   "test/unit/mime.test.ts"
+  ],
+  "b4_found": [
+   "test/static.test.ts",
+   "test/unit/mime.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "842d4cc172:src/utils/internal/encoding.ts:1912:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/encoding.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/encoding.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "842d4cc172:src/event.ts:2880:NegationRemoval",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/cookies.test.ts",
+   "test/session.test.ts",
+   "test/status.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/cookies.test.ts",
+   "test/mount.test.ts",
+   "test/proxy.test.ts",
+   "test/session.test.ts"
+  ],
+  "n_fail": 11
+ },
+ {
+  "change": "842d4cc172:src/event.ts:2880:CondTrue",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/cookies.test.ts",
+   "test/proxy.test.ts"
+  ],
+  "b4_found": [
+   "test/cookies.test.ts",
+   "test/proxy.test.ts"
+  ],
+  "n_fail": 6
+ },
+ {
+  "change": "842d4cc172:src/event.ts:2100:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "842d4cc172:src/event.ts:1286:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/event.test.ts",
+   "test/handler.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 24
+ },
+ {
+  "change": "b838d53eb2:src/h3.ts:7307:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/bench/bench.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/bench/bench.test.ts",
+   "test/router.test.ts",
+   "test/validate.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "cb9fc47366:src/h3.ts:3243:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts"
+  ],
+  "n_fail": 16
+ },
+ {
+  "change": "cb9fc47366:src/h3.ts:2421:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/hooks.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "d9d3124f8c:src/utils/internal/object.ts:919:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/body.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "d9d3124f8c:src/utils/internal/object.ts:1039:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/security.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 21
+ },
+ {
+  "change": "d9d3124f8c:src/utils/internal/object.ts:1077:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/security.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 20
+ },
+ {
+  "change": "d9d3124f8c:src/utils/internal/object.ts:884:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "d9d3124f8c:src/utils/internal/object.ts:633:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "e5788bb16d:src/utils/internal/event-stream.ts:4827:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/sse.test.ts"
+  ],
+  "b4_found": [
+   "test/sse.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "e6b726bb35:src/utils/internal/object.ts:919:Boolean",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/body.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "e6b726bb35:src/utils/internal/object.ts:1021:CondFalse",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "e6b726bb35:src/utils/internal/object.ts:550:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "e6b726bb35:src/utils/internal/object.ts:1298:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/rules/cache.test.ts",
+   "test/security.test.ts"
+  ],
+  "n_fail": 23
+ },
+ {
+  "change": "e6b726bb35:src/rules/handlers/redirect.ts:930:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "e6b726bb35:src/rules/handlers/redirect.ts:930:NegationRemoval",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "e6b726bb35:src/rules/handlers/redirect.ts:800:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "e6b726bb35:src/rules/handlers/redirect.ts:1011:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "e6b726bb35:src/rules/handlers/redirect.ts:1060:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "edb53fee57:src/response.ts:7056:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/status.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 28
+ },
+ {
+  "change": "edb53fee57:src/response.ts:2849:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/json-rpc.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 11
+ },
+ {
+  "change": "edb53fee57:src/response.ts:4951:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "edb53fee57:src/response.ts:2697:CondFalse",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/errors.test.ts",
+   "test/hooks.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "edb53fee57:src/response.ts:2404:Boolean",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/errors.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "edb53fee57:src/response.ts:2139:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/cors.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 30
+ },
+ {
+  "change": "edb53fee57:src/response.ts:762:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "n_fail": 15
+ },
+ {
+  "change": "edb53fee57:src/response.ts:5210:CondFalse",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "edb53fee57:src/utils/request.ts:2063:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 27
+ },
+ {
+  "change": "fb34b0f514:src/rules/handlers/redirect.ts:1200:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/middleware.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "fb34b0f514:src/rules/handlers/redirect.ts:986:NegationRemoval",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "fb34b0f514:src/rules/handlers/redirect.ts:986:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "fb34b0f514:src/rules/handlers/redirect.ts:856:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "fb34b0f514:src/rules/handlers/redirect.ts:1421:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "fb34b0f514:src/rules/handlers/redirect.ts:1421:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "fb34b0f514:src/rules/internal/scope.ts:10642:BinaryOp",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts",
+   "test/rules/scope.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts",
+   "test/rules/scope.test.ts"
+  ],
+  "n_fail": 9
+ },
+ {
+  "change": "fb34b0f514:src/rules/internal/scope.ts:3715:CondTrue",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/encoding.test.ts",
+   "test/rules/scope.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/encoding.test.ts",
+   "test/rules/scope.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "0295f90318:src/utils/request.ts:2356:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 27
+ },
+ {
+  "change": "0295f90318:src/utils/json-rpc.ts:13355:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/json-rpc-ws.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "0295f90318:src/h3.ts:4900:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/route.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts",
+   "test/route.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "0295f90318:src/h3.ts:5744:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/middleware.test.ts",
+   "test/mount.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts",
+   "test/mount.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 14
+ },
+ {
+  "change": "0295f90318:src/h3.ts:4099:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/mount.test.ts"
+  ],
+  "b4_found": [
+   "test/mount.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "0295f90318:src/utils/request.ts:2281:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/utils.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "0295f90318:src/h3.ts:3751:CondFalse",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/mount.test.ts"
+  ],
+  "b4_found": [
+   "test/mount.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "19bf1066a9:src/response.ts:4658:ReturnUndefined",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "19bf1066a9:src/response.ts:5990:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/route.test.ts"
+  ],
+  "n_fail": 11
+ },
+ {
+  "change": "19bf1066a9:src/response.ts:5907:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/status.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts",
+   "test/route.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 23
+ },
+ {
+  "change": "19bf1066a9:src/response.ts:950:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 10
+ },
+ {
+  "change": "19bf1066a9:src/response.ts:2503:CondFalse",
+  "top5_overlap": 0,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/iterable.test.ts",
+   "test/status.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts",
+   "test/route.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 23
+ },
+ {
+  "change": "19bf1066a9:src/response.ts:4447:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/handler.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 15
+ },
+ {
+  "change": "19bf1066a9:src/response.ts:2665:CondFalse",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/status.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "1ff4999ecc:src/middleware.ts:1335:Boolean",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "1ff4999ecc:src/middleware.ts:890:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts",
+   "test/mount.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/errors.test.ts",
+   "test/hooks.test.ts",
+   "test/integrations.test.ts",
+   "test/iterable.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "1ff4999ecc:src/middleware.ts:1405:Boolean",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "1ff4999ecc:src/middleware.ts:2125:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "1ff4999ecc:src/middleware.ts:2398:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "1ff4999ecc:src/middleware.ts:782:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/middleware.test.ts",
+   "test/mount.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/errors.test.ts",
+   "test/hooks.test.ts",
+   "test/integrations.test.ts",
+   "test/iterable.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 14
+ },
+ {
+  "change": "1ff4999ecc:src/middleware.ts:2307:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/hooks.test.ts",
+   "test/iterable.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/auth.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/route.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "31a5d7afbc:src/utils/sanitize.ts:739:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "31a5d7afbc:src/utils/sanitize.ts:502:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts"
+  ],
+  "n_fail": 6
+ },
+ {
+  "change": "31a5d7afbc:src/utils/sanitize.ts:959:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "31a5d7afbc:src/utils/sanitize.ts:876:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "31a5d7afbc:src/utils/sanitize.ts:747:NegationRemoval",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "31a5d7afbc:src/utils/cors.ts:2867:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/unit/cors.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/cors.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "322fa8877d:src/utils/internal/proxy.ts:2190:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/unit/proxy.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/proxy.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "322fa8877d:src/utils/internal/object.ts:1271:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/json-rpc.test.ts",
+   "test/unit/meta.test.ts",
+   "test/validate.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 16
+ },
+ {
+  "change": "322fa8877d:src/middleware.ts:1436:BinaryOp",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "322fa8877d:src/middleware.ts:4020:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/handler.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts",
+   "test/mount.test.ts",
+   "test/unit/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/route.test.ts",
+   "test/tracing.test.ts",
+   "test/unit/middleware.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "322fa8877d:src/middleware.ts:1308:BinaryOp",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "322fa8877d:src/utils/internal/mime.ts:274:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/static.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "38be51213f:src/middleware.ts:2151:BinaryOp",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/handler.test.ts",
+   "test/integrations.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/route.test.ts"
+  ],
+  "n_fail": 11
+ },
+ {
+  "change": "38be51213f:src/middleware.ts:733:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts",
+   "test/mount.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/hooks.test.ts",
+   "test/integrations.test.ts",
+   "test/iterable.test.ts"
+  ],
+  "n_fail": 11
+ },
+ {
+  "change": "38be51213f:src/utils/response.ts:548:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/status.test.ts"
+  ],
+  "b4_found": [
+   "test/status.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "38be51213f:src/utils/internal/path.ts:67:EmptyBody",
+  "top5_overlap": 1,
+  "b3_found": [],
+  "b4_found": [
+   "test/static.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "38be51213f:src/middleware.ts:1824:CondTrue",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/route.test.ts"
+  ],
+  "n_fail": 14
+ },
+ {
+  "change": "38be51213f:src/utils/auth.ts:2481:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/auth.test.ts"
+  ],
+  "b4_found": [
+   "test/auth.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "3c2a205ce2:src/utils/internal/object.ts:550:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "3c2a205ce2:src/utils/internal/object.ts:1054:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "3c2a205ce2:src/utils/internal/object.ts:1021:CondFalse",
+  "top5_overlap": 1,
+  "b3_found": [],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "3c2a205ce2:src/utils/json-rpc.ts:20202:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/json-rpc-ws.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "3c2a205ce2:src/rules/internal/premerge.ts:4021:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/merge.test.ts",
+   "test/rules/premerge.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/merge.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "3c2a205ce2:src/utils/internal/object.ts:919:Boolean",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "3c2a205ce2:src/utils/internal/object.ts:1043:StringEmpty",
+  "top5_overlap": 1,
+  "b3_found": [],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "3f1c9e5ef7:src/rules/normalize.ts:2844:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/cache.test.ts",
+   "test/rules/compiler.test.ts",
+   "test/rules/normalize.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/merge.test.ts"
+  ],
+  "n_fail": 8
+ },
+ {
+  "change": "3f1c9e5ef7:src/rules/match.ts:10988:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/merge.test.ts",
+   "test/rules/premerge.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/merge.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "3f1c9e5ef7:src/rules/normalize.ts:4169:CondFalse",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/merge.test.ts",
+   "test/rules/normalize.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/merge.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "3f1c9e5ef7:src/rules/normalize.ts:3973:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/cache.test.ts",
+   "test/rules/compiler.test.ts",
+   "test/rules/normalize.test.ts",
+   "test/rules/premerge.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts"
+  ],
+  "n_fail": 4
+ },
+ {
+  "change": "3f1c9e5ef7:src/rules/normalize.ts:1072:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/cache.test.ts",
+   "test/rules/compiler.test.ts",
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/normalize.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts",
+   "test/rules/merge.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "3f1c9e5ef7:src/rules/normalize.ts:2237:CondFalse",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/normalize.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/encoding.test.ts"
+  ],
+  "n_fail": 6
+ },
+ {
+  "change": "3f1c9e5ef7:src/rules/normalize.ts:4033:CondTrue",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/rules/cache.test.ts",
+   "test/rules/merge.test.ts",
+   "test/rules/normalize.test.ts",
+   "test/rules/premerge.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/merge.test.ts"
+  ],
+  "n_fail": 7
+ },
+ {
+  "change": "3f1c9e5ef7:src/rules/normalize.ts:7041:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/merge.test.ts",
+   "test/rules/normalize.test.ts",
+   "test/rules/premerge.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts",
+   "test/rules/merge.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "4247682444:src/utils/request.ts:1033:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 23
+ },
+ {
+  "change": "4247682444:src/utils/internal/encoding.ts:2379:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/unit/encoding.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/encoding.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "4247682444:src/utils/request.ts:1323:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/utils.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "4247682444:src/_entries/node.ts:668:ReturnUndefined",
+  "top5_overlap": 5,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "n_fail": 19
+ },
+ {
+  "change": "4247682444:src/utils/request.ts:1234:StringEmpty",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 6
+ },
+ {
+  "change": "4247682444:src/utils/internal/encoding.ts:1912:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/encoding.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/encoding.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "44621f3ba4:src/utils/path.ts:4663:EmptyBody",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/static.test.ts",
+   "test/unit/path.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/path.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "44621f3ba4:src/middleware.ts:2275:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/errors.test.ts",
+   "test/integrations.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 8
+ },
+ {
+  "change": "44621f3ba4:src/middleware.ts:1692:BinaryOp",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "44621f3ba4:src/middleware.ts:1672:BinaryOp",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/middleware.test.ts",
+   "test/security.test.ts"
+  ],
+  "b4_found": [
+   "test/errors.test.ts",
+   "test/integrations.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 8
+ },
+ {
+  "change": "44621f3ba4:src/middleware.ts:1111:NegationRemoval",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "44621f3ba4:src/middleware.ts:2009:ReturnUndefined",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "48e6982ac4:src/utils/internal/validate.ts:652:StringEmpty",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/validate.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/validate.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "48e6982ac4:src/utils/json-rpc.ts:20138:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "4e16ef35cc:src/h3.ts:7996:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/bench/bench.test.ts",
+   "test/body.test.ts",
+   "test/integrations.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "n_fail": 15
+ },
+ {
+  "change": "4e16ef35cc:src/h3.ts:5153:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/proxy.test.ts",
+   "test/router.test.ts",
+   "test/static.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/proxy.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "4e16ef35cc:src/h3.ts:4975:CondFalse",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/bench/bench.test.ts",
+   "test/body.test.ts",
+   "test/integrations.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts"
+  ],
+  "n_fail": 14
+ },
+ {
+  "change": "4e16ef35cc:src/h3.ts:2259:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/hooks.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "4e16ef35cc:src/h3.ts:907:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/bench/bench.test.ts",
+   "test/body.test.ts",
+   "test/unit/resolve.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/bench/bench.test.ts",
+   "test/integrations.test.ts",
+   "test/router.test.ts",
+   "test/session.test.ts",
+   "test/unit/resolve.test.ts"
+  ],
+  "n_fail": 19
+ },
+ {
+  "change": "4e16ef35cc:src/h3.ts:2087:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/event.test.ts",
+   "test/integrations.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/hooks.test.ts"
+  ],
+  "n_fail": 15
+ },
+ {
+  "change": "4e16ef35cc:src/h3.ts:3412:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/hooks.test.ts"
+  ],
+  "b4_found": [
+   "test/hooks.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "4e16ef35cc:src/h3.ts:2745:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/hooks.test.ts",
+   "test/iterable.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/hooks.test.ts"
+  ],
+  "n_fail": 18
+ },
+ {
+  "change": "55335c5d8c:src/middleware.ts:2178:NegationRemoval",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "55335c5d8c:src/handler.ts:3171:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/handler.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts",
+   "test/route.test.ts",
+   "test/security.test.ts"
+  ],
+  "b4_found": [
+   "test/body-limit.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/security.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 11
+ },
+ {
+  "change": "55335c5d8c:src/middleware.ts:2339:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "55335c5d8c:src/middleware.ts:857:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/hooks.test.ts",
+   "test/integrations.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/errors.test.ts",
+   "test/hooks.test.ts",
+   "test/integrations.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/middleware.test.ts"
+  ],
+  "n_fail": 15
+ },
+ {
+  "change": "55335c5d8c:src/utils/internal/object.ts:633:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "55335c5d8c:src/utils/internal/object.ts:919:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/body.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "5b3d6e18ac:src/utils/base.ts:620:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/integrations.test.ts",
+   "test/unit/resolve.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/integrations.test.ts",
+   "test/unit/resolve.test.ts",
+   "test/utils.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "5b3d6e18ac:src/utils/internal/iron-crypto.ts:1608:StringEmpty",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "5b3d6e18ac:src/utils/internal/iron-crypto.ts:1276:StringEmpty",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "5b3d6e18ac:src/utils/internal/iron-crypto.ts:1380:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "5b3d6e18ac:src/utils/internal/iron-crypto.ts:896:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "5b3d6e18ac:src/utils/internal/iron-crypto.ts:750:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "61d19fd5e2:src/utils/response.ts:501:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/status.test.ts"
+  ],
+  "b4_found": [
+   "test/status.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "61d19fd5e2:src/utils/internal/proxy.ts:66:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/proxy.test.ts"
+  ],
+  "b4_found": [
+   "test/proxy.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "61d19fd5e2:src/utils/internal/proxy.ts:318:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/proxy.test.ts"
+  ],
+  "b4_found": [
+   "test/proxy.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "61d19fd5e2:src/utils/internal/obj.ts:126:ReturnUndefined",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/hooks.test.ts",
+   "test/lazy.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/bench/bench.test.ts",
+   "test/proxy.test.ts",
+   "test/session.test.ts",
+   "test/unit/query.test.ts"
+  ],
+  "n_fail": 20
+ },
+ {
+  "change": "62261dda69:src/adapters.ts:2080:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [],
+  "b4_found": [
+   "test/integrations.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "62261dda69:src/utils/internal/path.ts:67:EmptyBody",
+  "top5_overlap": 1,
+  "b3_found": [],
+  "b4_found": [
+   "test/static.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "62261dda69:src/utils/internal/event-stream.ts:4303:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/sse.test.ts",
+   "test/unit/sse.test.ts"
+  ],
+  "b4_found": [
+   "test/sse.test.ts",
+   "test/unit/sse.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "62261dda69:src/utils/ws.ts:312:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/ws.test.ts"
+  ],
+  "b4_found": [
+   "test/ws.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "62261dda69:src/utils/ws.ts:496:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/ws.test.ts"
+  ],
+  "b4_found": [
+   "test/ws.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "62261dda69:src/utils/internal/event-stream.ts:3437:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/sse.test.ts"
+  ],
+  "b4_found": [
+   "test/sse.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "6365f05750:src/response.ts:5776:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 14
+ },
+ {
+  "change": "6365f05750:src/response.ts:6926:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/router.test.ts",
+   "test/status.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 25
+ },
+ {
+  "change": "6365f05750:src/response.ts:6944:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/status.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 25
+ },
+ {
+  "change": "6365f05750:src/response.ts:5670:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/handler.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 16
+ },
+ {
+  "change": "6365f05750:src/utils/internal/mime.ts:193:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/unit/mime.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/mime.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "6365f05750:src/utils/internal/mime.ts:274:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/static.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "63e4b9819d:src/utils/json-rpc.ts:13397:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/json-rpc-ws.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "63e4b9819d:src/utils/json-rpc.ts:13459:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "63e4b9819d:src/utils/internal/validate.ts:652:StringEmpty",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/validate.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/validate.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "63e4b9819d:src/utils/json-rpc.ts:13523:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/json-rpc-ws.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 2
+ },
+ {
+  "change": "66f47c3b31:src/event.ts:2290:CondFalse",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/event.test.ts",
+   "test/security.test.ts",
+   "test/unit/event.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/unit/event.test.ts"
+  ],
+  "n_fail": 6
+ },
+ {
+  "change": "66f47c3b31:src/utils/internal/iron-crypto.ts:1126:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "66f47c3b31:src/event.ts:2043:CondFalse",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/unit/event.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/event.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "66f47c3b31:src/event.ts:2181:CondFalse",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/event.test.ts",
+   "test/security.test.ts",
+   "test/unit/event.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/unit/event.test.ts"
+  ],
+  "n_fail": 6
+ },
+ {
+  "change": "66f47c3b31:src/event.ts:1852:BinaryOp",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts"
+  ],
+  "n_fail": 27
+ },
+ {
+  "change": "66f47c3b31:src/utils/internal/object.ts:919:Boolean",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/body.test.ts",
+   "test/json-rpc.test.ts"
+  ],
+  "b4_found": [
+   "test/json-rpc.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "82a0e240a8:src/response.ts:5207:BinaryOp",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts",
+   "test/event.test.ts",
+   "test/status.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "82a0e240a8:src/response.ts:5149:BinaryOp",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts",
+   "test/event.test.ts",
+   "test/status.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "82a0e240a8:src/response.ts:3947:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/proxy.test.ts",
+   "test/session.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 8
+ },
+ {
+  "change": "82a0e240a8:src/response.ts:3727:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/integrations.test.ts",
+   "test/middleware.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 13
+ },
+ {
+  "change": "82a0e240a8:src/response.ts:1386:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 9
+ },
+ {
+  "change": "82a0e240a8:src/response.ts:2011:ReturnUndefined",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/hooks.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "82a0e240a8:src/response.ts:577:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/hooks.test.ts",
+   "test/lazy.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 16
+ },
+ {
+  "change": "8786f23198:src/h3.ts:4468:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/mount.test.ts"
+  ],
+  "b4_found": [
+   "test/mount.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "8786f23198:src/h3.ts:7190:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/mount.test.ts"
+  ],
+  "b4_found": [
+   "test/mount.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "8786f23198:src/h3.ts:2955:ReturnUndefined",
+  "top5_overlap": 0,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/bench/bench.test.ts",
+   "test/integrations.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts",
+   "test/mount.test.ts",
+   "test/route.test.ts",
+   "test/tracing.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 28
+ },
+ {
+  "change": "8786f23198:src/utils/internal/proxy.ts:61:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/proxy.test.ts"
+  ],
+  "b4_found": [
+   "test/proxy.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "8786f23198:src/h3.ts:3355:CondFalse",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/auth.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "8786f23198:src/h3.ts:5922:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/route.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts",
+   "test/mount.test.ts",
+   "test/route.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 26
+ },
+ {
+  "change": "88ce5cd132:src/response.ts:2651:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/cors.test.ts"
+  ],
+  "n_fail": 14
+ },
+ {
+  "change": "88ce5cd132:src/response.ts:4887:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/status.test.ts",
+   "test/unit/h3.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/unit/cors.test.ts"
+  ],
+  "n_fail": 38
+ },
+ {
+  "change": "88ce5cd132:src/response.ts:3416:CondFalse",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/status.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "88ce5cd132:src/response.ts:7002:ReturnUndefined",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/status.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "88ce5cd132:src/response.ts:5301:CondTrue",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 18
+ },
+ {
+  "change": "8a380f1d02:src/h3.ts:2955:ReturnUndefined",
+  "top5_overlap": 0,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/bench/bench.test.ts",
+   "test/body.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts",
+   "test/mount.test.ts",
+   "test/route.test.ts",
+   "test/tracing.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 28
+ },
+ {
+  "change": "8a380f1d02:src/h3.ts:7180:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/middleware.test.ts",
+   "test/mount.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts",
+   "test/mount.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 11
+ },
+ {
+  "change": "8a380f1d02:src/h3.ts:4915:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/mount.test.ts"
+  ],
+  "b4_found": [
+   "test/mount.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "8a380f1d02:src/h3.ts:4654:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/mount.test.ts"
+  ],
+  "b4_found": [
+   "test/mount.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "8a380f1d02:src/h3.ts:5230:ReturnUndefined",
+  "top5_overlap": 1,
+  "b3_found": [],
+  "b4_found": [
+   "test/mount.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "8eb1063e6d:src/response.ts:5527:BinaryOp",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/route.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/json-rpc.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 28
+ },
+ {
+  "change": "8eb1063e6d:src/response.ts:3462:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/iterable.test.ts",
+   "test/stream.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 28
+ },
+ {
+  "change": "8eb1063e6d:src/response.ts:3293:CondFalse",
+  "top5_overlap": 0,
+  "b3_found": [
+   "test/body.test.ts",
+   "test/iterable.test.ts",
+   "test/json-rpc.test.ts",
+   "test/status.test.ts",
+   "test/stream.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 28
+ },
+ {
+  "change": "8eb1063e6d:src/handler.ts:5067:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/lazy.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/integrations.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 25
+ },
+ {
+  "change": "8ed63f6d24:src/h3.ts:3180:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/bench/bench.test.ts",
+   "test/integrations.test.ts",
+   "test/middleware.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 19
+ },
+ {
+  "change": "8ed63f6d24:src/h3.ts:5436:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "8ed63f6d24:src/utils/internal/body.ts:130:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/body.test.ts"
+  ],
+  "b4_found": [
+   "test/body.test.ts",
+   "test/validate.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "8ed63f6d24:src/h3.ts:5361:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "8ed63f6d24:src/h3.ts:2015:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "8ed63f6d24:src/h3.ts:3810:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/bench/bench.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/bench/bench.test.ts",
+   "test/router.test.ts",
+   "test/validate.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "946bbe4f2c:src/middleware.ts:2543:BinaryOp",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/errors.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "946bbe4f2c:src/middleware.ts:969:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "946bbe4f2c:src/middleware.ts:1170:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "946bbe4f2c:src/utils/request.ts:1333:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/integrations.test.ts",
+   "test/proxy.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 23
+ },
+ {
+  "change": "946bbe4f2c:src/middleware.ts:2250:CondTrue",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "946bbe4f2c:src/middleware.ts:725:CondFalse",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "946bbe4f2c:src/utils/request.ts:1008:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 23
+ },
+ {
+  "change": "946bbe4f2c:src/utils/request.ts:1234:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts"
+  ],
+  "n_fail": 6
+ },
+ {
+  "change": "99ec3a2cbf:src/handler.ts:5067:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/lazy.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/handler.test.ts",
+   "test/integrations.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts",
+   "test/utils.test.ts"
+  ],
+  "n_fail": 24
+ },
+ {
+  "change": "99ec3a2cbf:src/error.ts:1810:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts"
+  ],
+  "n_fail": 15
+ },
+ {
+  "change": "aa0f3c94c2:src/h3.ts:2265:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "aa0f3c94c2:src/h3.ts:1986:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/event.test.ts",
+   "test/integrations.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts"
+  ],
+  "n_fail": 15
+ },
+ {
+  "change": "aa0f3c94c2:src/h3.ts:1120:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/event.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 19
+ },
+ {
+  "change": "aa0f3c94c2:src/h3.ts:1808:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/bench/bench.test.ts",
+   "test/body.test.ts",
+   "test/hooks.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 19
+ },
+ {
+  "change": "aa0f3c94c2:src/h3.ts:5361:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [],
+  "b4_found": [
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "aa0f3c94c2:src/h3.ts:3487:ReturnUndefined",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/event.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "ab3f23c879:src/rules/handlers/redirect.ts:930:NegationRemoval",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "ab3f23c879:src/rules/handlers/redirect.ts:800:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/middleware.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "ab3f23c879:src/rules/internal/scope.ts:424:Boolean",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/merge.test.ts",
+   "test/rules/scope.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/compiler.test.ts",
+   "test/rules/rules.test.ts",
+   "test/rules/scope.test.ts"
+  ],
+  "n_fail": 4
+ },
+ {
+  "change": "ab3f23c879:src/rules/handlers/redirect.ts:930:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/rules/match.test.ts",
+   "test/rules/middleware.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "ab3f23c879:src/rules/internal/scope.ts:274:Boolean",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/scope.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/scope.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "ab3f23c879:src/rules/handlers/redirect.ts:1060:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/rules.test.ts"
+  ],
+  "b4_found": [
+   "test/rules/encoding.test.ts",
+   "test/rules/match.test.ts",
+   "test/rules/memoize.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "b17dfd2be3:src/utils/sanitize.ts:907:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/route.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/utils.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "b17dfd2be3:src/utils/cookie.ts:1180:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/cookies.test.ts",
+   "test/session.test.ts"
+  ],
+  "b4_found": [
+   "test/cookies.test.ts",
+   "test/session.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "b17dfd2be3:src/utils/sanitize.ts:747:CondTrue",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/errors.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/utils.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "b17dfd2be3:src/adapters.ts:2152:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [],
+  "b4_found": [
+   "test/integrations.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "b17dfd2be3:src/utils/sanitize.ts:747:NegationRemoval",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/status.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/status.test.ts",
+   "test/utils.test.ts"
+  ],
+  "n_fail": 13
+ },
+ {
+  "change": "b17dfd2be3:src/utils/sanitize.ts:502:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts"
+  ],
+  "n_fail": 6
+ },
+ {
+  "change": "b5a245de57:src/adapters/node/internal/response.ts:945:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "b5a245de57:src/utils/sanitize.ts:739:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/status.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/hooks.test.ts",
+   "test/proxy.test.ts",
+   "test/status.test.ts"
+  ],
+  "n_fail": 10
+ },
+ {
+  "change": "b5a245de57:src/utils/internal/query.ts:311:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/unit/query.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/bench/bench.test.ts",
+   "test/unit/query.test.ts",
+   "test/utils.test.ts",
+   "test/validate.test.ts"
+  ],
+  "n_fail": 4
+ },
+ {
+  "change": "c0c15d9a7c:src/utils/internal/iron-crypto.ts:750:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "c0c15d9a7c:src/utils/internal/iron-crypto.ts:1276:StringEmpty",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "c0c15d9a7c:src/utils/base.ts:620:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/integrations.test.ts",
+   "test/unit/resolve.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/integrations.test.ts",
+   "test/unit/resolve.test.ts",
+   "test/utils.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "c0c15d9a7c:src/utils/internal/iron-crypto.ts:1380:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "c0c15d9a7c:src/utils/internal/iron-crypto.ts:1184:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "c0c15d9a7c:src/utils/cookie.ts:993:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/cookies.test.ts",
+   "test/session.test.ts"
+  ],
+  "b4_found": [
+   "test/cookies.test.ts",
+   "test/session.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "c0c15d9a7c:src/utils/internal/iron-crypto.ts:1073:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "c0c15d9a7c:src/utils/cookie.ts:573:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/cookies.test.ts",
+   "test/session.test.ts"
+  ],
+  "b4_found": [
+   "test/cookies.test.ts",
+   "test/session.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "cf7e585ca0:src/h3.ts:5297:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/route.test.ts",
+   "test/router.test.ts",
+   "test/unit/h3.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts",
+   "test/route.test.ts",
+   "test/tracing.test.ts",
+   "test/unit/h3.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 36
+ },
+ {
+  "change": "cf7e585ca0:src/h3.ts:4340:StringEmpty",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/unit/middleware.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "cf7e585ca0:src/h3.ts:1605:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/middleware.test.ts",
+   "test/rules/middleware.test.ts",
+   "test/unit/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/middleware.test.ts",
+   "test/route.test.ts",
+   "test/tracing.test.ts",
+   "test/unit/meta.test.ts"
+  ],
+  "n_fail": 35
+ },
+ {
+  "change": "cf7e585ca0:src/error.ts:3310:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/handler.test.ts"
+  ],
+  "b4_found": [
+   "test/body.test.ts"
+  ],
+  "n_fail": 7
+ },
+ {
+  "change": "cf7e585ca0:src/h3.ts:2442:CondFalse",
+  "top5_overlap": 0,
+  "b3_found": [
+   "test/security.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "d77b673e47:src/utils/internal/iron-crypto.ts:1231:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "d77b673e47:src/utils/internal/iron-crypto.ts:797:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/session.test.ts",
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "d77b673e47:src/utils/internal/iron-crypto.ts:1120:StringEmpty",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/iron-crypto.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "deed160822:src/utils/internal/object.ts:532:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/iterable.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "deed160822:src/utils/internal/object.ts:1039:BinaryOp",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "n_fail": 9
+ },
+ {
+  "change": "deed160822:src/utils/internal/object.ts:550:BinaryOp",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/iterable.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "deed160822:src/utils/internal/iterable.ts:955:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/iterable.test.ts",
+   "test/unit/iterable.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/iterable.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "deed160822:src/utils/internal/path.ts:240:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/static.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/integrations.test.ts",
+   "test/static.test.ts",
+   "test/utils.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "deed160822:src/utils/internal/object.ts:594:CondTrue",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/validate.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts"
+  ],
+  "n_fail": 8
+ },
+ {
+  "change": "deed160822:src/utils/internal/object.ts:752:CondTrue",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/iterable.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "e2f8cbd5fc:src/error.ts:4405:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts",
+   "test/route.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "e2f8cbd5fc:src/error.ts:4393:CondFalse",
+  "top5_overlap": 4,
+  "b3_found": [],
+  "b4_found": [
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "e2f8cbd5fc:src/utils/internal/mime.ts:193:StringEmpty",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/unit/mime.test.ts"
+  ],
+  "b4_found": [
+   "test/unit/mime.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "e2f8cbd5fc:src/error.ts:5061:BinaryOp",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/errors.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/body.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 6
+ },
+ {
+  "change": "eb30d5f1e1:src/h3.ts:1800:ReturnUndefined",
+  "top5_overlap": 1,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/bench/bench.test.ts",
+   "test/body.test.ts",
+   "test/cookies.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/middleware.test.ts",
+   "test/mount.test.ts",
+   "test/proxy.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 27
+ },
+ {
+  "change": "eb30d5f1e1:src/h3.ts:6619:EmptyBody",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/mount.test.ts"
+  ],
+  "b4_found": [
+   "test/mount.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "eb30d5f1e1:src/h3.ts:5942:BinaryOp",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/mount.test.ts",
+   "test/unit/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/mount.test.ts",
+   "test/tracing.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "eb30d5f1e1:src/h3.ts:2426:CondFalse",
+  "top5_overlap": 0,
+  "b3_found": [
+   "test/security.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "eb30d5f1e1:src/h3.ts:2741:CondFalse",
+  "top5_overlap": 0,
+  "b3_found": [
+   "test/hooks.test.ts"
+  ],
+  "b4_found": [],
+  "n_fail": 1
+ },
+ {
+  "change": "ef02804f21:src/utils/internal/object.ts:772:BinaryOp",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/iterable.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "ef02804f21:src/utils/internal/object.ts:526:CondTrue",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/iterable.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "ef02804f21:src/utils/internal/object.ts:1043:StringEmpty",
+  "top5_overlap": 4,
+  "b3_found": [],
+  "b4_found": [
+   "test/integrations.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "ef02804f21:src/utils/internal/object.ts:600:BinaryOp",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts",
+   "test/validate.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/event.test.ts"
+  ],
+  "n_fail": 8
+ },
+ {
+  "change": "ef02804f21:src/utils/internal/object.ts:532:BinaryOp",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/integrations.test.ts",
+   "test/iterable.test.ts"
+  ],
+  "n_fail": 5
+ },
+ {
+  "change": "f45dd2708c:src/utils/internal/event-stream.ts:4847:EmptyBody",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/sse.test.ts",
+   "test/unit/sse.test.ts"
+  ],
+  "b4_found": [
+   "test/sse.test.ts",
+   "test/unit/sse.test.ts"
+  ],
+  "n_fail": 2
+ },
+ {
+  "change": "f45dd2708c:src/utils/internal/event-stream.ts:3881:EmptyBody",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/sse.test.ts"
+  ],
+  "b4_found": [
+   "test/sse.test.ts"
+  ],
+  "n_fail": 1
+ },
+ {
+  "change": "f45dd2708c:src/adapters.ts:2449:ReturnUndefined",
+  "top5_overlap": 4,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/integrations.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/errors.test.ts",
+   "test/integrations.test.ts"
+  ],
+  "n_fail": 19
+ },
+ {
+  "change": "febb832522:src/response.ts:2394:BinaryOp",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/event.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 12
+ },
+ {
+  "change": "febb832522:src/response.ts:1162:CondTrue",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/router.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/handler.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 21
+ },
+ {
+  "change": "febb832522:src/response.ts:1720:ReturnUndefined",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/errors.test.ts",
+   "test/handler.test.ts",
+   "test/hooks.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 11
+ },
+ {
+  "change": "febb832522:src/response.ts:1162:CondFalse",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/router.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 3
+ },
+ {
+  "change": "febb832522:src/response.ts:512:CondFalse",
+  "top5_overlap": 2,
+  "b3_found": [
+   "test/app.test.ts",
+   "test/body.test.ts",
+   "test/handler.test.ts",
+   "test/hooks.test.ts",
+   "test/utils.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts",
+   "test/auth.test.ts",
+   "test/handler.test.ts",
+   "test/lazy.test.ts",
+   "test/middleware.test.ts"
+  ],
+  "n_fail": 17
+ },
+ {
+  "change": "febb832522:src/response.ts:2490:BinaryOp",
+  "top5_overlap": 3,
+  "b3_found": [
+   "test/app.test.ts"
+  ],
+  "b4_found": [
+   "test/app.test.ts"
+  ],
+  "n_fail": 7
+ }
+]

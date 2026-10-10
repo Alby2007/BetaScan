@@ -1,0 +1,35 @@
+Change (src/rules/handlers/redirect.ts, line 20):
+--- a/src/rules/handlers/redirect.ts
++++ b/src/rules/handlers/redirect.ts
+@@ -8,17 +8,15 @@
+ // only stable, i.e. decided by the order the matched layers merged in (broad →
+ // narrow), so a broad `cache` would swallow a narrow `redirect`. Positioned
+ // after the `0` default so a custom rule (a gate written without an explicit
+ // `order`) still runs ahead of every built-in terminator.
+ export const redirect: RuleHandler<"redirect"> = {
+   order: 1,
+   handler: (m) => {
+     const options = m.options as RedirectRuleOptions | undefined;
+     const resolveTarget = prepareRuleTarget(options);
+     if (!resolveTarget) {
+       return function redirectRouteRule() {};
+     }
+-    return function redirectRouteRule(event) {
+-      return sendRedirect(resolveTarget(event), options?.status);
+-    };
++    return undefined;
+   },
+ };
+
+Covering test files (11):
+- test/rules/cache.test.ts
+- test/rules/compiler.test.ts
+- test/rules/encoding.test.ts
+- test/rules/match.test.ts
+- test/rules/memoize.test.ts
+- test/rules/merge.test.ts
+- test/rules/middleware.test.ts
+- test/rules/normalize.test.ts
+- test/rules/premerge.test.ts
+- test/rules/rules.test.ts
+- test/rules/treeshake.test.ts

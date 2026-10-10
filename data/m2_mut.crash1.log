@@ -1,0 +1,28 @@
+done e5788bb1 24 {'Survived': 8, 'Killed': 16}
+done 842d4cc1 32 {'Killed': 26, 'Survived': 5, 'Error': 1}
+done e6b726bb 31 {'Survived': 9, 'Killed': 22}
+done 55a2c9b1 27 {'Killed': 17, 'Survived': 10}
+done 130130da 32 {'Survived': 4, 'Killed': 26, 'Error': 1, 'Flaky': 1}
+fail d9d3124f8cd759f1b427864b2ad4bff51049130a ! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-11.15.1.tgz
+time="2026-10-09T15:19:20+01:00" level=error msg="error waiting for container: unexpected EOF"
+
+fail 0c7429e8b740d6ee9d54b0a4f8436b894eb83d21 docker: failed to connect to the docker API at unix:///Users/alby/.docker/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/alby/.docker/run/docker.sock: connect: no such file or directory
+
+Run 'docker run --help' for more information
+
+fail fb34b0f5144c9e2e5658fd30038a95582accd9d3 docker: failed to connect to the docker API at unix:///Users/alby/.docker/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/alby/.docker/run/docker.sock: connect: no such file or directory
+
+Run 'docker run --help' for more information
+
+fail cb9fc4736644348b7130af559f0909fb40fa95c4 docker: failed to connect to the docker API at unix:///Users/alby/.docker/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/alby/.docker/run/docker.sock: connect: no such file or directory
+
+Run 'docker run --help' for more information
+
+fail b838d53eb2b7201e6a090f6591047f5fba719fe2 docker: failed to connect to the docker API at unix:///Users/alby/.docker/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/alby/.docker/run/docker.sock: connect: no such file or directory
+
+Run 'docker run --help' for more information
+
+fail edb53fee570e1758b16ee8abd8e562d548d86f7b docker: failed to connect to the docker API at unix:///Users/alby/.docker/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/alby/.docker/run/docker.sock: connect: no such file or directory
+
+Run 'docker run --help' for more information
+

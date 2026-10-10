@@ -1,0 +1,6 @@
+done d9d3124f 32 {'Killed': 27, 'Survived': 5}
+done 0c7429e8 31 {'Killed': 25, 'Survived': 6}
+done fb34b0f5 32 {'Killed': 24, 'Survived': 7, 'Error': 1}
+done cb9fc473 32 {'Survived': 7, 'Killed': 24, 'Error': 1}
+done b838d53e 32 {'Survived': 9, 'Killed': 22, 'Error': 1}
+done edb53fee 32 {'Killed': 23, 'Error': 2, 'Survived': 7}

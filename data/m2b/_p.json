@@ -1,0 +1,336 @@
+{
+ "commit": "eb30d5f1e11fac8d55398545428b19912635e247",
+ "wall_s": 21.0,
+ "files": {
+  "test/app.test.ts": {
+   "status": "pass",
+   "tests": 68,
+   "failed": 0,
+   "duration_ms": 440
+  },
+  "test/auth.test.ts": {
+   "status": "pass",
+   "tests": 48,
+   "failed": 0,
+   "duration_ms": 2131
+  },
+  "test/body.test.ts": {
+   "status": "pass",
+   "tests": 54,
+   "failed": 0,
+   "duration_ms": 447
+  },
+  "test/cookies.test.ts": {
+   "status": "pass",
+   "tests": 112,
+   "failed": 0,
+   "duration_ms": 762
+  },
+  "test/dispose.test.ts": {
+   "status": "pass",
+   "tests": 24,
+   "failed": 0,
+   "duration_ms": 654
+  },
+  "test/errors.test.ts": {
+   "status": "pass",
+   "tests": 38,
+   "failed": 0,
+   "duration_ms": 328
+  },
+  "test/event.test.ts": {
+   "status": "pass",
+   "tests": 16,
+   "failed": 0,
+   "duration_ms": 189
+  },
+  "test/handler.test.ts": {
+   "status": "pass",
+   "tests": 21,
+   "failed": 0,
+   "duration_ms": 79
+  },
+  "test/happydom.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 58
+  },
+  "test/hooks.test.ts": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 160
+  },
+  "test/integrations.test.ts": {
+   "status": "pass",
+   "tests": 22,
+   "failed": 0,
+   "duration_ms": 250
+  },
+  "test/iterable.test.ts": {
+   "status": "pass",
+   "tests": 30,
+   "failed": 0,
+   "duration_ms": 250
+  },
+  "test/json-rpc-ws.test.ts": {
+   "status": "pass",
+   "tests": 26,
+   "failed": 0,
+   "duration_ms": 69
+  },
+  "test/json-rpc.test.ts": {
+   "status": "pass",
+   "tests": 76,
+   "failed": 0,
+   "duration_ms": 586
+  },
+  "test/lazy.test.ts": {
+   "status": "pass",
+   "tests": 16,
+   "failed": 0,
+   "duration_ms": 87
+  },
+  "test/middleware.test.ts": {
+   "status": "pass",
+   "tests": 18,
+   "failed": 0,
+   "duration_ms": 196
+  },
+  "test/mount.test.ts": {
+   "status": "pass",
+   "tests": 38,
+   "failed": 0,
+   "duration_ms": 308
+  },
+  "test/proxy.test.ts": {
+   "status": "pass",
+   "tests": 128,
+   "failed": 0,
+   "duration_ms": 977
+  },
+  "test/query.test.ts": {
+   "status": "pass",
+   "tests": 38,
+   "failed": 0,
+   "duration_ms": 312
+  },
+  "test/route.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 54
+  },
+  "test/router.test.ts": {
+   "status": "pass",
+   "tests": 68,
+   "failed": 0,
+   "duration_ms": 593
+  },
+  "test/security.test.ts": {
+   "status": "pass",
+   "tests": 30,
+   "failed": 0,
+   "duration_ms": 317
+  },
+  "test/session.test.ts": {
+   "status": "pass",
+   "tests": 20,
+   "failed": 0,
+   "duration_ms": 994
+  },
+  "test/sse.test.ts": {
+   "status": "pass",
+   "tests": 18,
+   "failed": 0,
+   "duration_ms": 294
+  },
+  "test/static.test.ts": {
+   "status": "pass",
+   "tests": 48,
+   "failed": 0,
+   "duration_ms": 497
+  },
+  "test/status.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 178
+  },
+  "test/stream.test.ts": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 339
+  },
+  "test/tracing.test.ts": {
+   "status": "pass",
+   "tests": 52,
+   "failed": 0,
+   "duration_ms": 787
+  },
+  "test/utils.test.ts": {
+   "status": "fail",
+   "tests": 152,
+   "failed": 1,
+   "duration_ms": 759
+  },
+  "test/validate.test.ts": {
+   "status": "pass",
+   "tests": 40,
+   "failed": 0,
+   "duration_ms": 419
+  },
+  "test/ws.test.ts": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 37
+  },
+  "test/bench/bench.test.ts": {
+   "status": "pass",
+   "tests": 15,
+   "failed": 0,
+   "duration_ms": 19
+  },
+  "test/bench/bundle.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 251
+  },
+  "test/unit/auth.test.ts": {
+   "status": "pass",
+   "tests": 17,
+   "failed": 0,
+   "duration_ms": 20
+  },
+  "test/unit/body-limit.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 61
+  },
+  "test/unit/cookie-perf.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 14
+  },
+  "test/unit/cookie-validation.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 25
+  },
+  "test/unit/cors.test.ts": {
+   "status": "pass",
+   "tests": 50,
+   "failed": 0,
+   "duration_ms": 57
+  },
+  "test/unit/encoding.test.ts": {
+   "status": "pass",
+   "tests": 9,
+   "failed": 0,
+   "duration_ms": 19
+  },
+  "test/unit/event.test.ts": {
+   "status": "pass",
+   "tests": 9,
+   "failed": 0,
+   "duration_ms": 18
+  },
+  "test/unit/h3.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 6
+  },
+  "test/unit/iron-crypto.test.ts": {
+   "status": "pass",
+   "tests": 37,
+   "failed": 0,
+   "duration_ms": 379
+  },
+  "test/unit/iterable.test.ts": {
+   "status": "pass",
+   "tests": 13,
+   "failed": 0,
+   "duration_ms": 18
+  },
+  "test/unit/meta.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 12
+  },
+  "test/unit/middleware.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 38
+  },
+  "test/unit/mime.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 8
+  },
+  "test/unit/package.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 382
+  },
+  "test/unit/path.test.ts": {
+   "status": "pass",
+   "tests": 30,
+   "failed": 0,
+   "duration_ms": 556
+  },
+  "test/unit/proxy.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 10
+  },
+  "test/unit/query.test.ts": {
+   "status": "pass",
+   "tests": 83,
+   "failed": 0,
+   "duration_ms": 60
+  },
+  "test/unit/request.test.ts": {
+   "status": "pass",
+   "tests": 20,
+   "failed": 0,
+   "duration_ms": 21
+  },
+  "test/unit/sanitize.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 10
+  },
+  "test/unit/sse.test.ts": {
+   "status": "pass",
+   "tests": 21,
+   "failed": 0,
+   "duration_ms": 111
+  },
+  "test/unit/timing.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 79
+  },
+  "test/unit/types.test-d.ts": {
+   "status": "pass",
+   "tests": 21,
+   "failed": 0,
+   "duration_ms": 0
+  }
+ }
+}

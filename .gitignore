@@ -1,0 +1,5 @@
+targets/
+__pycache__/
+node_modules/
+targets_scope/
+.secrets/

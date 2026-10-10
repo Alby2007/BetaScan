@@ -1,0 +1,794 @@
+[
+ {
+  "parent": "d9d3124f8cd759f1b427864b2ad4bff51049130a",
+  "id": "src/utils/internal/object.ts:1039:BinaryOp",
+  "risk": [
+   false,
+   96
+  ],
+  "n_noncovering": 33,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "d9d3124f8cd759f1b427864b2ad4bff51049130a",
+  "id": "src/utils/internal/object.ts:919:ReturnUndefined",
+  "risk": [
+   false,
+   96
+  ],
+  "n_noncovering": 33,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "d9d3124f8cd759f1b427864b2ad4bff51049130a",
+  "id": "src/utils/internal/object.ts:633:BinaryOp",
+  "risk": [
+   false,
+   96
+  ],
+  "n_noncovering": 33,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "d9d3124f8cd759f1b427864b2ad4bff51049130a",
+  "id": "src/utils/internal/object.ts:801:ReturnUndefined",
+  "risk": [
+   false,
+   96
+  ],
+  "n_noncovering": 33,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "d9d3124f8cd759f1b427864b2ad4bff51049130a",
+  "id": "src/utils/internal/object.ts:389:Boolean",
+  "risk": [
+   false,
+   96
+  ],
+  "n_noncovering": 54,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "d9d3124f8cd759f1b427864b2ad4bff51049130a",
+  "id": "src/utils/internal/cache.ts:721:BinaryOp",
+  "risk": [
+   false,
+   54
+  ],
+  "n_noncovering": 54,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "fb34b0f5144c9e2e5658fd30038a95582accd9d3",
+  "id": "src/rules/handlers/redirect.ts:1421:CondTrue",
+  "risk": [
+   true,
+   25
+  ],
+  "n_noncovering": 59,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "fb34b0f5144c9e2e5658fd30038a95582accd9d3",
+  "id": "src/rules/handlers/redirect.ts:986:NegationRemoval",
+  "risk": [
+   true,
+   25
+  ],
+  "n_noncovering": 59,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "fb34b0f5144c9e2e5658fd30038a95582accd9d3",
+  "id": "src/rules/handlers/redirect.ts:986:CondTrue",
+  "risk": [
+   true,
+   25
+  ],
+  "n_noncovering": 59,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "fb34b0f5144c9e2e5658fd30038a95582accd9d3",
+  "id": "src/rules/handlers/redirect.ts:1017:ReturnUndefined",
+  "risk": [
+   true,
+   25
+  ],
+  "n_noncovering": 59,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "fb34b0f5144c9e2e5658fd30038a95582accd9d3",
+  "id": "src/rules/handlers/redirect.ts:986:CondFalse",
+  "risk": [
+   true,
+   25
+  ],
+  "n_noncovering": 59,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "fb34b0f5144c9e2e5658fd30038a95582accd9d3",
+  "id": "src/rules/internal/scope.ts:12309:ReturnUndefined",
+  "risk": [
+   false,
+   30
+  ],
+  "n_noncovering": 62,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "0c7429e8b740d6ee9d54b0a4f8436b894eb83d21",
+  "id": "src/rules/handlers/redirect.ts:930:NegationRemoval",
+  "risk": [
+   true,
+   24
+  ],
+  "n_noncovering": 60,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "0c7429e8b740d6ee9d54b0a4f8436b894eb83d21",
+  "id": "src/rules/handlers/redirect.ts:961:ReturnUndefined",
+  "risk": [
+   true,
+   24
+  ],
+  "n_noncovering": 60,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "0c7429e8b740d6ee9d54b0a4f8436b894eb83d21",
+  "id": "src/rules/handlers/redirect.ts:800:EmptyBody",
+  "risk": [
+   true,
+   24
+  ],
+  "n_noncovering": 60,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "0c7429e8b740d6ee9d54b0a4f8436b894eb83d21",
+  "id": "src/rules/handlers/redirect.ts:930:CondTrue",
+  "risk": [
+   true,
+   24
+  ],
+  "n_noncovering": 60,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "0c7429e8b740d6ee9d54b0a4f8436b894eb83d21",
+  "id": "src/rules/handlers/redirect.ts:1060:ReturnUndefined",
+  "risk": [
+   true,
+   24
+  ],
+  "n_noncovering": 60,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "0c7429e8b740d6ee9d54b0a4f8436b894eb83d21",
+  "id": "src/utils/internal/event-stream.ts:1362:StringEmpty",
+  "risk": [
+   false,
+   60
+  ],
+  "n_noncovering": 69,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/utils/internal/event-stream.ts:2100:CondTrue",
+  "risk": [
+   false,
+   66
+  ],
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/utils/internal/event-stream.ts:2968:EmptyBody",
+  "risk": [
+   false,
+   66
+  ],
+  "n_noncovering": 5,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/utils/internal/event-stream.ts:4029:EmptyBody",
+  "risk": [
+   false,
+   66
+  ],
+  "n_noncovering": 5,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/utils/internal/event-stream.ts:5105:StringEmpty",
+  "risk": [
+   false,
+   66
+  ],
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/utils/internal/event-stream.ts:3417:CondTrue",
+  "risk": [
+   false,
+   66
+  ],
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/handler.ts:3855:CondFalse",
+  "risk": [
+   false,
+   33
+  ],
+  "n_noncovering": 25,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b838d53eb2b7201e6a090f6591047f5fba719fe2",
+  "id": "src/utils/internal/proxy.ts:55:StringEmpty",
+  "risk": [
+   true,
+   30
+  ],
+  "n_noncovering": 7,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b838d53eb2b7201e6a090f6591047f5fba719fe2",
+  "id": "src/utils/internal/proxy.ts:178:StringEmpty",
+  "risk": [
+   true,
+   30
+  ],
+  "n_noncovering": 7,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b838d53eb2b7201e6a090f6591047f5fba719fe2",
+  "id": "src/utils/internal/proxy.ts:245:StringEmpty",
+  "risk": [
+   true,
+   30
+  ],
+  "n_noncovering": 7,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b838d53eb2b7201e6a090f6591047f5fba719fe2",
+  "id": "src/h3.ts:6062:EmptyBody",
+  "risk": [
+   false,
+   54
+  ],
+  "n_noncovering": 27,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b838d53eb2b7201e6a090f6591047f5fba719fe2",
+  "id": "src/h3.ts:4299:CondFalse",
+  "risk": [
+   false,
+   54
+  ],
+  "n_noncovering": 21,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b838d53eb2b7201e6a090f6591047f5fba719fe2",
+  "id": "src/h3.ts:5812:CondTrue",
+  "risk": [
+   false,
+   54
+  ],
+  "n_noncovering": 19,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "cb9fc4736644348b7130af559f0909fb40fa95c4",
+  "id": "src/utils/internal/path.ts:129:CondTrue",
+  "risk": [
+   false,
+   35
+  ],
+  "n_noncovering": 27,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "cb9fc4736644348b7130af559f0909fb40fa95c4",
+  "id": "src/utils/internal/path.ts:875:NegationRemoval",
+  "risk": [
+   false,
+   35
+  ],
+  "n_noncovering": 27,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "cb9fc4736644348b7130af559f0909fb40fa95c4",
+  "id": "src/utils/internal/path.ts:1028:CondFalse",
+  "risk": [
+   false,
+   35
+  ],
+  "n_noncovering": 25,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "cb9fc4736644348b7130af559f0909fb40fa95c4",
+  "id": "src/utils/internal/path.ts:775:CondTrue",
+  "risk": [
+   false,
+   35
+  ],
+  "n_noncovering": 27,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "cb9fc4736644348b7130af559f0909fb40fa95c4",
+  "id": "src/utils/internal/path.ts:75:CondTrue",
+  "risk": [
+   false,
+   35
+  ],
+  "n_noncovering": 27,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "cb9fc4736644348b7130af559f0909fb40fa95c4",
+  "id": "src/utils/proxy.ts:2748:ReturnUndefined",
+  "risk": [
+   false,
+   32
+  ],
+  "n_noncovering": 27,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "842d4cc172e094657b0d3a5cf7cdd69bede7e4de",
+  "id": "src/event.ts:830:Boolean",
+  "risk": [
+   true,
+   68
+  ],
+  "n_noncovering": 9,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "842d4cc172e094657b0d3a5cf7cdd69bede7e4de",
+  "id": "src/utils/internal/validate.ts:1899:StringEmpty",
+  "risk": [
+   true,
+   45
+  ],
+  "n_noncovering": 7,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "842d4cc172e094657b0d3a5cf7cdd69bede7e4de",
+  "id": "src/utils/internal/encoding.ts:1912:EmptyBody",
+  "risk": [
+   false,
+   74
+  ],
+  "n_noncovering": 5,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "842d4cc172e094657b0d3a5cf7cdd69bede7e4de",
+  "id": "src/utils/internal/encoding.ts:2533:CondFalse",
+  "risk": [
+   false,
+   74
+  ],
+  "n_noncovering": 30,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "842d4cc172e094657b0d3a5cf7cdd69bede7e4de",
+  "id": "src/utils/internal/encoding.ts:2401:BinaryOp",
+  "risk": [
+   false,
+   74
+  ],
+  "n_noncovering": 30,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "842d4cc172e094657b0d3a5cf7cdd69bede7e4de",
+  "id": "src/utils/internal/validate.ts:3419:NegationRemoval",
+  "risk": [
+   false,
+   45
+  ],
+  "n_noncovering": 32,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "edb53fee570e1758b16ee8abd8e562d548d86f7b",
+  "id": "src/response.ts:4951:StringEmpty",
+  "risk": [
+   true,
+   86
+  ],
+  "n_noncovering": 9,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "edb53fee570e1758b16ee8abd8e562d548d86f7b",
+  "id": "src/utils/internal/path.ts:129:CondFalse",
+  "risk": [
+   false,
+   87
+  ],
+  "n_noncovering": 47,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "edb53fee570e1758b16ee8abd8e562d548d86f7b",
+  "id": "src/utils/internal/path.ts:2088:NegationRemoval",
+  "risk": [
+   false,
+   87
+  ],
+  "n_noncovering": 47,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "edb53fee570e1758b16ee8abd8e562d548d86f7b",
+  "id": "src/utils/internal/path.ts:367:BinaryOp",
+  "risk": [
+   false,
+   87
+  ],
+  "n_noncovering": 45,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "edb53fee570e1758b16ee8abd8e562d548d86f7b",
+  "id": "src/utils/internal/path.ts:1470:ReturnUndefined",
+  "risk": [
+   false,
+   87
+  ],
+  "n_noncovering": 46,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "edb53fee570e1758b16ee8abd8e562d548d86f7b",
+  "id": "src/response.ts:2697:CondFalse",
+  "risk": [
+   false,
+   86
+  ],
+  "n_noncovering": 18,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b3c3eff01dfc9fcde18a9b26f9ac5fe27608f96a",
+  "id": "src/utils/internal/path.ts:79:CondFalse",
+  "risk": [
+   false,
+   94
+  ],
+  "n_noncovering": 51,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b3c3eff01dfc9fcde18a9b26f9ac5fe27608f96a",
+  "id": "src/utils/internal/path.ts:1184:CondTrue",
+  "risk": [
+   false,
+   94
+  ],
+  "n_noncovering": 48,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b3c3eff01dfc9fcde18a9b26f9ac5fe27608f96a",
+  "id": "src/utils/internal/path.ts:1193:BinaryOp",
+  "risk": [
+   false,
+   94
+  ],
+  "n_noncovering": 48,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b3c3eff01dfc9fcde18a9b26f9ac5fe27608f96a",
+  "id": "src/utils/internal/path.ts:207:StringEmpty",
+  "risk": [
+   false,
+   94
+  ],
+  "n_noncovering": 51,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b3c3eff01dfc9fcde18a9b26f9ac5fe27608f96a",
+  "id": "src/adapters.ts:1709:ReturnUndefined",
+  "risk": [
+   false,
+   52
+  ],
+  "n_noncovering": 52,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "b3c3eff01dfc9fcde18a9b26f9ac5fe27608f96a",
+  "id": "src/adapters.ts:1601:StringEmpty",
+  "risk": [
+   false,
+   52
+  ],
+  "n_noncovering": 52,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/adapters/node/event.ts:1107:ReturnUndefined",
+  "risk": [
+   false,
+   75
+  ],
+  "n_noncovering": 25,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/adapters/node/event.ts:1092:EmptyBody",
+  "risk": [
+   false,
+   75
+  ],
+  "n_noncovering": 6,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/adapters/node/internal/utils.ts:1593:CondFalse",
+  "risk": [
+   false,
+   75
+  ],
+  "n_noncovering": 10,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/adapters/node/internal/utils.ts:797:CondFalse",
+  "risk": [
+   false,
+   75
+  ],
+  "n_noncovering": 10,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/adapters/node/event.ts:958:ReturnUndefined",
+  "risk": [
+   false,
+   75
+  ],
+  "n_noncovering": 20,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/utils/cors.ts:767:NegationRemoval",
+  "risk": [
+   false,
+   31
+  ],
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/utils/response.ts:12936:StringEmpty",
+  "risk": [
+   true,
+   133
+  ],
+  "n_noncovering": 21,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/rules/handlers/redirect.ts:1060:ReturnUndefined",
+  "risk": [
+   true,
+   25
+  ],
+  "n_noncovering": 59,
+  "status": "Flaky",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/rules/handlers/redirect.ts:930:NegationRemoval",
+  "risk": [
+   true,
+   25
+  ],
+  "n_noncovering": 59,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/rules/handlers/redirect.ts:800:EmptyBody",
+  "risk": [
+   true,
+   25
+  ],
+  "n_noncovering": 59,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/rules/handlers/redirect.ts:930:CondFalse",
+  "risk": [
+   true,
+   25
+  ],
+  "n_noncovering": 59,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/utils/internal/iron-crypto.ts:6356:NegationRemoval",
+  "risk": [
+   false,
+   135
+  ],
+  "n_noncovering": 69,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "55a2c9b1399345da6f67909db2d76fa1e56f9b2d",
+  "id": "src/utils/internal/mime.ts:636:StringEmpty",
+  "risk": [
+   true,
+   40
+  ],
+  "n_noncovering": 9,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "55a2c9b1399345da6f67909db2d76fa1e56f9b2d",
+  "id": "src/utils/internal/mime.ts:343:StringEmpty",
+  "risk": [
+   true,
+   40
+  ],
+  "n_noncovering": 9,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "55a2c9b1399345da6f67909db2d76fa1e56f9b2d",
+  "id": "src/utils/internal/mime.ts:430:StringEmpty",
+  "risk": [
+   true,
+   40
+  ],
+  "n_noncovering": 9,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "55a2c9b1399345da6f67909db2d76fa1e56f9b2d",
+  "id": "src/utils/internal/mime.ts:557:StringEmpty",
+  "risk": [
+   true,
+   40
+  ],
+  "n_noncovering": 9,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "55a2c9b1399345da6f67909db2d76fa1e56f9b2d",
+  "id": "src/utils/internal/mime.ts:274:StringEmpty",
+  "risk": [
+   true,
+   40
+  ],
+  "n_noncovering": 9,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "55a2c9b1399345da6f67909db2d76fa1e56f9b2d",
+  "id": "src/utils/route.ts:1541:ReturnUndefined",
+  "risk": [
+   false,
+   39
+  ],
+  "n_noncovering": 34,
+  "status": "Survived",
+  "extra_failures": []
+ }
+]

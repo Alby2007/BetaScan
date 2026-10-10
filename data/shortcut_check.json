@@ -1,0 +1,170 @@
+[
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/utils/cors.ts:734:StringEmpty",
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/utils/fingerprint.ts:927:CondFalse",
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/utils/fingerprint.ts:977:CondTrue",
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/adapters/node/event.ts:979:StringEmpty",
+  "n_noncovering": 20,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/adapters/node/internal/utils.ts:797:CondFalse",
+  "n_noncovering": 10,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/utils/fingerprint.ts:773:BinaryOp",
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/utils/cors.ts:531:EmptyBody",
+  "n_noncovering": 6,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "130130dacaa40a113a106b25817e33da13cea35f",
+  "id": "src/utils/cors.ts:1420:EmptyBody",
+  "n_noncovering": 6,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/utils/internal/object.ts:550:BinaryOp",
+  "n_noncovering": 45,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/utils/internal/iron-crypto.ts:7807:StringEmpty",
+  "n_noncovering": 69,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/utils/response.ts:3268:BinaryOp",
+  "n_noncovering": 66,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/utils/internal/iron-crypto.ts:3677:CondFalse",
+  "n_noncovering": 69,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/utils/internal/object.ts:1021:CondFalse",
+  "n_noncovering": 45,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/rules/handlers/redirect.ts:961:ReturnUndefined",
+  "n_noncovering": 59,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/utils/response.ts:8644:BinaryOp",
+  "n_noncovering": 70,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e6b726bb35523693167d6c0deea059c8d14a4851",
+  "id": "src/utils/internal/object.ts:776:StringEmpty",
+  "n_noncovering": 45,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/handler.ts:4640:CondTrue",
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/utils/internal/iterable.ts:1732:ReturnUndefined",
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/utils/internal/iterable.ts:1638:CondFalse",
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/utils/internal/iterable.ts:1506:StringEmpty",
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/utils/internal/event-stream.ts:4827:EmptyBody",
+  "n_noncovering": 5,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/handler.ts:4030:BinaryOp",
+  "n_noncovering": 25,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/handler.ts:3855:CondFalse",
+  "n_noncovering": 25,
+  "status": "Survived",
+  "extra_failures": []
+ },
+ {
+  "parent": "e5788bb16d62ac64e5fa13b14862ed719f768d04",
+  "id": "src/utils/internal/iterable.ts:1599:ReturnUndefined",
+  "n_noncovering": 26,
+  "status": "Survived",
+  "extra_failures": []
+ }
+]

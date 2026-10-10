@@ -1,0 +1,131 @@
+retried 130130da [('Killed', 17), ('Killed', 2)]
+retried 842d4cc1 [('Killed', 24)]
+retried b838d53e [('Killed', 1)]
+retried cb9fc473 [('Killed', 17)]
+retried edb53fee [('Killed', 30), ('Killed', 15)]
+retried fb34b0f5 [('Killed', 9)]
+retried 19bf1066 [('Killed', 23)]
+retried 42476824 [('Killed', 19)]
+retried 4e16ef35 [('Killed', 17)]
+retried 61d19fd5 [('Killed', 20)]
+retried 6365f057 [('Killed', 14)]
+retried 82a0e240 [('Killed', 13)]
+retried 8eb1063e [('Killed', 28), ('Killed', 28)]
+retried aa0f3c94 [('Killed', 17), ('Killed', 19)]
+retried cf7e585c [('Killed', 7)]
+retried f45dd270 [('Killed', 19)]
+retried febb8325 [('Killed', 21)]
+29880 rows, 664 mutants, 488 with a failing test ( 0 unresolved included); fails+ rows: 2594
+29915 rows, 665 mutants, 489 with a failing test ( 1 unresolved included); fails+ rows: 2618
+0295f90318512b9fd43fbc1799601f614fa773d6 603 nodes 2008 edges
+19bf1066a900e3f916c55c3e3a636ad310f50ed8 481 nodes 1607 edges
+1ff4999eccc2d055c38b083d9be55d01d69d671d 625 nodes 2092 edges
+31a5d7afbcdcac81e84860ded847701d95bbf2e6 490 nodes 1643 edges
+322fa8877dc7639723924c4ddc0566659490ae64 678 nodes 2258 edges
+38be51213f3cbcbb14a17375c40b95c365603a37 480 nodes 1605 edges
+3c2a205ce2f797645065a1bd86f4fd05d727a9c9 1088 nodes 3894 edges
+3f1c9e5ef77c471ba174ec4ff8956e9a7d463ba2 1081 nodes 3877 edges
+42476824445cf3f4e5964f03f6b3afbda8a98a58 490 nodes 1642 edges
+44621f3ba4f0c9784c6739dede52a9f357d20afb 734 nodes 2449 edges
+48e6982ac47c75810f3df2c4d5c9c9691a6e3c78 1066 nodes 3783 edges
+4e16ef35cc7effe8048108198568e49e53c5657a 463 nodes 1353 edges
+55335c5d8c4fb8f0894a55b639d542da9e9c344a 997 nodes 3555 edges
+5b3d6e18acbe2040193835eb734fa0102240f237 403 nodes 1250 edges
+61d19fd5e21c7fb1fc3ef0523e1e44346a6d64af 389 nodes 1232 edges
+62261dda6949e9a23d6ae2a731792df5c1595b1d 406 nodes 1265 edges
+6365f0575093ed8f8e0003971e6c33469feb3709 585 nodes 1949 edges
+63e4b9819db5710179d00366c6f5c0add8b0445d 664 nodes 2195 edges
+66f47c3b31b8c691189a717722e25c2691bae482 666 nodes 2199 edges
+82a0e240a8879e93c1810c2e5c5e1fe5c3fc6df0 388 nodes 1202 edges
+8786f23198f2d6f3fad9b539b1325b7fd8408669 623 nodes 2081 edges
+88ce5cd13202b681b4a11652dd02683647a0d809 603 nodes 2009 edges
+8a380f1d02a424cde1012327954065f27a5f5e21 622 nodes 2073 edges
+8eb1063e6d7a3db34f8b611d94e0102361e6bf18 663 nodes 2191 edges
+8ed63f6d24fea06b64be1ef46c370ac67109d5ae 391 nodes 1205 edges
+946bbe4f2c828dead1fc79b13aabed55905cd841 490 nodes 1642 edges
+99ec3a2cbf49eafa2f6aa175e89d03e90950db28 597 nodes 1974 edges
+aa0f3c94c2c0b178fc5af80d1565411f0ce46213 391 nodes 1231 edges
+ab3f23c879739fad867e4d8d4686af7a82c558a6 1003 nodes 3572 edges
+b17dfd2be37dfadf7d10d4795c88e6e1a81696d8 480 nodes 1605 edges
+b5a245de5772d3cf504169d244045f643d4dd770 564 nodes 1520 edges
+c0c15d9a7c05672b997c73719beaa4811654e758 389 nodes 1232 edges
+cf7e585ca075445a5107dab97d4c4b0a23d208a2 1022 nodes 3630 edges
+d77b673e47bd4997a1bde0b70b9a582ad0aac954 603 nodes 2012 edges
+deed16082246e6d9027e23fee23660cbf9133383 396 nodes 1230 edges
+e2f8cbd5fc4131f328718d4343a8431fc14a2681 603 nodes 2011 edges
+eb30d5f1e11fac8d55398545428b19912635e247 700 nodes 2331 edges
+ef02804f210df5d69495a3c13705898c685fb6d5 388 nodes 1203 edges
+f45dd2708ca16a088a6ff4c04abde7a058a36b37 478 nodes 1584 edges
+febb8325227bf3fa5f4084dbb91a02e675968494 439 nodes 1406 edges
+parents: 52 (train 48, test 4); mutants: all 664, train 608, test 56, test-with-unseen-file 17; killed in test 42, strict 16
+wrote data/m3_final_clean.md
+
+## Oracle headroom: failing fraction = failing tests / covering tests (killed mutants, all 337)
+
+Oracle n95/ncov is ceil(0.95*failing)/covering, so it is bounded below by this fraction. Median above 0.7 means little headroom inside the covering set.
+
+| stratum | n | median | p25 | p75 | mean | oracle n95/ncov (mean) | flag median>0.7 |
+|---|---|---|---|---|---|---|---|
+| 1 | 103 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | YES |
+| 2-3 | 77 | 1.00 | 0.50 | 1.00 | 0.83 | 0.83 | YES |
+| 4-10 | 28 | 0.83 | 0.40 | 1.00 | 0.71 | 0.71 | YES |
+| >10 | 280 | 0.27 | 0.07 | 0.89 | 0.42 | 0.42 | no |
+| >=2 | 385 | 0.45 | 0.09 | 1.00 | 0.52 | 0.52 | no |
+
+## Cluster-bootstrap 95% CIs (resample the 12 parent commits; ALL mutants, training-free rankers; full-suite candidates)
+
+Mutants from one commit are correlated, so the effective n is the number of commits (12). Differences are paired per mutant. Test-split-only CIs would have 4 clusters and are not reported.
+
+| stratum | metric | ranker | mean [95% CI] | paired diff vs B5a [95% CI] | paired diff vs B4 [95% CI] |
+
+## M4 go/no-go (stratum >10 covering tests)
+
+Rule: GO iff oracle n95/ncov < 0.5 AND B5a n95/ncov > 0.7 (B5a wastes most of the covering set). Commit-clustered 95% CIs shown; verdict uses point estimates and also says whether the CI agrees.
+
+- killed mutants in stratum: 280 from 51 commits
+- oracle n95/ncov: 0.417 [0.354, 0.484]
+- B5a n95/ncov: 0.796 [0.768, 0.825]
+- VERDICT (point estimates): GO; CIs agree
+parents: 52 (train 48, test 4); mutants: all 665, train 609, test 56, test-with-unseen-file 17; killed in test 42, strict 16
+wrote data/m3_final_worst.md
+
+## Oracle headroom: failing fraction = failing tests / covering tests (killed mutants, all 337)
+
+Oracle n95/ncov is ceil(0.95*failing)/covering, so it is bounded below by this fraction. Median above 0.7 means little headroom inside the covering set.
+
+| stratum | n | median | p25 | p75 | mean | oracle n95/ncov (mean) | flag median>0.7 |
+|---|---|---|---|---|---|---|---|
+| 1 | 103 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | YES |
+| 2-3 | 77 | 1.00 | 0.50 | 1.00 | 0.83 | 0.83 | YES |
+| 4-10 | 28 | 0.83 | 0.40 | 1.00 | 0.71 | 0.71 | YES |
+| >10 | 281 | 0.27 | 0.07 | 0.89 | 0.42 | 0.42 | no |
+| >=2 | 386 | 0.45 | 0.09 | 1.00 | 0.52 | 0.52 | no |
+
+## Cluster-bootstrap 95% CIs (resample the 12 parent commits; ALL mutants, training-free rankers; full-suite candidates)
+
+Mutants from one commit are correlated, so the effective n is the number of commits (12). Differences are paired per mutant. Test-split-only CIs would have 4 clusters and are not reported.
+
+| stratum | metric | ranker | mean [95% CI] | paired diff vs B5a [95% CI] | paired diff vs B4 [95% CI] |
+
+## M4 go/no-go (stratum >10 covering tests)
+
+Rule: GO iff oracle n95/ncov < 0.5 AND B5a n95/ncov > 0.7 (B5a wastes most of the covering set). Commit-clustered 95% CIs shown; verdict uses point estimates and also says whether the CI agrees.
+
+- killed mutants in stratum: 281 from 51 commits
+- oracle n95/ncov: 0.419 [0.356, 0.487]
+- B5a n95/ncov: 0.797 [0.768, 0.826]
+- VERDICT (point estimates): GO; CIs agree
+| repo | commits | test files | src files | % src lines in files reached by >10 tests | support files reaching >=5 tests | status |
+|---|---|---|---|---|---|---|
+| honojs/hono | 1 (shallow) | 0 | 0 | 0% | 0 files reach 0 tests | ok |
+| colinhacks/zod | 1 (shallow) | 201 | 162 | 96% | 0 files reach 0 tests | ok |
+| unjs/unstorage | 1 (shallow) | 42 | 47 | 24% | 1 files reach 30 tests | ok |
+| unjs/consola | 1 (shallow) | 0 | 21 | 0% | 0 files reach 0 tests | ok |
+| unjs/ofetch | 1 (shallow) | 1 | 7 | 0% | 0 files reach 0 tests | ok |
+| unjs/c12 | 1 (shallow) | 6 | 8 | 0% | 0 files reach 0 tests | ok |
+| trpc/trpc | 1 (shallow) | 196 | 199 | 74% | 12 files reach 125 tests | ok |
+| TanStack/query | 1 (shallow) | 0 | 4 | 0% | 0 files reach 0 tests | ok |
+| vuejs/pinia | 1 (shallow) | 21 | 18 | 100% | 1 files reach 7 tests | ok |
+| unjs/nitro | 1 (shallow) | 115 | 347 | 18% | 1 files reach 13 tests | ok |
+
+FINALIZE-DONE

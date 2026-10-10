@@ -1,0 +1,1218 @@
+{
+ "commit": "284243fb0d6532665afdc9239188773bb624f73c",
+ "wall_s": 127.1,
+ "files": {
+  "packages/treeshake/bundle-size.test.ts": {
+   "status": "fail",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/treeshake/default-locale.test.ts": {
+   "status": "fail",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/treeshake/locale-treeshake.test.ts": {
+   "status": "fail",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/resolution/attw.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 6
+  },
+  "packages/mini/src/tests/index.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/docs/content/api.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/all-errors.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/anyunknown.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/array.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/async-parsing.test.ts": {
+   "status": "pass",
+   "tests": 24,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/async-refinements.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/base.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/bigint.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/branded.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/catch.test.ts": {
+   "status": "pass",
+   "tests": 17,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/coerce.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/complex.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/custom.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/date.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/deepmasking.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/default.test.ts": {
+   "status": "pass",
+   "tests": 11,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/description.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/discriminated-unions.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/enum.test.ts": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/error.test.ts": {
+   "status": "pass",
+   "tests": 31,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/firstparty.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/firstpartyschematypes.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/function.test.ts": {
+   "status": "pass",
+   "tests": 18,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/generics.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/instanceof.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/intersection.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/language-server.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/literal.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/map.test.ts": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/masking.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/mocker.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/nan.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/nativeEnum.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/nullable.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/number.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/object-augmentation.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/object-in-es5-env.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/object.test.ts": {
+   "status": "pass",
+   "tests": 37,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/optional.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/parseUtil.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/parser.test.ts": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/partials.test.ts": {
+   "status": "pass",
+   "tests": 15,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/pickomit.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/pipeline.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/preprocess.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/primitive.test.ts": {
+   "status": "pass",
+   "tests": 71,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/promise.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/readonly.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/record.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/recursive.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/refine.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/safeparse.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/set.test.ts": {
+   "status": "pass",
+   "tests": 11,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/standard-schema.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/string.test.ts": {
+   "status": "pass",
+   "tests": 34,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/transformer.test.ts": {
+   "status": "pass",
+   "tests": 16,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/tuple.test.ts": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/unions.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/validations.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v3/tests/void.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/anyunknown.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/apply.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/array.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/assignability.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/async-parsing.test.ts": {
+   "status": "pass",
+   "tests": 23,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/async-refinements.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/base.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/bigint.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/brand.test.ts": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/catch.test.ts": {
+   "status": "pass",
+   "tests": 31,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/coalesce.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/codec-examples.test.ts": {
+   "status": "pass",
+   "tests": 19,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/codec.test.ts": {
+   "status": "pass",
+   "tests": 22,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/coerce.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/continuability.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/credit-card.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/custom.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/cyclic-data.test.ts": {
+   "status": "pass",
+   "tests": 42,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/date.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/datetime.test.ts": {
+   "status": "pass",
+   "tests": 16,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/deep-partial.test.ts": {
+   "status": "pass",
+   "tests": 39,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/default-locale.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/default.test.ts": {
+   "status": "pass",
+   "tests": 23,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/describe-meta-checks.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/description.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/detached-methods.test.ts": {
+   "status": "pass",
+   "tests": 13,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/discriminated-unions.test.ts": {
+   "status": "pass",
+   "tests": 36,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/enum.test.ts": {
+   "status": "pass",
+   "tests": 20,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/error-utils.test.ts": {
+   "status": "pass",
+   "tests": 24,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/error.test.ts": {
+   "status": "pass",
+   "tests": 48,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/file.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/firstparty.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/fix-json-issue.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/from-json-schema.test.ts": {
+   "status": "pass",
+   "tests": 111,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/function.test.ts": {
+   "status": "pass",
+   "tests": 21,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/generics.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/global-config.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/hash.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/iban.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/in-out.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/index.test.ts": {
+   "status": "pass",
+   "tests": 61,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/instance-footprint.test.ts": {
+   "status": "pass",
+   "tests": 19,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/instanceof.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/intersection.test.ts": {
+   "status": "pass",
+   "tests": 19,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/issue-schema.test.ts": {
+   "status": "pass",
+   "tests": 9,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/jitless-allows-eval.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/json.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/lazy.test.ts": {
+   "status": "pass",
+   "tests": 13,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/literal.test.ts": {
+   "status": "pass",
+   "tests": 11,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/locales_ka.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/locales_ro.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/map.test.ts": {
+   "status": "pass",
+   "tests": 13,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/nan.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/nested-refine.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/nonoptional.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/nullable.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/number.test.ts": {
+   "status": "pass",
+   "tests": 33,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/object.test.ts": {
+   "status": "pass",
+   "tests": 86,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/optin-ladder.test.ts": {
+   "status": "pass",
+   "tests": 15,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/optional.test.ts": {
+   "status": "pass",
+   "tests": 18,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/partial.test.ts": {
+   "status": "pass",
+   "tests": 21,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/pickomit.test.ts": {
+   "status": "pass",
+   "tests": 16,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/pipe.test.ts": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/prefault.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/preprocess-types.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/preprocess.test.ts": {
+   "status": "pass",
+   "tests": 17,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/primitive.test.ts": {
+   "status": "pass",
+   "tests": 14,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/promise.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/properties.test.ts": {
+   "status": "pass",
+   "tests": 11,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/prototypes.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/readonly.test.ts": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/record.test.ts": {
+   "status": "pass",
+   "tests": 36,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/recursive-types.test.ts": {
+   "status": "pass",
+   "tests": 18,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/redos.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/refine.test.ts": {
+   "status": "pass",
+   "tests": 23,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/registries.test.ts": {
+   "status": "pass",
+   "tests": 20,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/set.test.ts": {
+   "status": "pass",
+   "tests": 13,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/standard-schema.test.ts": {
+   "status": "pass",
+   "tests": 9,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/string-formats.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/string.test.ts": {
+   "status": "pass",
+   "tests": 56,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/stringbool.test.ts": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/template-literal.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/to-json-schema-methods.test.ts": {
+   "status": "pass",
+   "tests": 89,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/to-json-schema.test.ts": {
+   "status": "pass",
+   "tests": 167,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/transform.test.ts": {
+   "status": "pass",
+   "tests": 19,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/tuple.test.ts": {
+   "status": "pass",
+   "tests": 21,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/union.test.ts": {
+   "status": "pass",
+   "tests": 20,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/url.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/validate.test.ts": {
+   "status": "pass",
+   "tests": 24,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/validations.test.ts": {
+   "status": "pass",
+   "tests": 13,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/classic/tests/void.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/cached.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/compile-differential.test.ts": {
+   "status": "pass",
+   "tests": 81,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/compile-generative.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/compile-global.test.ts": {
+   "status": "pass",
+   "tests": 7,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/compile-off-by-default.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/compile-stats.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/compile.test.ts": {
+   "status": "pass",
+   "tests": 169,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/email-regex.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/extend.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/index.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/polyfill-collision.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/record-constructor.test.ts": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/recursive-tuples.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/treeshake.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/url-no-canparse.test.ts": {
+   "status": "pass",
+   "tests": 6,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/apply.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/assignability.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/brand.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/checks.test.ts": {
+   "status": "pass",
+   "tests": 19,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/codec.test.ts": {
+   "status": "pass",
+   "tests": 17,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/computed.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/cyclic-data.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/deep-partial.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/error.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/functions.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/index.test.ts": {
+   "status": "pass",
+   "tests": 68,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/number.test.ts": {
+   "status": "pass",
+   "tests": 10,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/object.test.ts": {
+   "status": "pass",
+   "tests": 18,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/prototypes.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/recursive-types.test.ts": {
+   "status": "pass",
+   "tests": 8,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/standard-schema.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/mini/tests/string.test.ts": {
+   "status": "pass",
+   "tests": 31,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/be.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/el.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/en.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/es.test.ts": {
+   "status": "pass",
+   "tests": 5,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/fr.test.ts": {
+   "status": "pass",
+   "tests": 3,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/he.test.ts": {
+   "status": "pass",
+   "tests": 36,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/hr.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/nl.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/parity.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/ru.test.ts": {
+   "status": "pass",
+   "tests": 4,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/tg.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/tk.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/tr.test.ts": {
+   "status": "pass",
+   "tests": 2,
+   "failed": 0,
+   "duration_ms": 0
+  },
+  "packages/zod/src/v4/core/tests/locales/uz.test.ts": {
+   "status": "pass",
+   "tests": 1,
+   "failed": 0,
+   "duration_ms": 0
+  }
+ }
+}

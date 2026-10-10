@@ -1,0 +1,12 @@
+colinhacks__zod run1 exit=1
+colinhacks__zod run2 exit=1
+colinhacks__zod run3 exit=1
+trpc__trpc run1 exit=0
+trpc__trpc run2 exit=0
+trpc__trpc run3 exit=0
+zod run1 exit=1
+zod run2 exit=1
+zod run3 exit=1
+zod run1 exit=1
+zod run2 exit=1
+zod run3 exit=1
