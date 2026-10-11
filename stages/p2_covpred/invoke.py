@@ -55,7 +55,13 @@ def derive_invocation(dest, pm):
     candidates = []
     testline, twd, buildline = "", "", ""
     for w, b in wds:
-        if re.search(r"vitest|\btests?\b", b):
+        segs = [s.strip() for s in re.split(r"&&|;", b) if s.strip()]
+        tseg = next((s for s in segs if re.search(r"vitest|\btests?\b", s)), "")
+        first = re.sub(r"^\s*(?:[A-Z_]+=\S+\s+)+", "", tseg).split()
+        runner_start = bool(first) and (first[0] in ("pnpm", "npm", "yarn", "npx", "bunx", "node", "pnpx")
+                                        or first[0].endswith("vitest") or first[0] == "vitest")
+        if runner_start and tseg:
+            b = tseg
             excl = bool(skip.search(b) or EXCL_STEP.search(b) or TYPE_STEP.search(b))
             candidates.append({"step": b, "wd": w, "excluded": excl,
                                "why": "lint/typecheck" if (skip.search(b) or TYPE_STEP.search(b))

@@ -20,7 +20,7 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v7c-effcov"   # v7b + exclude type-test CI steps; coverage runs under the EFFECTIVE (rescued) invocation; vitest_s falls back to alt run
+CMD_VERSION = "v7d-runner"   # v7c + test step must start with a package runner (jotai sed-line misfire); chained run-lines take the test segment only
 
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
