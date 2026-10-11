@@ -20,7 +20,7 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v7-cinodes"   # v6 + stripped cov/reporter/shard/watch flags, CI-step candidates logged, prebuild timed, coverage->graph-node match ratio
+CMD_VERSION = "v7b-scope"    # v7 + coverage file picks restricted to invocation scope dir
 
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -111,8 +111,10 @@ if [ "$p" -lt 3 ] && [ -n "$ALT_VITEST_CMD" ]; then
   timeout 900 bash -c "$ALT_VITEST_CMD=/out/vitest_alt.json" >/out/vitest_alt.log 2>&1
   echo "va $? $(( $(date +%s)-s ))" >> /out/_runs.txt
 fi
-# coverage smoke: ~5 test files stratified by size (harvest-critical)
-find . -path ./node_modules -prune -o \( -name '*.test.*' -o -name '*.spec.*' \) -printf '%s %p\n' | sort -n > /tmp/tf.txt
+# coverage smoke: ~5 test files stratified by size (harvest-critical); scope dir preferred
+find . -path ./node_modules -prune -o \( -name '*.test.*' -o -name '*.spec.*' \) -printf '%s %p\n' | sort -n > /tmp/tf_all.txt
+if [ -n "$COV_DIR" ]; then grep "$COV_DIR" /tmp/tf_all.txt > /tmp/tf.txt; [ -s /tmp/tf.txt ] || cp /tmp/tf_all.txt /tmp/tf.txt;
+else cp /tmp/tf_all.txt /tmp/tf.txt; fi
 wc -l < /tmp/tf.txt > /out/_ntests.txt
 n=$(wc -l < /tmp/tf.txt)
 for i in 0 1 2 3 4; do
@@ -167,9 +169,10 @@ for line in open(a.list, encoding="utf-8"):
             rec["runner"] = rec["runner"] or "unknown"
             rec["reason"] = f"runner={rec['runner']}"; emit(rec); continue
         rec["pm"] = "pnpm" if (dest / "pnpm-lock.yaml").exists() else "yarn" if (dest / "yarn.lock").exists() else "npm"
-        vpre, alt, prebuild, src, cand = derive_invocation(dest, rec["pm"])
+        vpre, alt, prebuild, src, cand, scope = derive_invocation(dest, rec["pm"])
         rec.update({"invoke": vpre, "invoke_src": src, "invoke_alt": alt,
-                    "prebuild": prebuild, "prebuild_s": 0, "ci_steps": cand, "cov_node_frac": None})
+                    "prebuild": prebuild, "prebuild_s": 0, "ci_steps": cand,
+                    "cov_node_frac": None, "cov_dir": scope})
         with tempfile.TemporaryDirectory() as tmp:
             tmp = pathlib.Path(tmp); (tmp / "out").mkdir()
             subprocess.run(["git", "-C", str(dest), "archive", "-o", str(tmp / "src.tar"), "HEAD"], check=True)
@@ -177,7 +180,7 @@ for line in open(a.list, encoding="utf-8"):
             run(["docker", "run", "--rm", "-v", f"{tmp}:/in", "-v", f"{tmp}/out:/out",
                  "-v", f"{a.pnpm_store}:/root/.local/share/pnpm",
                  "-e", "CI=true", "-e", f"PM_ENV={rec['pm']}", "-e", f"VITEST_CMD={vpre}",
-                 "-e", f"ALT_VITEST_CMD={alt}", "-e", f"PREBUILD_CMD={prebuild}",
+                 "-e", f"ALT_VITEST_CMD={alt}", "-e", f"PREBUILD_CMD={prebuild}", "-e", f"COV_DIR={scope}",
                  a.image, "bash", "-c", LOOP], timeout=a.timeout)
             rec["suite_wall_s"] = round(time.time() - t0, 1)
             runs_txt = tmp / "out/_runs.txt"

@@ -78,7 +78,13 @@ def derive_invocation(dest, pm):
     vprefix = cmd + " --reporter=json --outputFile"
     plain = "npx vitest run --reporter=json --outputFile"
     alt = "" if vprefix == plain else plain
-    return vprefix, alt, buildline, src, candidates
+    # positional dir arg after 'run' (e.g. 'vitest run test/unit') scopes file selection
+    toks = cmd.split(); scope = ""
+    if "run" in toks:
+        i = toks.index("run") + 1
+        if i < len(toks) and not toks[i].startswith("-") and "/" in toks[i]:
+            scope = toks[i]
+    return vprefix, alt, buildline, src, candidates, scope
 
 def normsig(tr_json):
     msgs = re.findall(r'"(?:failureMessages?|message)"\s*:\s*"([^"]{5,400})', tr_json)
