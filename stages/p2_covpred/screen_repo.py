@@ -20,7 +20,7 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v6-ci-invoke" # v5 + canonical invocation derived from CI workflows (cwd/flags/prebuild); config-level -> retry alt invocation
+CMD_VERSION = "v7-cinodes"   # v6 + stripped cov/reporter/shard/watch flags, CI-step candidates logged, prebuild timed, coverage->graph-node match ratio
 
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -85,7 +85,11 @@ case "$PM_ENV" in
   yarn) yarn install --frozen-lockfile >&2 || yarn install >&2 ;;
 esac || exit 9
 # CI's prebuild step, if any (generic — no per-repo workarounds)
-[ -n "$PREBUILD_CMD" ] && { echo "prebuild: $PREBUILD_CMD" >&2; timeout 900 bash -c "$PREBUILD_CMD" >&2; }
+if [ -n "$PREBUILD_CMD" ]; then
+  echo "prebuild: $PREBUILD_CMD" >&2; s=$(date +%s)
+  timeout 900 bash -c "$PREBUILD_CMD" >&2
+  echo "b $? $(( $(date +%s)-s ))" >> /out/_runs.txt
+fi
 # repo's own test command once (chain logging)
 s=$(date +%s)
 case "$PM_ENV" in
@@ -161,8 +165,9 @@ for line in open(a.list, encoding="utf-8"):
             rec["runner"] = rec["runner"] or "unknown"
             rec["reason"] = f"runner={rec['runner']}"; emit(rec); continue
         rec["pm"] = "pnpm" if (dest / "pnpm-lock.yaml").exists() else "yarn" if (dest / "yarn.lock").exists() else "npm"
-        vpre, alt, prebuild, src = derive_invocation(dest, rec["pm"])
-        rec["invoke"], rec["invoke_src"], rec["invoke_alt"], rec["prebuild"] = vpre, src, alt, prebuild
+        vpre, alt, prebuild, src, cand = derive_invocation(dest, rec["pm"])
+        rec.update({"invoke": vpre, "invoke_src": src, "invoke_alt": alt,
+                    "prebuild": prebuild, "prebuild_s": 0, "ci_steps": cand, "cov_node_frac": None})
         with tempfile.TemporaryDirectory() as tmp:
             tmp = pathlib.Path(tmp); (tmp / "out").mkdir()
             subprocess.run(["git", "-C", str(dest), "archive", "-o", str(tmp / "src.tar"), "HEAD"], check=True)
@@ -183,6 +188,8 @@ for line in open(a.list, encoding="utf-8"):
                     rec["cov_files"].append({"rc": int(p_[1]), "secs": int(p_[2]), "ok": int(p_[3])})
                 elif p_[0] == "t":
                     rec["test_rc"], rec["test_s"] = int(p_[1]), int(p_[2])
+                elif p_[0] == "b":
+                    rec["prebuild_s"] = int(p_[2])
                 else:  # v1, v2
                     rec["vitest_runs"][p_[0]] = {"rc": int(p_[1]), "secs": int(p_[2])}
             nt = tmp / "out/_ntests.txt"
@@ -226,7 +233,20 @@ for line in open(a.list, encoding="utf-8"):
             if covs:
                 med = sorted(c["secs"] for c in covs)[len(covs) // 2]
                 rec["cov_ok"] = sum(c["ok"] for c in covs) > 0
-                rec["proj_harvest_s"] = med * (rec["n_files_run"] or rec["n_test_files"] or 0)
+                rec["proj_harvest_s"] = med * (rec["n_files_run"] or rec["n_test_files"] or 0) + rec["prebuild_s"]
+            # coverage -> graph-node match: fraction of covered files present as graph file nodes.
+            # Low ratio = coverage landing on dist/built files the source graph can't match (QA flag).
+            covf = next((p for p in sorted(tmp.glob("out/cov_*.json"))
+                         if not p.name.startswith("covres")), None)
+            if covf:
+                try:
+                    g = run(["node", str(pathlib.Path(__file__).parents[1] / "m1_extractor" / "extract.mjs"),
+                             str(dest), rec["sha"] or "HEAD"], timeout=600)
+                    files = {n["file"] for n in json.loads(g.stdout).get("nodes", []) if n.get("file")}
+                    covd = {k.split("/repo/")[-1] for k in json.loads(covf.read_text(encoding="utf-8"))}
+                    rec["cov_node_frac"] = round(len(covd & files) / max(1, len(covd)), 3)
+                except Exception as e:
+                    rec["cov_node_frac"] = f"err:{e}"
             frac = rec.get("frac_green_both")
             if frac is None: rec["reason"] = "vitest produced no JSON (crash/config)"
             elif frac < 0.9: rec["reason"] = (f"only {frac:.0%} files green both runs {rec['fail_reasons']}"

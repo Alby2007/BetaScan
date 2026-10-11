@@ -12,9 +12,26 @@ def ensure_run(cmd):
             break
     return " ".join(toks)
 
+EXCL_STEP = re.compile(r"e2e|playwright|cypress|browser|chromium|selenium|storybook|docker|service|integration", re.I)
+STRIP = re.compile(r"^--(coverage|reporter|shard|watch|ui|browser|bail)(=\S*)?$")
+
+def strip_flags(cmd):
+    """Remove coverage/reporter/shard/watch flags for pass+timing runs
+    (coverage stays a separate step; shard/watch are CI artifacts)."""
+    toks, out = cmd.split(), []
+    i = 0
+    while i < len(toks):
+        t = toks[i]
+        if STRIP.match(t):
+            if "=" not in t and i + 1 < len(toks) and not toks[i + 1].startswith("-") and t == "--reporter":
+                i += 1  # reporter takes a separate value token
+            i += 1; continue
+        out.append(t); i += 1
+    return " ".join(out)
+
 def derive_invocation(dest, pm):
     """Canonical test invocation: CI workflows first, package.json scripts second.
-    Returns (vitest_prefix, alt_prefix, prebuild, source). *_prefix ends with '--outputFile'."""
+    Returns (vitest_prefix, alt_prefix, prebuild, source, candidates). *_prefix ends with '--outputFile'."""
     wds, wd = [], ""
     wfdir = dest / ".github" / "workflows"
     for y in sorted(wfdir.glob("*.y*ml")) if wfdir.exists() else []:
@@ -34,10 +51,15 @@ def derive_invocation(dest, pm):
                 wds.append((wd, body.rstrip(" ;")))
             i += 1
     skip = re.compile(r"lint|format|typecheck|tsc|eslint|prettier|attw|publint", re.I)
+    candidates = []
     testline, twd, buildline = "", "", ""
     for w, b in wds:
-        if re.search(r"vitest|\btests?\b", b) and not skip.search(b):
-            testline, twd = b, w; break
+        if re.search(r"vitest|\btests?\b", b):
+            excl = bool(skip.search(b) or EXCL_STEP.search(b))
+            candidates.append({"step": b, "wd": w, "excluded": excl,
+                               "why": "lint/typecheck" if skip.search(b) else "e2e/browser/service" if EXCL_STEP.search(b) else "candidate"})
+            if not excl and not testline:
+                testline, twd = b, w
         if re.search(r"\bbuild\b", b) and not skip.search(b) and not buildline:
             buildline = b
     src = "ci"
@@ -49,14 +71,14 @@ def derive_invocation(dest, pm):
         elif script:
             testline = f"{pm} test"
         src = "pkg" if testline else "fallback"
-    cmd = ensure_run(testline) if testline else "npx vitest run"
+    cmd = ensure_run(strip_flags(testline)) if testline else "npx vitest run"
     if twd: cmd = f"cd {twd} && {cmd}"
     if re.match(r"npm (run |test)", cmd) or re.search(r"&&\s*npm (run |test)", cmd):
         cmd += " --"
     vprefix = cmd + " --reporter=json --outputFile"
     plain = "npx vitest run --reporter=json --outputFile"
     alt = "" if vprefix == plain else plain
-    return vprefix, alt, buildline, src
+    return vprefix, alt, buildline, src, candidates
 
 def normsig(tr_json):
     msgs = re.findall(r'"(?:failureMessages?|message)"\s*:\s*"([^"]{5,400})', tr_json)
