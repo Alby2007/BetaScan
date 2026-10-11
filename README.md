@@ -28,9 +28,12 @@ Controlled error analysis (`--max-frac 0.5`): B4 misses concentrate in registrat
 layers — hypothesis, not yet proven. See `data/b4_misses.md`.
 
 **State:** trpc scored set frozen (sha256 `ec4ecc72`); M1 trained on h3 and frozen
-(`data/m1/m1_h3.pkl` + spec, hashes in `DECISIONS.md`). B3-A trpc coverage 117/184 — the remainder
-awaits a Gemini free-tier quota window (~500/day); a resumable run completes it, then evaluation
-re-runs and the pipeline **stops for review before M1 is scored on trpc** (score-once rule).
+(`data/m1/m1_h3.pkl` + spec, hashes in `DECISIONS.md`). B3-A trpc coverage 117/184 (max
+achievable 173; 56 calls blocked by the Gemini 500/day free-tier cap, 11 non-regenerable).
+Scoring is two-tier (pre-registered): **primary** = M1 vs B4 on all 184 frozen mutants;
+**secondary (partial)** = M1 vs best-of {B3-A,B4,B7,B8} on the 117-mutant common set.
+A later B3 addendum cannot change the primary verdict. **Stopped for review before M1
+is scored on trpc** (score-once rule).
 
 ## Layout
 

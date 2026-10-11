@@ -56,8 +56,12 @@ served `gemini-3.5-flash-lite`, temp 0, 380 calls, 0 parse failures; prompt in `
   hypothesis survives control — see `data/b4_misses.md`.
 - Regeneration integrity: 176 verify byte-identical, 0 mismatches, 15 non-regenerable
   (all in the 2 old-config records).
-- B3-A coverage 117/184 killed. Resumed run filling the ~67 remainder after a Gemini
-  500/day quota window; new records log `served_model` (first 117 predate the field).
+- B3-A coverage 117/184 killed — FINAL pending quota. Missing 67 = 56 quota-blocked
+  (Gemini free tier 500/day, reset ~21.5h rolling) + 11 non-regenerable old-config mutants
+  (max achievable 173/184). `served=gemini-3.5-flash-lite` backfilled on the 117; resumed
+  runs log it per record. Two-tier scoring pre-registered: PRIMARY = M1 vs B4 on all 184;
+  SECONDARY partial = M1 vs best-of-{B3-A,B4,B7,B8} + B3-stack on the 117-common set.
+  A B3 addendum after quota reset cannot change the primary verdict.
 
 ### M1 — trained on h3, FROZEN (not yet scored on trpc)
 
