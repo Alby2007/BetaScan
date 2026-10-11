@@ -49,6 +49,13 @@ const pkgRoots = {};
 })(root, 0);
 
 const tryFile = (stem) => [stem, stem + ".ts", stem + ".tsx", stem + ".mts", stem + ".cts", stem + ".js", stem + ".jsx", stem + "/index.ts", stem + "/index.tsx", stem + "/index.js"].find((c) => fileSet.has(c));
+const resolveRel = (spec, frm) => {
+  const out = [];
+  for (const p of (frm.split("/").slice(0, -1).join("/") + "/" + spec).split("/")) {
+    if (p === "..") out.pop(); else if (p !== "." && p !== "") out.push(p);
+  }
+  return tryFile(out.join("/")) ?? null;
+};
 function wsResolve(spec) {
   if (spec.startsWith(".") || spec.startsWith("node:")) return null;
   const parts = spec.split("/");
@@ -107,10 +114,25 @@ for (const sf of files) {
     else if (ws) addEdge("imports", fid, fileId(ws));
     else if (!spec.startsWith(".")) { const m = spec.startsWith("node:") ? spec : spec.split("/").slice(0, spec.startsWith("@") ? 2 : 1).join("/"); addNode({ id: `module:${m}`, kind: "module", name: m, file: "", start: 0, end: 0, exported: false }); addEdge("imports", fid, `module:${m}`); }
   }
-  // calls + new
+  // calls + new; dynamic import("spec") additionally emits an imports edge
+  // (runtime edge — must be visible to distance features, not only closure)
   for (const c of [...sf.getDescendantsOfKind(SyntaxKind.CallExpression), ...sf.getDescendantsOfKind(SyntaxKind.NewExpression)]) {
     const e = c.getExpression();
     const src = enclosing(c, f);
+    if (e.getKind() === SyntaxKind.ImportKeyword) {
+      const arg = c.getArguments()[0];
+      if (arg && Node.isStringLiteral(arg)) {
+        const spec = arg.getLiteralValue();
+        const hit = spec.startsWith(".") ? resolveRel(spec, f) : wsResolve(spec);
+        if (hit) addEdge("imports", fid, fileId(hit));
+        else if (!spec.startsWith(".") && !spec.startsWith("node:")) {
+          const m = spec.split("/").slice(0, spec.startsWith("@") ? 2 : 1).join("/");
+          addNode({ id: `module:${m}`, kind: "module", name: m, file: "", start: 0, end: 0, exported: false });
+          addEdge("imports", fid, `module:${m}`);
+        }
+      }
+      continue; // import() is not a call edge
+    }
     for (const d of resolveDecls(e)) {
       const t = idOfDecl(d);
       if (!t) continue;

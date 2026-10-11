@@ -20,14 +20,15 @@ a = ap.parse_args()
 ROOT = pathlib.Path(a.clone_dir); ROOT.mkdir(exist_ok=True)
 pathlib.Path(a.out).parent.mkdir(parents=True, exist_ok=True)
 screen = open(a.out, "a", encoding="utf-8"); excl = open(a.excl, "a", encoding="utf-8")
+CMD_VERSION = "v2-testscript"   # v1 ran root `npx vitest`; v2 runs the repo's own test script
 RETRY = {"install_or_suite_fail", "timeout", "error", "clone_fail"}
 done = set()
 if pathlib.Path(a.out).exists():
     keep = []
     for l in open(a.out, encoding="utf-8"):
         r = json.loads(l)
-        if any(str(r.get("reason") or "").startswith(x) for x in RETRY):
-            continue  # retry transient/install failures; keep real exclusions + passes
+        if r.get("cmd") != CMD_VERSION or any(str(r.get("reason") or "").startswith(x) for x in RETRY):
+            continue  # stale command version or retryable failure -> re-screen
         done.add(r["repo"]); keep.append(l)
     pathlib.Path(a.out).write_text("".join(keep), encoding="utf-8")
 
@@ -67,7 +68,7 @@ for line in open(a.list, encoding="utf-8"):
     parts = line.split(); repo = parts[0]; sha = parts[1] if len(parts) > 1 else None
     if repo in done: continue
     name = repo.replace("/", "__"); dest = ROOT / name
-    rec = {"repo": repo, "runner": None, "pm": None, "install_ok": False, "suite_wall_s": None,
+    rec = {"repo": repo, "cmd": CMD_VERSION, "runner": None, "pm": None, "install_ok": False, "suite_wall_s": None,
            "runs": [], "flaky": None, "n_test_files": None, "reason": None}
     try:
         if not dest.exists():

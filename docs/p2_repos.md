@@ -102,14 +102,24 @@ universe.
 ```
 data/covpred/repos/<org>__<name>/
   meta.json        {ecosystem, repo, pinned_sha, node_image, suite_wall_s, n_tests,
-                    n_pairs, pos_rate}
+                    n_pairs, pos_rate, coverage_selectivity, c1_recall, residual_n}
   baseline.json    empty-test covered files (setup mask)
   pairs.jsonl.gz   same schema as h3/trpc (+ "weight" only if sampling ever used)
   signals.jsonl    mocks/dyn sidecars
   graphs.db        per-repo graph, pinned ts-morph
 exclusions.jsonl   {repo, reason, stage} — every drop logged
-screen.jsonl       raw screen output per candidate
+screen.jsonl       raw screen output per candidate (rows tagged with cmd version)
 ```
+
+**coverage_selectivity** = mean share of the suite covering a function (per repo) —
+downstream value is selectivity-dependent (high on h3, ~0 on trpc), so P3 results
+are always reported alongside it.
+
+**Per-repo QA gate.** `c1_recall` and `residual_n` go in meta.json. Any repo with
+C1 recall < 0.98 is QUARANTINED pending diagnosis — fix generic bug classes only,
+never hand-patch a single repo; each extractor change is logged in DECISIONS with
+the repo that triggered it (so far: multi-line export regex ← trpc; dyn-import
+edges ← h3/happydom; workspace resolve ← trpc diagnosis).
 
 **Full pairs preferred over sampling.** At ~1.2M pairs/repo the full universe is cheap;
 capping negatives would distort within-test percentile features and per-function
@@ -117,6 +127,20 @@ metrics. Rule: within-test percentile features are computed on the FULL candidat
 universe before any sampling; if sampling is ever kept for train-time speed, store
 `weight` = universe/sampled and report per-function metrics only on full candidate
 sets, with all metrics labelled raw vs reweighted.
+
+## Footprint / disk policy (measured on h3+trpc)
+
+| artifact | size |
+|---|---|
+| graphs.db | ~7 MB per snapshot (trpc: 30 MB / 4 snaps) |
+| pairs.jsonl.gz | 3–10 MB |
+| signals + meta + baseline | <1 MB |
+| **kept per repo** | **~10–40 MB → ~1 GB for ~20 repos** |
+| transient per repo (clone + node_modules + docker layer) | ~0.5–1 GB, deleted after artifacts saved |
+
+Policy: screen/harvest processes ONE repo at a time — delete the clone,
+`node_modules`, and Docker layers once graph+pairs+meta are saved; prune the shared
+pnpm store at the end. Peak transient ≤ ~1 GB; total kept ~1 GB.
 
 Snapshots: one pinned sha per repo; for h3/trpc reuse existing (52/4) and, if P2
 runs, add 2–3 widely-spaced NEW snapshots rather than adjacent commits.
