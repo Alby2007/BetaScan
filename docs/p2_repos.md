@@ -33,7 +33,11 @@ it is never in a training fold when trpc is the held-out target.
 `stages/p2_covpred/screen_repo.py` (Docker, same images as the coverage harness) does,
 per candidate: shallow clone (HEAD sha recorded — harvest checks out that sha) →
 detect runner → install → repo's own `test` script once (chains logged) →
-`vitest run --reporter=json` **twice** for per-file pass/fail → coverage smoke on
+**canonical vitest invocation derived from `.github/workflows`** (cwd, flags,
+CI's prebuild step; lint/format/typecheck stripped; falls back to the `test`
+script, then plain `vitest run`) run **twice** with `--reporter=json`; if ~0
+files pass (config-level signature), one retry with the alternate invocation,
+both attempts stored — harvest uses the recorded invocation → coverage smoke on
 5 size-stratified test files (median secs/file × n_files = projected harvest) →
 `screen.jsonl`. The screen output IS the final list. **PASS = ≥90% of test files
 green identically in both vitest runs** (`frac_green_both`); flaky files
