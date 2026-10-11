@@ -1,0 +1,42 @@
+[
+ {
+  "repo": "trpc",
+  "snapshot": "6a70335e02",
+  "tests": 100,
+  "functions": 1657,
+  "pairs": 47718,
+  "pos_rate": 0.25487,
+  "file_covered_in_closure": 0.8079,
+  "n_file_covered": 3925
+ },
+ {
+  "repo": "trpc",
+  "snapshot": "caee09deaa",
+  "tests": 99,
+  "functions": 862,
+  "pairs": 48804,
+  "pos_rate": 0.25451,
+  "file_covered_in_closure": 0.8118,
+  "n_file_covered": 4071
+ },
+ {
+  "repo": "trpc",
+  "snapshot": "f476d39932",
+  "tests": 98,
+  "functions": 855,
+  "pairs": 48209,
+  "pos_rate": 0.24367,
+  "file_covered_in_closure": 0.8303,
+  "n_file_covered": 3847
+ },
+ {
+  "repo": "trpc",
+  "snapshot": "fd3350cdbe",
+  "tests": 98,
+  "functions": 854,
+  "pairs": 48209,
+  "pos_rate": 0.24881,
+  "file_covered_in_closure": 0.8309,
+  "n_file_covered": 3910
+ }
+]

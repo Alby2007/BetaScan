@@ -1,0 +1,522 @@
+[
+ {
+  "repo": "h3",
+  "snapshot": "0295f90318",
+  "tests": 47,
+  "functions": 291,
+  "pairs": 10951,
+  "pos_rate": 0.13177,
+  "file_covered_in_closure": 0.8921,
+  "n_file_covered": 769
+ },
+ {
+  "repo": "h3",
+  "snapshot": "0c7429e8b7",
+  "tests": 70,
+  "functions": 472,
+  "pairs": 26044,
+  "pos_rate": 0.11557,
+  "file_covered_in_closure": 0.8745,
+  "n_file_covered": 1593
+ },
+ {
+  "repo": "h3",
+  "snapshot": "130130daca",
+  "tests": 26,
+  "functions": 307,
+  "pairs": 6812,
+  "pos_rate": 0.68541,
+  "file_covered_in_closure": 0.9527,
+  "n_file_covered": 910
+ },
+ {
+  "repo": "h3",
+  "snapshot": "19bf1066a9",
+  "tests": 35,
+  "functions": 248,
+  "pairs": 6664,
+  "pos_rate": 0.60594,
+  "file_covered_in_closure": 0.8154,
+  "n_file_covered": 1051
+ },
+ {
+  "repo": "h3",
+  "snapshot": "1ff4999ecc",
+  "tests": 50,
+  "functions": 297,
+  "pairs": 11900,
+  "pos_rate": 0.12975,
+  "file_covered_in_closure": 0.8963,
+  "n_file_covered": 829
+ },
+ {
+  "repo": "h3",
+  "snapshot": "31a5d7afbc",
+  "tests": 35,
+  "functions": 256,
+  "pairs": 7035,
+  "pos_rate": 0.59488,
+  "file_covered_in_closure": 0.9047,
+  "n_file_covered": 1091
+ },
+ {
+  "repo": "h3",
+  "snapshot": "322fa8877d",
+  "tests": 53,
+  "functions": 333,
+  "pairs": 14196,
+  "pos_rate": 0.11841,
+  "file_covered_in_closure": 0.8955,
+  "n_file_covered": 957
+ },
+ {
+  "repo": "h3",
+  "snapshot": "38be51213f",
+  "tests": 35,
+  "functions": 248,
+  "pairs": 6664,
+  "pos_rate": 0.60414,
+  "file_covered_in_closure": 0.8154,
+  "n_file_covered": 1051
+ },
+ {
+  "repo": "h3",
+  "snapshot": "3c2a205ce2",
+  "tests": 71,
+  "functions": 510,
+  "pairs": 29400,
+  "pos_rate": 0.1152,
+  "file_covered_in_closure": 0.8738,
+  "n_file_covered": 1783
+ },
+ {
+  "repo": "h3",
+  "snapshot": "3f1c9e5ef7",
+  "tests": 71,
+  "functions": 507,
+  "pairs": 28356,
+  "pos_rate": 0.11796,
+  "file_covered_in_closure": 0.8727,
+  "n_file_covered": 1760
+ },
+ {
+  "repo": "h3",
+  "snapshot": "4247682444",
+  "tests": 35,
+  "functions": 256,
+  "pairs": 7035,
+  "pos_rate": 0.59488,
+  "file_covered_in_closure": 0.9047,
+  "n_file_covered": 1091
+ },
+ {
+  "repo": "h3",
+  "snapshot": "44621f3ba4",
+  "tests": 58,
+  "functions": 357,
+  "pairs": 16473,
+  "pos_rate": 0.11953,
+  "file_covered_in_closure": 0.9032,
+  "n_file_covered": 1147
+ },
+ {
+  "repo": "h3",
+  "snapshot": "48e6982ac4",
+  "tests": 71,
+  "functions": 501,
+  "pairs": 27948,
+  "pos_rate": 0.11557,
+  "file_covered_in_closure": 0.8717,
+  "n_file_covered": 1730
+ },
+ {
+  "repo": "h3",
+  "snapshot": "4e16ef35cc",
+  "tests": 26,
+  "functions": 217,
+  "pairs": 4472,
+  "pos_rate": 0.63797,
+  "file_covered_in_closure": 0.9528,
+  "n_file_covered": 742
+ },
+ {
+  "repo": "h3",
+  "snapshot": "55335c5d8c",
+  "tests": 70,
+  "functions": 467,
+  "pairs": 26220,
+  "pos_rate": 0.1143,
+  "file_covered_in_closure": 0.8738,
+  "n_file_covered": 1545
+ },
+ {
+  "repo": "h3",
+  "snapshot": "55a2c9b139",
+  "tests": 35,
+  "functions": 237,
+  "pairs": 6256,
+  "pos_rate": 0.59958,
+  "file_covered_in_closure": 0.8124,
+  "n_file_covered": 1050
+ },
+ {
+  "repo": "h3",
+  "snapshot": "5b3d6e18ac",
+  "tests": 27,
+  "functions": 221,
+  "pairs": 4833,
+  "pos_rate": 0.61328,
+  "file_covered_in_closure": 0.8822,
+  "n_file_covered": 764
+ },
+ {
+  "repo": "h3",
+  "snapshot": "61d19fd5e2",
+  "tests": 27,
+  "functions": 209,
+  "pairs": 4509,
+  "pos_rate": 0.60124,
+  "file_covered_in_closure": 0.8816,
+  "n_file_covered": 743
+ },
+ {
+  "repo": "h3",
+  "snapshot": "62261dda69",
+  "tests": 30,
+  "functions": 204,
+  "pairs": 4890,
+  "pos_rate": 0.61759,
+  "file_covered_in_closure": 0.8413,
+  "n_file_covered": 920
+ },
+ {
+  "repo": "h3",
+  "snapshot": "6365f05750",
+  "tests": 44,
+  "functions": 283,
+  "pairs": 9900,
+  "pos_rate": 0.1304,
+  "file_covered_in_closure": 0.8819,
+  "n_file_covered": 669
+ },
+ {
+  "repo": "h3",
+  "snapshot": "63e4b9819d",
+  "tests": 52,
+  "functions": 325,
+  "pairs": 13515,
+  "pos_rate": 0.11617,
+  "file_covered_in_closure": 0.8988,
+  "n_file_covered": 949
+ },
+ {
+  "repo": "h3",
+  "snapshot": "66f47c3b31",
+  "tests": 53,
+  "functions": 326,
+  "pairs": 13832,
+  "pos_rate": 0.11416,
+  "file_covered_in_closure": 0.8951,
+  "n_file_covered": 953
+ },
+ {
+  "repo": "h3",
+  "snapshot": "82a0e240a8",
+  "tests": 29,
+  "functions": 196,
+  "pairs": 4495,
+  "pos_rate": 0.60845,
+  "file_covered_in_closure": 0.8349,
+  "n_file_covered": 836
+ },
+ {
+  "repo": "h3",
+  "snapshot": "842d4cc172",
+  "tests": 33,
+  "functions": 227,
+  "pairs": 5632,
+  "pos_rate": 0.62358,
+  "file_covered_in_closure": 0.8045,
+  "n_file_covered": 977
+ },
+ {
+  "repo": "h3",
+  "snapshot": "8786f23198",
+  "tests": 50,
+  "functions": 296,
+  "pairs": 11850,
+  "pos_rate": 0.13013,
+  "file_covered_in_closure": 0.8963,
+  "n_file_covered": 829
+ },
+ {
+  "repo": "h3",
+  "snapshot": "88ce5cd132",
+  "tests": 47,
+  "functions": 291,
+  "pairs": 10951,
+  "pos_rate": 0.13186,
+  "file_covered_in_closure": 0.8921,
+  "n_file_covered": 769
+ },
+ {
+  "repo": "h3",
+  "snapshot": "8a380f1d02",
+  "tests": 49,
+  "functions": 296,
+  "pairs": 11613,
+  "pos_rate": 0.13218,
+  "file_covered_in_closure": 0.8958,
+  "n_file_covered": 825
+ },
+ {
+  "repo": "h3",
+  "snapshot": "8eb1063e6d",
+  "tests": 52,
+  "functions": 324,
+  "pairs": 13464,
+  "pos_rate": 0.11646,
+  "file_covered_in_closure": 0.8988,
+  "n_file_covered": 949
+ },
+ {
+  "repo": "h3",
+  "snapshot": "8ed63f6d24",
+  "tests": 27,
+  "functions": 205,
+  "pairs": 4264,
+  "pos_rate": 0.60577,
+  "file_covered_in_closure": 0.8887,
+  "n_file_covered": 728
+ },
+ {
+  "repo": "h3",
+  "snapshot": "946bbe4f2c",
+  "tests": 35,
+  "functions": 256,
+  "pairs": 7035,
+  "pos_rate": 0.59488,
+  "file_covered_in_closure": 0.9047,
+  "n_file_covered": 1091
+ },
+ {
+  "repo": "h3",
+  "snapshot": "99ec3a2cbf",
+  "tests": 46,
+  "functions": 286,
+  "pairs": 10488,
+  "pos_rate": 0.12672,
+  "file_covered_in_closure": 0.8829,
+  "n_file_covered": 692
+ },
+ {
+  "repo": "h3",
+  "snapshot": "aa0f3c94c2",
+  "tests": 27,
+  "functions": 212,
+  "pairs": 4590,
+  "pos_rate": 0.59782,
+  "file_covered_in_closure": 0.8469,
+  "n_file_covered": 764
+ },
+ {
+  "repo": "h3",
+  "snapshot": "ab3f23c879",
+  "tests": 70,
+  "functions": 471,
+  "pairs": 26358,
+  "pos_rate": 0.11401,
+  "file_covered_in_closure": 0.8745,
+  "n_file_covered": 1593
+ },
+ {
+  "repo": "h3",
+  "snapshot": "b17dfd2be3",
+  "tests": 35,
+  "functions": 248,
+  "pairs": 6664,
+  "pos_rate": 0.60414,
+  "file_covered_in_closure": 0.8154,
+  "n_file_covered": 1051
+ },
+ {
+  "repo": "h3",
+  "snapshot": "b3c3eff01d",
+  "tests": 54,
+  "functions": 343,
+  "pairs": 14999,
+  "pos_rate": 0.11681,
+  "file_covered_in_closure": 0.8985,
+  "n_file_covered": 1025
+ },
+ {
+  "repo": "h3",
+  "snapshot": "b5a245de57",
+  "tests": 26,
+  "functions": 307,
+  "pairs": 6550,
+  "pos_rate": 0.71282,
+  "file_covered_in_closure": 0.9527,
+  "n_file_covered": 910
+ },
+ {
+  "repo": "h3",
+  "snapshot": "b838d53eb2",
+  "tests": 27,
+  "functions": 210,
+  "pairs": 4536,
+  "pos_rate": 0.60251,
+  "file_covered_in_closure": 0.8816,
+  "n_file_covered": 743
+ },
+ {
+  "repo": "h3",
+  "snapshot": "c0c15d9a7c",
+  "tests": 27,
+  "functions": 209,
+  "pairs": 4509,
+  "pos_rate": 0.60124,
+  "file_covered_in_closure": 0.8816,
+  "n_file_covered": 743
+ },
+ {
+  "repo": "h3",
+  "snapshot": "cb9fc47366",
+  "tests": 27,
+  "functions": 225,
+  "pairs": 4833,
+  "pos_rate": 0.61225,
+  "file_covered_in_closure": 0.9529,
+  "n_file_covered": 764
+ },
+ {
+  "repo": "h3",
+  "snapshot": "cf7e585ca0",
+  "tests": 70,
+  "functions": 480,
+  "pairs": 25415,
+  "pos_rate": 0.11521,
+  "file_covered_in_closure": 0.8698,
+  "n_file_covered": 1552
+ },
+ {
+  "repo": "h3",
+  "snapshot": "d77b673e47",
+  "tests": 47,
+  "functions": 291,
+  "pairs": 10951,
+  "pos_rate": 0.13314,
+  "file_covered_in_closure": 0.8922,
+  "n_file_covered": 770
+ },
+ {
+  "repo": "h3",
+  "snapshot": "d9d3124f8c",
+  "tests": 56,
+  "functions": 355,
+  "pairs": 15785,
+  "pos_rate": 0.11929,
+  "file_covered_in_closure": 0.902,
+  "n_file_covered": 1133
+ },
+ {
+  "repo": "h3",
+  "snapshot": "deed160822",
+  "tests": 30,
+  "functions": 200,
+  "pairs": 4770,
+  "pos_rate": 0.6086,
+  "file_covered_in_closure": 0.8404,
+  "n_file_covered": 896
+ },
+ {
+  "repo": "h3",
+  "snapshot": "e2f8cbd5fc",
+  "tests": 47,
+  "functions": 291,
+  "pairs": 10951,
+  "pos_rate": 0.13277,
+  "file_covered_in_closure": 0.8922,
+  "n_file_covered": 770
+ },
+ {
+  "repo": "h3",
+  "snapshot": "e5788bb16d",
+  "tests": 26,
+  "functions": 217,
+  "pairs": 4472,
+  "pos_rate": 0.63797,
+  "file_covered_in_closure": 0.9528,
+  "n_file_covered": 742
+ },
+ {
+  "repo": "h3",
+  "snapshot": "e6b726bb35",
+  "tests": 71,
+  "functions": 494,
+  "pairs": 28350,
+  "pos_rate": 0.11418,
+  "file_covered_in_closure": 0.8714,
+  "n_file_covered": 1711
+ },
+ {
+  "repo": "h3",
+  "snapshot": "eb30d5f1e1",
+  "tests": 54,
+  "functions": 343,
+  "pairs": 14999,
+  "pos_rate": 0.11681,
+  "file_covered_in_closure": 0.8985,
+  "n_file_covered": 1025
+ },
+ {
+  "repo": "h3",
+  "snapshot": "edb53fee57",
+  "tests": 47,
+  "functions": 293,
+  "pairs": 11045,
+  "pos_rate": 0.13246,
+  "file_covered_in_closure": 0.8923,
+  "n_file_covered": 771
+ },
+ {
+  "repo": "h3",
+  "snapshot": "ef02804f21",
+  "tests": 29,
+  "functions": 196,
+  "pairs": 4495,
+  "pos_rate": 0.60845,
+  "file_covered_in_closure": 0.8349,
+  "n_file_covered": 836
+ },
+ {
+  "repo": "h3",
+  "snapshot": "f45dd2708c",
+  "tests": 35,
+  "functions": 246,
+  "pairs": 6562,
+  "pos_rate": 0.60012,
+  "file_covered_in_closure": 0.8124,
+  "n_file_covered": 1050
+ },
+ {
+  "repo": "h3",
+  "snapshot": "fb34b0f514",
+  "tests": 71,
+  "functions": 511,
+  "pairs": 29470,
+  "pos_rate": 0.11527,
+  "file_covered_in_closure": 0.8739,
+  "n_file_covered": 1784
+ },
+ {
+  "repo": "h3",
+  "snapshot": "febb832522",
+  "tests": 31,
+  "functions": 221,
+  "pairs": 5130,
+  "pos_rate": 0.62417,
+  "file_covered_in_closure": 0.8267,
+  "n_file_covered": 929
+ }
+]
