@@ -23,17 +23,24 @@ working tree state does not matter.
 
 ## ts-morph
 
-`stages/m2_labeller/node_modules` is a **committed symlink** to `stages/m1_extractor/node_modules`.
-The mutator scripts (`gen_mutants.mjs`, `run_mutants.mjs`) resolve `ts-morph` through it.
+`stages/m2_labeller/node_modules` should point at `stages/m1_extractor/node_modules`
+(**gitignored, not committed** — a committed symlink kept being deleted on Windows
+where `core.symlinks=false` materialises it as a plain file). The mutator scripts
+(`gen_mutants.mjs`, `run_mutants.mjs`) resolve `ts-morph` through it.
 
 ```bash
 cd stages/m1_extractor && npm install     # package-lock.json committed
 ```
 
-**Windows:** git checks the symlink out as a plain text file when `core.symlinks=false`
-(default). Replace it with a junction (no admin needed):
+Then create the link:
+
+```bash
+# POSIX
+ln -s ../m1_extractor/node_modules stages/m2_labeller/node_modules
+```
 
 ```cmd
+:: Windows — junction, no admin needed
 cd stages\m2_labeller
 rmdir node_modules 2>nul & del node_modules
 mklink /J node_modules ..\m1_extractor\node_modules

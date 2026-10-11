@@ -112,8 +112,9 @@ for r in sorted(recs, key=lambda r: r["parent"]):
             if row["covered"] and pred: c1tp += 1
             elif row["covered"]: c1fn += 1
             elif pred: c1fp += 1
-rep = ["# Residual breakdown + C1 precision/recall\n", "## causes (test, covered-file) pairs outside runtime closure\n",
-       "| cause | n |", "|---|---|"]
+rep = ["# Residual breakdown + C1 precision/recall\n", "## causes (test, covered-file) pairs outside runtime closure\n"]
+if not causes: rep.append("**No residuals — runtime import closure explains 100% of covered files.**\n")
+rep += ["| cause | n |", "|---|---|"]
 for c, n in causes.most_common(): rep.append(f"| {c} | {n} |")
 rep.append("\n## examples\n")
 for c, xs in examples.items():
@@ -123,4 +124,4 @@ p = c1tp / max(1, c1tp + c1fp); rc = c1tp / max(1, c1tp + c1fn)
 rep.append(f"\n## C1 runtime-closure classifier, function level\n\n- precision {p:.3f} · recall {rc:.3f} (tp={c1tp} fp={c1fp} fn={c1fn})\n")
 out = "\n".join(rep)
 print(out)
-if a.out: open(a.out, "w").write(out)
+if a.out: open(a.out, "w", encoding="utf-8").write(out)

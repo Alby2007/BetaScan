@@ -92,7 +92,10 @@ committed files are gzipped.
 ```
 
 Universe: functions in non-test files covered by >=1 green test at that snapshot
-(files never covered by any test are excluded -- no executable evidence).
+(files never covered by any test are excluded -- a function with zero coverage
+anywhere has no verifiable label). All metrics are stated on this covered-anywhere
+universe; a deployed model could also score uncovered functions, but no label
+exists to evaluate them.
 Excluded: non-green tests (suite_P pass only), test files as targets,
 baseline/setup-covered lines (`baseline_<repo>.json` -- empty on h3/trpc).
 Per-test sidecar `pairs_<repo>_signals.jsonl`: `mocks` (vi/jest.mock specs) and

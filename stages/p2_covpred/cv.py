@@ -44,14 +44,29 @@ from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.model_selection import GroupKFold
 from sklearn.metrics import average_precision_score
 
-def run_cv(groups, gname, n_split=5):
-    kf = GroupKFold(n_split); ap_m = []; ap_c = []; pt_m = []; pt_c = []; ps_m = []; ps_c = []; pf_m = []; pf_c = []
+# features that can fingerprint a function/test (raw size, fan-in/out, export share)
+FP = {'func_size', 'file_size', 'fan_in', 'fan_out', 'exports_hit_frac'}
+keep_full = list(range(Xn.shape[1]))
+keep_nofp = [i for i, f in enumerate(feats) if f not in FP]
+
+def folds_2d(tg, fg, n=5):
+    """Double-held-out: fold k evals on (test in Tk) AND (file in Fk);
+    train excludes rows where EITHER dim is held out."""
+    tfold = np.full(len(y), -1); ffold = np.full(len(y), -1)
+    for i, (tr_, te_) in enumerate(GroupKFold(n).split(Xn, y, tg)): tfold[te_] = i
+    for i, (tr_, te_) in enumerate(GroupKFold(n).split(Xn, y, fg)): ffold[te_] = i
+    for k in range(n):
+        yield np.where((tfold != k) & (ffold != k))[0], np.where((tfold == k) & (ffold == k))[0]
+
+def run_cv(fold_iter, gname, feat_idx):
+    ap_m = []; ap_c = []; pt_m = []; pt_c = []; ps_m = []; ps_c = []; pf_m = []; pf_c = []
     fold = 0
-    for tr, te in kf.split(Xn, y, groups):
+    for tr, te in fold_iter:
         fold += 1
+        if not len(tr) or not len(te): continue
         clf = HistGradientBoostingClassifier(max_iter=200, learning_rate=0.08, early_stopping=True, random_state=0)
-        clf.fit(Xn[tr], y[tr])
-        s = clf.predict_proba(Xn[te])[:, 1]
+        clf.fit(Xn[tr][:, feat_idx], y[tr])
+        s = clf.predict_proba(Xn[te][:, feat_idx])[:, 1]
         if y[te].any():
             ap_m.append(average_precision_score(y[te], s)); ap_c.append(average_precision_score(y[te], c5[te]))
         # per-test / per-func / per-snap macro on held-out rows
@@ -68,11 +83,19 @@ def run_cv(groups, gname, n_split=5):
     return {k: (np.mean(v), v) for k, v in [("pooled", ap_m), ("pooled_C5", ap_c), ("per_test", pt_m), ("per_test_C5", pt_c), ("per_func", pf_m), ("per_func_C5", pf_c), ("per_snap", ps_m), ("per_snap_C5", ps_c)]}
 
 lines = ["# Grouped-CV learnability check — h3 (dev repo), exploratory\n",
-         "| grouping | pooled AP model | pooled AP C5 | per-test model | per-test C5 | per-func model | per-func C5 | per-snap model | per-snap C5 |",
-         "|---|---|---|---|---|---|---|---|---|"]
-for g, nm in [(files, "by source file"), (tests, "by test file")]:
-    r = run_cv(g, nm)
+         "double-held-out: fold k evals only on held-out tests x held-out files; train excludes both dims.\n",
+         "no-fingerprint drops func_size, file_size, fan_in, fan_out, exports_hit_frac.\n",
+         "| grouping | features | pooled AP model | pooled AP C5 | per-test model | per-test C5 | per-func model | per-func C5 | per-snap model | per-snap C5 |",
+         "|---|---|---|---|---|---|---|---|---|---|"]
+for fold_iter, nm, fi in [
+    (GroupKFold(5).split(Xn, y, files), "by source file", keep_full),
+    (GroupKFold(5).split(Xn, y, tests), "by test file", keep_full),
+    (GroupKFold(5).split(Xn, y, tests), "by test file, no-fingerprint", keep_nofp),
+    (folds_2d(tests, files), "double-held-out", keep_full),
+    (folds_2d(tests, files), "double-held-out, no-fingerprint", keep_nofp),
+]:
+    r = run_cv(fold_iter, nm, fi)
     lines.append(f"| {nm} | {r['pooled'][0]:.3f} | {r['pooled_C5'][0]:.3f} | {r['per_test'][0]:.3f} | {r['per_test_C5'][0]:.3f} | {r['per_func'][0]:.3f} | {r['per_func_C5'][0]:.3f} | {r['per_snap'][0]:.3f} | {r['per_snap_C5'][0]:.3f} |")
 rep = "\n".join(lines) + "\n"
 print(rep)
-if a.out: open(a.out, "w").write(rep)
+if a.out: open(a.out, "w", encoding="utf-8").write(rep)

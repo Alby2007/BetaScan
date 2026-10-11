@@ -5,7 +5,7 @@ every referencing statement is `import type`/`export type`/`{type X}`-only.
 imp_specs(src_text) -> (runtime_specs, typeonly_specs) as raw specifier strings."""
 import re
 
-FROM = re.compile(r"^\s*(import|export)\s+(.+?)\s+from\s*['\"]([^'\"]+)['\"]", re.M)
+FROM = re.compile(r"^\s*(import|export)\s+([\s\S]+?)\s+from\s*['\"]([^'\"]+)['\"]", re.M)
 BARE = re.compile(r"^\s*import\s*['\"]([^'\"]+)['\"]", re.M)
 TYPEKW = re.compile(r"type\b")
 

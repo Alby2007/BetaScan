@@ -55,9 +55,8 @@ def bfs(adj, start):
 INF = 10**6
 HEU = ["C0", "C1", "C2", "C3", "C4", "C5"]
 Y = {k: [] for k in HEU}; S = {k: [] for k in HEU}
-per_test = collections.defaultdict(lambda: {k: ([], []) for k in HEU})
-per_func = collections.defaultdict(lambda: {k: ([], []) for k in HEU})
-per_snap = collections.defaultdict(lambda: {k: ([], []) for k in HEU})
+# memory-lean grouping: group key -> flat list of ROW INDICES into Y/S
+idx_test = collections.defaultdict(list); idx_func = collections.defaultdict(list); idx_snap = collections.defaultdict(list)
 by_test = collections.defaultdict(list)
 for p in pairs: by_test[(p["snapshot"], p["test"])].append(p)
 by_snap = collections.defaultdict(list)
@@ -131,12 +130,11 @@ for P, test_rows in by_snap.items():
             cal = min(cdist.get(fid, INF), 9)
             clo = 1.0 if (idist.get(f"file:{ff}", INF) < INF and ff not in mocked) else 0.0
             lex = float(len(tt & ft))
+            ri = len(Y["C0"])
+            idx_test[(P, t)].append(ri); idx_func[(P, fid)].append(ri); idx_snap[P].append(ri)
             for k, v in [("C0", rng.random()), ("C1", clo), ("C2", -impd), ("C3", -cal),
                          ("C4", lex), ("C5", -10 * impd - cal + 0.01 * lex)]:
                 Y[k].append(y); S[k].append(v)
-                per_test[(P, t)][k][0].append(v); per_test[(P, t)][k][1].append(y)
-                per_func[(P, fid)][k][0].append(v); per_func[(P, fid)][k][1].append(y)
-                per_snap[P][k][0].append(v); per_snap[P][k][1].append(y)
 
 from sklearn.metrics import average_precision_score, precision_recall_curve
 def AP(y, s): return average_precision_score(y, s) if any(y) else float("nan")
@@ -149,12 +147,16 @@ lines = ["# P1 heuristic baselines — coverage prediction\n",
          "C5 is a FIXED lexicographic formula `-10*impd - calld + 0.01*lex` — no fitting on labels (not in-sample).\n",
          "| ranker | pooled AP | snap-macro AP | per-test AP | per-func AP | per-func AP (mutants) | P@R50 | P@R80 |",
          "|---|---|---|---|---|---|---|---|"]
+def grp(ix, y, s):
+    return AP([y[i] for i in ix], [s[i] for i in ix]) if any(y[i] for i in ix) else float("nan")
 for k in HEU:
     y = np.array(Y[k]); s = np.array(S[k], dtype=float)
-    pt = [AP(v[k][1], v[k][0]) for v in per_test.values() if any(v[k][1])]
-    pf = [AP(v[k][1], v[k][0]) for v in per_func.values() if any(v[k][1])]
-    pfm = [AP(v[k][1], v[k][0]) for (P, fid), v in per_func.items() if fid in mut_funcs and any(v[k][1])]
-    ps = [AP(v[k][1], v[k][0]) for v in per_snap.values() if any(v[k][1])]
+    yl, sl = Y[k], S[k]
+    pt = [grp(ix, yl, sl) for ix in idx_test.values()]
+    pf = [grp(ix, yl, sl) for ix in idx_func.values()]
+    pfm = [grp(ix, yl, sl) for (P, fid), ix in idx_func.items() if fid in mut_funcs]
+    ps = [grp(ix, yl, sl) for ix in idx_snap.values()]
+    pt = [v for v in pt if v == v]; pf = [v for v in pf if v == v]; pfm = [v for v in pfm if v == v]; ps = [v for v in ps if v == v]
     lines.append(f"| {k} | {AP(y, s):.3f} | {np.mean(ps):.3f} | {np.mean(pt):.3f} | {np.mean(pf):.3f} | {np.mean(pfm) if pfm else float('nan'):.3f} | {pat_recall(y, s, .5):.3f} | {pat_recall(y, s, .8):.3f} |")
 lines.append("\n## era bands (snap-macro AP by snapshot positive rate)\n")
 bands = sorted({("low" if snap_pos[P] < .3 else "high") for P in snap_pos})
@@ -163,9 +165,9 @@ lines.append("|---|" + "---|" * len(bands))
 for k in HEU:
     cells = []
     for b in bands:
-        vals = [AP(per_snap[P][k][1], per_snap[P][k][0]) for P in snap_pos if (snap_pos[P] < .3) == (b == "low") and any(per_snap[P][k][1])]
+        vals = [grp(idx_snap[P], Y[k], S[k]) for P in snap_pos if (snap_pos[P] < .3) == (b == "low")]
         cells.append(f"{np.mean(vals):.3f}" if vals else "-")
     lines.append(f"| {k} | " + " | ".join(cells) + " |")
 rep = "\n".join(lines) + "\n"
 print(rep)
-if a.out: open(a.out, "w").write(rep)
+if a.out: open(a.out, "w", encoding="utf-8").write(rep)

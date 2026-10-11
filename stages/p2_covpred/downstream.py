@@ -93,4 +93,4 @@ for (k, band), xs in sorted(res.items()):
     lines.append(f"| {k} | {band} | {len(xs)} | {sum(x[0] for x in xs)/len(xs):.2f} | {sum(x[1] for x in xs)/len(xs):.3f} |")
 rep = "\n".join(lines) + "\n"
 print(rep)
-if a.out: open(a.out, "w").write(rep)
+if a.out: open(a.out, "w", encoding="utf-8").write(rep)

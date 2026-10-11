@@ -4,3 +4,4 @@ node_modules/
 targets_scope/
 .secrets/
 data/covpred/pairs_*.jsonl
+stages/m2_labeller/node_modules

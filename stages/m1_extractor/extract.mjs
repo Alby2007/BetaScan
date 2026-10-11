@@ -2,6 +2,7 @@
 // Emits {nodes:[{id,kind,name,file,start,end,exported}], edges:[{type,src,dst}]} for the working tree.
 import { Project, SyntaxKind, Node } from "ts-morph";
 import path from "node:path";
+import fs from "node:fs";
 
 const root = path.resolve(process.argv[2]).replaceAll("\\", "/");
 const project = new Project({ tsConfigFilePath: path.join(root, "tsconfig.json"), skipFileDependencyResolution: false });
@@ -30,6 +31,45 @@ function declName(d) {
 const kindOf = (d) => Node.isClassDeclaration(d) ? "class" : (Node.isInterfaceDeclaration(d) || Node.isTypeAliasDeclaration(d) || Node.isEnumDeclaration(d)) ? "type" : "function";
 
 const files = project.getSourceFiles().filter(inRepo);
+const fileSet = new Set(files.map((sf) => rel(sf.getFilePath())));
+
+// Workspace-package resolution: package.json name -> in-repo dir. ts-morph resolves
+// cross-package specs via node_modules (dist/.d.ts) or not at all -> module: edges.
+const pkgRoots = {};
+(function scanPkgs(dir, depth) {
+  if (depth > 3) return;
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (e.name === "node_modules" || e.name.startsWith(".")) continue;
+    const p = dir + "/" + e.name;
+    if (e.isDirectory()) scanPkgs(p, depth + 1);
+    else if (e.name === "package.json" && depth > 0) {
+      try { const nm = JSON.parse(fs.readFileSync(p, "utf8")).name; if (nm) pkgRoots[nm] = rel(p).split("/").slice(0, -1).join("/"); } catch {}
+    }
+  }
+})(root, 0);
+
+const tryFile = (stem) => [stem, stem + ".ts", stem + ".tsx", stem + ".mts", stem + ".cts", stem + ".js", stem + ".jsx", stem + "/index.ts", stem + "/index.tsx", stem + "/index.js"].find((c) => fileSet.has(c));
+function wsResolve(spec) {
+  if (spec.startsWith(".") || spec.startsWith("node:")) return null;
+  const parts = spec.split("/");
+  const n = spec.startsWith("@") ? 2 : 1;
+  const name = parts.slice(0, n).join("/"), sub = parts.slice(n).join("/");
+  const dir = pkgRoots[name];
+  if (!dir) return null;
+  const cands = [];
+  if (sub) for (const b of [dir, dir + "/src"]) cands.push(`${b}/${sub}`);
+  else {
+    try {
+      const pj = JSON.parse(fs.readFileSync(root + "/" + dir + "/package.json", "utf8"));
+      const src = pj.source ?? pj.exports?.["."]?.source;
+      if (typeof src === "string") cands.push(dir + "/" + src.replace(/^\.\//, ""));
+    } catch {}
+    cands.push(dir + "/src/index", dir + "/index");
+  }
+  for (const stem of cands) { const hit = tryFile(stem); if (hit) return hit; }
+  return null;
+}
+
 for (const sf of files) {
   const f = rel(sf.getFilePath());
   addNode({ id: fileId(f), kind: isTest(f) ? "test_file" : "file", name: f, file: f, start: 1, end: sf.getEndLineNumber(), exported: false });
@@ -62,7 +102,9 @@ for (const sf of files) {
     const spec = d.getModuleSpecifierValue?.();
     if (!spec) continue;
     const target = d.getModuleSpecifierSourceFile?.();
+    const ws = inRepo(target) ? null : wsResolve(spec);
     if (inRepo(target)) addEdge("imports", fid, fileId(rel(target.getFilePath())));
+    else if (ws) addEdge("imports", fid, fileId(ws));
     else if (!spec.startsWith(".")) { const m = spec.startsWith("node:") ? spec : spec.split("/").slice(0, spec.startsWith("@") ? 2 : 1).join("/"); addNode({ id: `module:${m}`, kind: "module", name: m, file: "", start: 0, end: 0, exported: false }); addEdge("imports", fid, `module:${m}`); }
   }
   // calls + new
