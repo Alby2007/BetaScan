@@ -20,7 +20,7 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v7d-runner"   # v7c + test step must start with a package runner (jotai sed-line misfire); chained run-lines take the test segment only
+CMD_VERSION = "v8-provider"  # v7d + coverage provider auto-installed at installed vitest version (harness patch, logged); UNSCORED verdict for tests-ran-no-JSON
 
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -74,7 +74,11 @@ def emit(rec):
           and (rec["vitest_s"] or 1e9) <= 600 and rec.get("cov_ok")
           and (rec.get("proj_harvest_s") or 1e9) <= 5400)
     if not ok:
-        excl.write(json.dumps({"repo": rec["repo"], "reason": rec["reason"], "stage": "screen"}) + "\n"); excl.flush()
+        cls = "unscored" if rec.get("verdict") == "unscored" else "intrinsic"
+        excl.write(json.dumps({"repo": rec["repo"], "reason": rec["reason"], "stage": "screen",
+                               "class": cls}) + "\n"); excl.flush()
+    else:
+        rec["verdict"] = "pass"
 
 LOOP = r'''
 set -u
@@ -114,6 +118,17 @@ if [ "$p" -lt 3 ] && [ -n "$ALT_VITEST_CMD" ]; then
   pa=$(grep -oh '"status": *"passed"' /out/vitest_alt.json 2>/dev/null | wc -l)
   [ "$pa" -ge 3 ] && EFF="$ALT_VITEST_CMD"
 fi
+# coverage provider: install @vitest/coverage-v8 at the installed vitest version if missing (HARNESS patch)
+VVER=$(node -e "try{console.log(require('vitest/package.json').version)}catch(e){console.log('x')}" 2>/dev/null)
+PINST=0
+if ! node -e "require.resolve('@vitest/coverage-v8')" 2>/dev/null; then
+  case "$PM_ENV" in
+    pnpm) pnpm add -D "@vitest/coverage-v8@$VVER" >&2 && PINST=1 ;;
+    npm)  npm i -D "@vitest/coverage-v8@$VVER" >&2 && PINST=1 ;;
+    yarn) yarn add -D "@vitest/coverage-v8@$VVER" >&2 && PINST=1 ;;
+  esac
+fi
+echo "p $VVER $PINST" >> /out/_runs.txt
 # coverage smoke: ~5 test files stratified by size (harvest-critical); scope dir preferred
 find . -path ./node_modules -prune -o \( -name '*.test.*' -o -name '*.spec.*' \) -printf '%s %p\n' | sort -n > /tmp/tf_all.txt
 if [ -n "$COV_DIR" ]; then grep "$COV_DIR" /tmp/tf_all.txt > /tmp/tf.txt; [ -s /tmp/tf.txt ] || cp /tmp/tf_all.txt /tmp/tf.txt;
@@ -147,6 +162,7 @@ for line in open(a.list, encoding="utf-8"):
     rec = {"repo": repo, "cmd": CMD_VERSION, **IMG, "runner": None, "pm": None, "sha": None,
            "test_script": None, "chains": [], "install_ok": False, "suite_wall_s": None,
            "test_rc": None, "test_s": None, "vitest_runs": {}, "vitest_s": None,
+           "verdict": None, "harness_patches": {},
            "cov_ok": None, "cov_files": [], "proj_harvest_s": None,
            "frac_green_both": None, "n_files_run": None, "files_flaky": [], "files_fail": {},
            "fail_reasons": {}, "domain": DOMAINS.get(repo, "?"), "n_test_files": None, "reason": None}
@@ -198,6 +214,9 @@ for line in open(a.list, encoding="utf-8"):
                     rec["test_rc"], rec["test_s"] = int(p_[1]), int(p_[2])
                 elif p_[0] == "b":
                     rec["prebuild_s"] = int(p_[2])
+                elif p_[0] == "p":
+                    if len(p_) > 2 and p_[2] == "1" and p_[1] != "x":
+                        rec["harness_patches"]["@vitest/coverage-v8"] = p_[1]
                 else:  # v1, v2
                     rec["vitest_runs"][p_[0]] = {"rc": int(p_[1]), "secs": int(p_[2])}
             nt = tmp / "out/_ntests.txt"
@@ -257,7 +276,12 @@ for line in open(a.list, encoding="utf-8"):
                 except Exception as e:
                     rec["cov_node_frac"] = f"err:{e}"
             frac = rec.get("frac_green_both")
-            if frac is None: rec["reason"] = "vitest produced no JSON (crash/config)"
+            if frac is None:
+                ran = max((r.get("secs", 0) for r in rec["vitest_runs"].values()), default=0)
+                if ran > 20:
+                    rec["verdict"], rec["reason"] = "unscored", f"unscored: tests ran ~{ran}s, no JSON output"
+                else:
+                    rec["reason"] = "no JSON, invocation fails both attempts"
             elif frac < 0.9: rec["reason"] = (f"only {frac:.0%} files green both runs {rec['fail_reasons']}"
                                             f" sigs={rec.get('fail_sigs')}")
             elif (rec["vitest_s"] or 1e9) > 600: rec["reason"] = f"suite {rec['vitest_s']}s > 600s"

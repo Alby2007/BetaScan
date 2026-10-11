@@ -84,8 +84,9 @@ def derive_invocation(dest, pm):
     if re.match(r"npm (run |test)", cmd) or re.search(r"&&\s*npm (run |test)", cmd):
         cmd += " --"
     vprefix = cmd + " --reporter=json --outputFile"
-    plain = "npx vitest run --reporter=json --outputFile"
-    alt = "" if vprefix == plain else plain
+    alt = (f"{pm} exec vitest run" if pm == "pnpm" else "yarn vitest run" if pm == "yarn"
+           else "npx --no-install vitest run") + " --reporter=json --outputFile"
+    alt = "" if vprefix == alt else alt
     # positional dir arg after 'run' (e.g. 'vitest run test/unit') scopes file selection
     toks = cmd.split(); scope = ""
     if "run" in toks:
