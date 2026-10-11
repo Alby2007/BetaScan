@@ -99,3 +99,27 @@ ranges. Conclusion: ship the heuristic (B4, or B8 where B3 rankings exist).
 - B3 addendum on the remaining 56 quota-blocked mutants (cannot change the primary verdict)
 - Stronger-model B3 rerun on trpc (prompts now persisted; explicit versioned model name)
 - Real-commit stratum (coverage undefined: config/fixtures) â€” h3 has 3/12 commits, 0 labels; too thin
+
+## Phase 2 — coverage prediction from static structure
+
+P0 labels (`data/covpred/`): empty-test baseline covers **zero** src files on both repos
+(setup helpers are per-test imports, not vitest `setupFiles`) — nothing to subtract;
+mask kept for P2 repos. Pairs: h3 613k (52 snapshots, pos 0.23 pooled — bimodal
+0.11–0.13 on ~45–71-test snapshots vs 0.60–0.71 on ~26–35-test ones), trpc 193k
+(4 snapshots, pos 0.25). Runtime import closure explains ~89% (h3) / ~82% (trpc)
+of covered *files*.
+
+P1 heuristics, function-level AP (`data/covpred/p1_*.md`):
+
+| ranker | h3 pooled | h3 per-test | trpc pooled | trpc per-test |
+|---|---|---|---|---|
+| C0 random | 0.231 | 0.303 | 0.251 | 0.263 |
+| C1 imp closure | 0.338 | 0.463 | 0.369 | 0.356 |
+| C2 imp distance | 0.379 | 0.520 | 0.469 | 0.484 |
+| C3 call reach | 0.348 | 0.538 | 0.445 | 0.429 |
+| C4 lexical | 0.271 | 0.409 | 0.271 | 0.371 |
+| C5 (impd, calld, lex) | 0.431 | 0.606 | 0.533 | 0.571 |
+
+Headroom gate: NOT triggered (C5 < 0.9 on both). Import *distance ordering* beats
+binary closure — granularity carries signal; call reach is sparse (P@R>=50 collapses
+to base rate). Learner target: beat C5 on held-out repos.

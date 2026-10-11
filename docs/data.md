@@ -76,6 +76,29 @@ edges(commit_hash, type, src, dst)   -- indexed (commit_hash,type,src) and (comm
 `id` shapes: `file:path`, `function:path#name`, `class:path#name`, `type:path#name`,
 `module:pkg`. Edges: `imports`, `calls`, `extends`, `implements`, `uses_type`, `defined_in`.
 
+### covpred pairs (`data/covpred/pairs_<repo>.jsonl.gz`, one JSON per line)
+
+Function-level coverage labels for Phase 2. Built by `stages/p2_covpred/pairs.py`
+from persisted `cov_P` coverage + the graph DB. Raw `.jsonl` is gitignored (size);
+committed files are gzipped.
+
+```json
+{"repo":"h3","snapshot":"<commit>","test":"<test file path>",
+ "func":"function:<file>#<name>","file":"<func's file>",
+ "start":<int>,"end":<int>,
+ "covered":<0|1>,           -- 1 iff >=1 line of [start,end] executed by the test
+ "line_frac":<0..1>,        -- fraction of function lines executed
+ "hits":<int>,"exec_lines":<int>}
+```
+
+Universe: functions in non-test files covered by >=1 green test at that snapshot
+(files never covered by any test are excluded -- no executable evidence).
+Excluded: non-green tests (suite_P pass only), test files as targets,
+baseline/setup-covered lines (`baseline_<repo>.json` -- empty on h3/trpc).
+Per-test sidecar `pairs_<repo>_signals.jsonl`: `mocks` (vi/jest.mock specs) and
+`dyn` (import() specs) per test file. Type-only imports are recomputed from
+`git show` at use time (heuristics.py).
+
 ## Logs / audits
 
 `data/flake_log*.json` clean-run statuses · `data/shortcut_check*.json` non-covering-failure
