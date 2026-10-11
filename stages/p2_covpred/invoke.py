@@ -13,6 +13,7 @@ def ensure_run(cmd):
     return " ".join(toks)
 
 EXCL_STEP = re.compile(r"e2e|playwright|cypress|browser|chromium|selenium|storybook|docker|service|integration", re.I)
+TYPE_STEP = re.compile(r"test:types?|--typecheck|\btsd\b|dtslint|type-tests?", re.I)
 STRIP = re.compile(r"^--(coverage|reporter|shard|watch|ui|browser|bail)(=\S*)?$")
 
 def strip_flags(cmd):
@@ -55,9 +56,10 @@ def derive_invocation(dest, pm):
     testline, twd, buildline = "", "", ""
     for w, b in wds:
         if re.search(r"vitest|\btests?\b", b):
-            excl = bool(skip.search(b) or EXCL_STEP.search(b))
+            excl = bool(skip.search(b) or EXCL_STEP.search(b) or TYPE_STEP.search(b))
             candidates.append({"step": b, "wd": w, "excluded": excl,
-                               "why": "lint/typecheck" if skip.search(b) else "e2e/browser/service" if EXCL_STEP.search(b) else "candidate"})
+                               "why": "lint/typecheck" if (skip.search(b) or TYPE_STEP.search(b))
+                                     else "e2e/browser/service" if EXCL_STEP.search(b) else "candidate"})
             if not excl and not testline:
                 testline, twd = b, w
         if re.search(r"\bbuild\b", b) and not skip.search(b) and not buildline:

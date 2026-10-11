@@ -20,7 +20,7 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v7b-scope"    # v7 + coverage file picks restricted to invocation scope dir
+CMD_VERSION = "v7c-effcov"   # v7b + exclude type-test CI steps; coverage runs under the EFFECTIVE (rescued) invocation; vitest_s falls back to alt run
 
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -106,10 +106,13 @@ for run in 1 2; do
 done
 # config-level? (<3 passed files total) -> one retry with the alternate invocation
 p=$(grep -oh '"status": *"passed"' /out/vitest1.json /out/vitest2.json 2>/dev/null | wc -l)
+EFF="$VITEST_CMD"
 if [ "$p" -lt 3 ] && [ -n "$ALT_VITEST_CMD" ]; then
   s=$(date +%s)
   timeout 900 bash -c "$ALT_VITEST_CMD=/out/vitest_alt.json" >/out/vitest_alt.log 2>&1
   echo "va $? $(( $(date +%s)-s ))" >> /out/_runs.txt
+  pa=$(grep -oh '"status": *"passed"' /out/vitest_alt.json 2>/dev/null | wc -l)
+  [ "$pa" -ge 3 ] && EFF="$ALT_VITEST_CMD"
 fi
 # coverage smoke: ~5 test files stratified by size (harvest-critical); scope dir preferred
 find . -path ./node_modules -prune -o \( -name '*.test.*' -o -name '*.spec.*' \) -printf '%s %p\n' | sort -n > /tmp/tf_all.txt
@@ -122,7 +125,7 @@ for i in 0 1 2 3 4; do
   idx=$(( 1 + i*(n-1)/4 )); [ "$idx" -gt "$n" ] && idx=$n
   f=$(awk "NR==$idx" /tmp/tf.txt | cut -d' ' -f2-)
   s=$(date +%s); rm -rf coverage
-  timeout 300 bash -c "$VITEST_CMD=/out/covres_$i.json --coverage --coverage.reporter=json --coverage.all=false \"$f\"" >/out/cov_$i.log 2>&1
+  timeout 300 bash -c "$EFF=/out/covres_$i.json --coverage --coverage.reporter=json --coverage.all=false \"$f\"" >/out/cov_$i.log 2>&1
   ok=0; [ -f coverage/coverage-final.json ] && ok=1 && cp coverage/coverage-final.json /out/cov_$i.json
   echo "c $? $(( $(date +%s)-s )) $ok" >> /out/_runs.txt
 done
@@ -227,6 +230,7 @@ for line in open(a.list, encoding="utf-8"):
                 rec["config_level"] = len(rec["fail_sigs"]) == 1 and len(failf) >= 5
                 rec["attempts"] = [{"invoke": vpre, "src": src, "frac": rec["frac_green_both"], "runs": 2}]
                 rec["vitest_s"] = rec["vitest_runs"].get("v1", {}).get("secs")
+            rec["vitest_s"] = rec["vitest_s"] or rec["vitest_runs"].get("va", {}).get("secs")
             ralt = filestatus(tmp / "out/vitest_alt.json")
             if ralt:
                 allfa = set(ralt)
