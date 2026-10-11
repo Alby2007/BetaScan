@@ -8,6 +8,7 @@ Usage: b4_misses.py ROWS.jsonl GRAPHS.db REPO [--min-cov 11]"""
 import argparse, collections, json, math, re, sqlite3, statistics, subprocess, sys
 ap = argparse.ArgumentParser(); ap.add_argument("rows"); ap.add_argument("db"); ap.add_argument("repo")
 ap.add_argument("--min-cov", type=int, default=11)
+ap.add_argument("--max-frac", type=float, default=1.0, help="only mutants whose failing fraction is below this (controls the high-nfail confound)")
 a = ap.parse_args()
 rows = [json.loads(l) for l in open(a.rows)]
 changes = collections.OrderedDict()
@@ -69,6 +70,7 @@ for c, rs in changes.items():
     order = sorted((r["test_file"] for r in cov), key=lambda t: (tdist.get(t, INF), imp.get(f"file:{t}", INF), t))
     pos = {t: i for i, t in enumerate(order)}
     fails = [r["test_file"] for r in cov if r["fails"]]
+    if len(fails) / len(cov) >= a.max_frac: continue
     rel = sorted(pos[t] / max(len(order) - 1, 1) for t in fails)
     miss = sum(p >= 0.5 for p in rel) / len(rel) >= 0.5
     fl = [tflags(P, t) for t in fails]

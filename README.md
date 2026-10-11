@@ -12,14 +12,25 @@ from mutation testing plus per-test coverage. A negative result is acceptable.
 
 ## Status snapshot
 
-h3 baselines are complete: a free-tier diff-reading LLM (B3-A, gemini-flash-lite) and a learning-free
-RRF fusion of LLM + call-graph (B8) **statistically tie** at n95 ≈ 11.8, recall@5 ≈ 0.556 in the
-`>10`-covering-tests stratum; the reverse-call-graph heuristic (B4) is just behind and is free and
-deterministic. The bar for the learned model (M1) is best-of B3/B4/B7/B8. See
-[docs/results.md](docs/results.md) and `data/m3_b3.md`.
+h3 baselines complete (`>10` stratum, 280 killed mutants): B3-A (gemini-flash-lite, n95 11.89) and
+B8 RRF fusion (11.84) **statistically tie**; the B4 call-graph heuristic is just behind (12.71) and is
+free and deterministic.
 
-trpc: pilot labeller mid-run (`data/trpc_pilot/`). Early `>10`-stratum signal looks similar
-(oracle headroom GO on point estimates). See [docs/trpc.md](docs/trpc.md).
+**trpc cross-repo result (the headline):** the ordering flips. On the frozen scored set
+(233 mutants, 184 killed, `data/m1/trpc_ids_frozen.json`), **B4 is the best baseline** (n95 28.88),
+B8 ties it (27.92), and B3-A is *worse* on n95 (29.88, paired diff +1.96 [+0.17,+3.84]). A lite
+diff-reading LLM helped on h3 but adds nothing beyond B4 on trpc — the call/import-graph heuristic
+is the only ranker that is consistently strong on both repos.
+
+Edge-type ablation (both repos): B4's signal is mostly **import distance** (B1 alone captures
+~86% of B4's n95 gain on trpc, ~74% on h3); call edges add a modest but significant increment.
+Controlled error analysis (`--max-frac 0.5`): B4 misses concentrate in registration/indirection
+layers — hypothesis, not yet proven. See `data/b4_misses.md`.
+
+**State:** trpc scored set frozen (sha256 `ec4ecc72`); M1 trained on h3 and frozen
+(`data/m1/m1_h3.pkl` + spec, hashes in `DECISIONS.md`). B3-A trpc coverage 117/184 — the remainder
+awaits a Gemini free-tier quota window (~500/day); a resumable run completes it, then evaluation
+re-runs and the pipeline **stops for review before M1 is scored on trpc** (score-once rule).
 
 ## Layout
 

@@ -83,6 +83,7 @@ def rankers(c, hist):
     out = {"ORACLE (perfect order)": {t: -fl[t] for t in tests}, "B0 random": {t: 0 for t in tests},
            "B1 import-proximity": {t: impd(t) for t in tests},
            "B4 reverse-call reachability": {t: (tdist.get(t, INF), impd(t)) for t in tests},
+           "B4c calls-only (no import tiebreak)": {t: tdist.get(t, INF) for t in tests},
            "B5a coverage, random order": {t: 1 - cov[t] for t in tests},
            "B5b coverage, most targeted first": {t: (1 - cov[t], covsize[m["parent"]].get(t, INF)) for t in tests},
            "B5d coverage, broadest first": {t: (1 - cov[t], -covsize[m["parent"]].get(t, 0)) for t in tests},
@@ -193,7 +194,7 @@ md2 += ["\n## Cluster-bootstrap 95% CIs (resample the 12 parent commits; ALL mut
         "| stratum | metric | ranker | mean [95% CI] | paired diff vs B5a [95% CI] | paired diff vs B4 [95% CI] |", "|---|---|---|---|---|---|"]
 for b in [">=2", ">10"]:
     for metric in ["n95_vs_B5", "recall@5", "APFD"]:
-        for name in ["ORACLE (perfect order)", "B5a coverage, random order", "B5b coverage, most targeted first", "B4 reverse-call reachability", "B1 import-proximity"]:
+        for name in ["ORACLE (perfect order)", "B5a coverage, random order", "B5b coverage, most targeted first", "B4 reverse-call reachability", "B4c calls-only (no import tiebreak)", "B1 import-proximity"]:
             if not accA[name][b]: continue
             m, lo, hi = boot(accA, name, b, metric)
             d1 = boot(accA, name, b, metric, "B5a coverage, random order") if name != "B5a coverage, random order" else None
@@ -215,7 +216,7 @@ open(a.out + ".md", "a").write("\n".join(go) + "\n"); print("\n".join(go))
 accR = evaluate(all_c, None, True); rr = ["\n## Inside the covering set: commit-clustered bootstrap CIs (ALL mutants, candidates = covering tests only)\n", "| stratum | metric | ranker | mean [95% CI] | paired diff vs B5a [95% CI] | paired diff vs B4 [95% CI] |", "|---|---|---|---|---|---|"]
 for b in [">10", ">=2"]:
     for metric in ["n95", "recall@5", "APFD", "time_frac_95"]:
-        for name in ["ORACLE (perfect order)", "B5a coverage, random order", "B5b coverage, most targeted first", "B5d coverage, broadest first", "B6 call distance, ties broadest first", "B4 reverse-call reachability", "B1 import-proximity", "B7 lexical overlap", "B8 RRF(B3,B4)"] + sorted(B3):
+        for name in ["ORACLE (perfect order)", "B5a coverage, random order", "B5b coverage, most targeted first", "B5d coverage, broadest first", "B6 call distance, ties broadest first", "B4 reverse-call reachability", "B4c calls-only (no import tiebreak)", "B1 import-proximity", "B7 lexical overlap", "B8 RRF(B3,B4)"] + sorted(B3):
             if not accR[name][b]: continue
             m, lo, hi = boot(accR, name, b, metric); d = boot(accR, name, b, metric, "B5a coverage, random order") if not name.startswith("B5a") else None
             d4 = boot(accR, name, b, metric, "B4 reverse-call reachability") if name not in ("B4 reverse-call reachability", "B5a coverage, random order") else None
@@ -227,7 +228,7 @@ cn = collections.Counter(); st = accR["ORACLE (perfect order)"][">10"]
 rob = ["\n## Robustness of the >10 stratum result to clustering (ALL mutants, candidates = covering tests only)\n",
        f"Stratum >10: {len(st)} killed mutants; distinct commits {len({x['_p'] for x in st})}, distinct source files {len({x['_f'] for x in st})}, distinct mutated functions {len({x['_fn'] for x in st})}.\n",
        "| ranker | metric | cluster by | paired diff vs B5a [95% CI] | paired diff vs B4 [95% CI] |", "|---|---|---|---|---|"]
-for name in ["B4 reverse-call reachability", "B1 import-proximity", "B5d coverage, broadest first", "B6 call distance, ties broadest first", "B5b coverage, most targeted first", "B7 lexical overlap", "B8 RRF(B3,B4)", "ORACLE (perfect order)"] + sorted(B3):
+for name in ["B4 reverse-call reachability", "B4c calls-only (no import tiebreak)", "B1 import-proximity", "B5d coverage, broadest first", "B6 call distance, ties broadest first", "B5b coverage, most targeted first", "B7 lexical overlap", "B8 RRF(B3,B4)", "ORACLE (perfect order)"] + sorted(B3):
     if not accR[name][">10"]: continue
     for metric in ["n95", "recall@5", "APFD"]:
         for lab, key in [("commit", "_p"), ("source file", "_f"), ("function", "_fn")]:

@@ -53,6 +53,7 @@ def prompt(c):
 todo = [c for c, rs in rows.items() if c in muts and any(r["fails"] for r in rs) and sum(r["covers"] for r in rs) >= a.min_cov]
 if a.sample: import random; todo = random.Random(a.seed).sample(todo, min(a.sample, len(todo)))
 todo = todo[: a.limit] if a.limit else todo
+SERVED = {}
 def call(p):
     import time
     if a.provider == "ollama":
@@ -69,7 +70,7 @@ def call(p):
         for attempt in range(8):
             try:
                 req = urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/models/{a.model}:generateContent", body, {"x-goog-api-key": os.environ["GEMINI_API_KEY"], "content-type": "application/json"})
-                time.sleep(a.sleep); r = json.load(urllib.request.urlopen(req, timeout=180)); return "".join(x.get("text", "") for x in r["candidates"][0]["content"]["parts"] if not x.get("thought"))
+                time.sleep(a.sleep); r = json.load(urllib.request.urlopen(req, timeout=180)); SERVED["m"] = r.get("modelVersion"); return "".join(x.get("text", "") for x in r["candidates"][0]["content"]["parts"] if not x.get("thought"))
             except urllib.error.HTTPError as e:
                 if e.code in (429, 500, 503): time.sleep(20 * (attempt + 1)); continue
                 raise
@@ -95,4 +96,4 @@ for c in todo:
     raw = call(p)
     try: rk = json.loads(raw[raw.index("{"): raw.rindex("}") + 1])["ranking"]
     except Exception: rk = []
-    open(fo, "a").write(json.dumps({"change_id": c, "model": a.model, "variant": a.variant, "ranking": rk, "n_tests": len(tests), "prompt": p, "raw": raw}) + "\n")
+    open(fo, "a").write(json.dumps({"change_id": c, "model": a.model, "variant": a.variant, "served": SERVED.get("m"), "ranking": rk, "n_tests": len(tests), "prompt": p, "raw": raw}) + "\n")
