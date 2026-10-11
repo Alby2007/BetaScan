@@ -1,0 +1,26 @@
+{"repo": "unjs/nitro", "reason": "install_or_suite_fail", "stage": "screen"}
+{"repo": "vuejs/pinia", "reason": "install_or_suite_fail", "stage": "screen"}
+{"repo": "vuejs/vitepress", "reason": "install_or_suite_fail", "stage": "screen"}
+{"repo": "TanStack/query", "reason": "install_or_suite_fail", "stage": "screen"}
+{"repo": "drizzle-team/drizzle-orm", "reason": "clone_fail: Cloning into 'targets_screen\\drizzle-team__drizzle-orm'...\nfatal: remote helper 'https' aborted session", "stage": "screen"}
+{"repo": "fabian-hiller/valibot", "reason": "install_or_suite_fail", "stage": "screen"}
+{"repo": "arktypeio/arktype", "reason": "runner=mocha", "stage": "screen"}
+{"repo": "supermacro/neverthrow", "reason": "install_or_suite_fail", "stage": "screen"}
+{"repo": "antfu/unocss", "reason": "install_or_suite_fail", "stage": "screen"}
+{"repo": "antfu/unplugin", "reason": "clone_fail: Cloning into 'targets_screen\\antfu__unplugin'...\nremote: Repository not found.\nfatal: repository 'https://github.com/antfu/unplugin.git/' not found", "stage": "screen"}
+{"repo": "withastro/astro", "reason": "clone_fail: Cloning into 'targets_screen\\withastro__astro'...\nUpdating files:  19% (1334/6965)\nUpdating files:  20% (1393/6965)\nUpdating files:  21% (1463/6965)\nUpdating files:  22% (1533/6965)\nUpdating files:  2", "stage": "screen"}
+{"repo": "sveltejs/svelte", "reason": "clone_fail: Cloning into 'targets_screen\\sveltejs__svelte'...\nerror: copy-fd: write returned: No space left on device\nfatal: cannot copy 'C:/Program Files/Git/mingw64/share/git-core/templates/hooks/commit-msg.sam", "stage": "screen"}
+{"repo": "honojs/hono", "reason": "clone_fail: Cloning into 'targets_screen\\honojs__hono'...\nerror: copy-fd: write returned: No space left on device\nfatal: cannot copy 'C:/Program Files/Git/mingw64/share/git-core/templates/hooks/commit-msg.sample'", "stage": "screen"}
+{"repo": "unjs/nitro", "reason": "install_or_suite_fail", "stage": "screen"}
+{"repo": "vuejs/pinia", "reason": "install_or_suite_fail", "stage": "screen"}
+{"repo": "vuejs/vitepress", "reason": "install_or_suite_fail", "stage": "screen"}
+{"repo": "TanStack/query", "reason": "error: Command '['git', '-C', 'targets_screen\\\\TanStack__query', 'archive', '-o', 'C:\\\\Users\\\\alber\\\\AppData\\\\Local\\\\Temp\\\\tmp8hjyx1it\\\\src.tar', 'HEAD']' returned non-zero exit status 128.", "stage": "screen"}
+{"repo": "drizzle-team/drizzle-orm", "reason": "clone_fail: Cloning into 'targets_screen\\drizzle-team__drizzle-orm'...\nerror: unable to write file drizzle-kit/src/serializer/mysqlImports.ts\nerror: unable to write file drizzle-kit/src/serializer/mysqlSchema.ts\n", "stage": "screen"}
+{"repo": "fabian-hiller/valibot", "reason": "error: Command '['git', '-C', 'targets_screen\\\\fabian-hiller__valibot', 'archive', '-o', 'C:\\\\Users\\\\alber\\\\AppData\\\\Local\\\\Temp\\\\tmpjz_4iloa\\\\src.tar', 'HEAD']' returned non-zero exit status 128.", "stage": "screen"}
+{"repo": "supermacro/neverthrow", "reason": "error: Command '['git', '-C', 'targets_screen\\\\supermacro__neverthrow', 'archive', '-o', 'C:\\\\Users\\\\alber\\\\AppData\\\\Local\\\\Temp\\\\tmp95jqnbke\\\\src.tar', 'HEAD']' returned non-zero exit status 128.", "stage": "screen"}
+{"repo": "TanStack/query", "reason": "flaky: run1!=run2", "stage": "screen"}
+{"repo": "arktypeio/arktype", "reason": "runner=mocha", "stage": "screen"}
+{"repo": "unjs/nitro", "reason": "vitest rc=1", "stage": "screen"}
+{"repo": "antfu/unocss", "reason": "timeout 1500s", "stage": "screen"}
+{"repo": "unplugin/unplugin", "reason": "clone_fail: Cloning into 'targets_screen\\unplugin__unplugin'...\nremote: Repository not found.\nfatal: repository 'https://github.com/unplugin/unplugin.git/' not found", "stage": "screen"}
+{"repo": "vuejs/vitepress", "reason": "vitest rc=1", "stage": "screen"}

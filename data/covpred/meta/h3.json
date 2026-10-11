@@ -1,0 +1,10 @@
+{
+ "repo": "h3",
+ "c1_precision": 0.3326,
+ "c1_recall": 1.0,
+ "residual_n": 0,
+ "residual_causes": {},
+ "coverage_selectivity": 0.3985,
+ "extractor_version": "d2694adfd25d",
+ "qa_quarantined": false
+}
