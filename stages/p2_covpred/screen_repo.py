@@ -20,11 +20,12 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v5-perfile"   # v4 + per-test-file pass/flaky/fail from 2 vitest JSON runs; PASS = >=90% files green identically both runs
+CMD_VERSION = "v6-ci-invoke" # v5 + canonical invocation derived from CI workflows (cwd/flags/prebuild); config-level -> retry alt invocation
 
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from domains import DOMAINS
+from invoke import derive_invocation, normsig
 
 def reason_of(msg):
     m = msg.lower()
@@ -83,20 +84,29 @@ case "$PM_ENV" in
   npm)  npm ci >&2 || npm install >&2 ;;
   yarn) yarn install --frozen-lockfile >&2 || yarn install >&2 ;;
 esac || exit 9
+# CI's prebuild step, if any (generic — no per-repo workarounds)
+[ -n "$PREBUILD_CMD" ] && { echo "prebuild: $PREBUILD_CMD" >&2; timeout 900 bash -c "$PREBUILD_CMD" >&2; }
 # repo's own test command once (chain logging)
 s=$(date +%s)
 case "$PM_ENV" in
-  pnpm) pnpm test >/out/test.log 2>&1 ;;
-  npm)  npm test >/out/test.log 2>&1 ;;
-  yarn) yarn test >/out/test.log 2>&1 ;;
+  pnpm) timeout 900 pnpm test >/out/test.log 2>&1 ;;
+  npm)  timeout 900 npm test >/out/test.log 2>&1 ;;
+  yarn) timeout 900 yarn test >/out/test.log 2>&1 ;;
 esac
 echo "t $? $(( $(date +%s)-s ))" >> /out/_runs.txt
-# plain vitest run x2 with per-file JSON — per-file pass/fail + flakiness (harvest uses vitest directly)
+# canonical vitest invocation x2 with per-file JSON (from CI/pkg/fallback)
 for run in 1 2; do
   s=$(date +%s)
-  npx vitest run --reporter=json --outputFile=/out/vitest$run.json >/out/vitest$run.log 2>&1
+  timeout 900 bash -c "$VITEST_CMD=/out/vitest$run.json" >/out/vitest$run.log 2>&1
   echo "v$run $? $(( $(date +%s)-s ))" >> /out/_runs.txt
 done
+# config-level? (<3 passed files total) -> one retry with the alternate invocation
+p=$(grep -oh '"status": *"passed"' /out/vitest1.json /out/vitest2.json 2>/dev/null | wc -l)
+if [ "$p" -lt 3 ] && [ -n "$ALT_VITEST_CMD" ]; then
+  s=$(date +%s)
+  timeout 900 bash -c "$ALT_VITEST_CMD=/out/vitest_alt.json" >/out/vitest_alt.log 2>&1
+  echo "va $? $(( $(date +%s)-s ))" >> /out/_runs.txt
+fi
 # coverage smoke: ~5 test files stratified by size (harvest-critical)
 find . -path ./node_modules -prune -o \( -name '*.test.*' -o -name '*.spec.*' \) -printf '%s %p\n' | sort -n > /tmp/tf.txt
 wc -l < /tmp/tf.txt > /out/_ntests.txt
@@ -106,7 +116,7 @@ for i in 0 1 2 3 4; do
   idx=$(( 1 + i*(n-1)/4 )); [ "$idx" -gt "$n" ] && idx=$n
   f=$(awk "NR==$idx" /tmp/tf.txt | cut -d' ' -f2-)
   s=$(date +%s); rm -rf coverage
-  npx vitest run --coverage --coverage.reporter=json --coverage.all=false "$f" >/out/cov_$i.log 2>&1
+  timeout 300 bash -c "$VITEST_CMD=/out/covres_$i.json --coverage --coverage.reporter=json --coverage.all=false \"$f\"" >/out/cov_$i.log 2>&1
   ok=0; [ -f coverage/coverage-final.json ] && ok=1 && cp coverage/coverage-final.json /out/cov_$i.json
   echo "c $? $(( $(date +%s)-s )) $ok" >> /out/_runs.txt
 done
@@ -151,13 +161,17 @@ for line in open(a.list, encoding="utf-8"):
             rec["runner"] = rec["runner"] or "unknown"
             rec["reason"] = f"runner={rec['runner']}"; emit(rec); continue
         rec["pm"] = "pnpm" if (dest / "pnpm-lock.yaml").exists() else "yarn" if (dest / "yarn.lock").exists() else "npm"
+        vpre, alt, prebuild, src = derive_invocation(dest, rec["pm"])
+        rec["invoke"], rec["invoke_src"], rec["invoke_alt"], rec["prebuild"] = vpre, src, alt, prebuild
         with tempfile.TemporaryDirectory() as tmp:
             tmp = pathlib.Path(tmp); (tmp / "out").mkdir()
             subprocess.run(["git", "-C", str(dest), "archive", "-o", str(tmp / "src.tar"), "HEAD"], check=True)
             t0 = time.time()
             run(["docker", "run", "--rm", "-v", f"{tmp}:/in", "-v", f"{tmp}/out:/out",
                  "-v", f"{a.pnpm_store}:/root/.local/share/pnpm",
-                 "-e", "CI=true", "-e", f"PM_ENV={rec['pm']}", a.image, "bash", "-c", LOOP], timeout=a.timeout)
+                 "-e", "CI=true", "-e", f"PM_ENV={rec['pm']}", "-e", f"VITEST_CMD={vpre}",
+                 "-e", f"ALT_VITEST_CMD={alt}", "-e", f"PREBUILD_CMD={prebuild}",
+                 a.image, "bash", "-c", LOOP], timeout=a.timeout)
             rec["suite_wall_s"] = round(time.time() - t0, 1)
             runs_txt = tmp / "out/_runs.txt"
             if not runs_txt.exists():
@@ -196,7 +210,18 @@ for line in open(a.list, encoding="utf-8"):
                 rec["files_fail"] = {f: reason_of(r1.get(f, (0, ""))[1] + r2.get(f, (0, ""))[1])
                                      for f in sorted(failf)}
                 rec["fail_reasons"] = dict(collections.Counter(rec["files_fail"].values()))
+                rec["fail_sigs"] = dict(collections.Counter(
+                    normsig(r1.get(f, (0, ""))[1] + r2.get(f, (0, ""))[1]) for f in failf).most_common(5))
+                rec["config_level"] = len(rec["fail_sigs"]) == 1 and len(failf) >= 5
+                rec["attempts"] = [{"invoke": vpre, "src": src, "frac": rec["frac_green_both"], "runs": 2}]
                 rec["vitest_s"] = rec["vitest_runs"].get("v1", {}).get("secs")
+            ralt = filestatus(tmp / "out/vitest_alt.json")
+            if ralt:
+                allfa = set(ralt)
+                fa = round(sum(1 for f in allfa if ralt[f][0]) / max(1, len(allfa)), 3)
+                rec.setdefault("attempts", []).append({"invoke": alt, "src": "alt-fallback", "frac": fa, "runs": 1})
+                if fa > (rec.get("frac_green_both") or 0):
+                    rec["frac_green_both"], rec["n_files_run"], rec["rescue"] = fa, len(allfa), True
             covs = rec["cov_files"]
             if covs:
                 med = sorted(c["secs"] for c in covs)[len(covs) // 2]
@@ -204,7 +229,8 @@ for line in open(a.list, encoding="utf-8"):
                 rec["proj_harvest_s"] = med * (rec["n_files_run"] or rec["n_test_files"] or 0)
             frac = rec.get("frac_green_both")
             if frac is None: rec["reason"] = "vitest produced no JSON (crash/config)"
-            elif frac < 0.9: rec["reason"] = f"only {frac:.0%} files green both runs {rec['fail_reasons']}"
+            elif frac < 0.9: rec["reason"] = (f"only {frac:.0%} files green both runs {rec['fail_reasons']}"
+                                            f" sigs={rec.get('fail_sigs')}")
             elif (rec["vitest_s"] or 1e9) > 600: rec["reason"] = f"suite {rec['vitest_s']}s > 600s"
             elif not rec["cov_ok"]: rec["reason"] = "coverage smoke failed"
             elif (rec["proj_harvest_s"] or 1e9) > 5400: rec["reason"] = f"projected harvest {rec['proj_harvest_s']}s > 5400s"
