@@ -70,7 +70,9 @@ for r in sorted(recs, key=lambda r: r["parent"]):
             except Exception: nm = None
             if nm: pkgdir[pj.rsplit("/", 1)[0] if "/" in pj else ""] = nm
     def closure(t):
-        seen, q = {"file:" + t}, ["file:" + t]
+        # dynamic import() edges aren't in the graph; signals' dyn specs are
+        # repo-relative paths — treat as runtime edges from the test file
+        seen, q = {"file:" + t} | {"file:" + m for m in sigs.get((P, t), {}).get("dyn", [])}, ["file:" + t] + ["file:" + m for m in sigs.get((P, t), {}).get("dyn", [])]
         while q:
             u = q.pop()
             for v in imp.get(u, ()):
@@ -89,7 +91,7 @@ for r in sorted(recs, key=lambda r: r["parent"]):
         seen = closure(t); clo = {x[5:] for x in seen if x.startswith("file:")}
         clo_files = clo | {t}
         mods = {x for x in seen if x.startswith("module:")}
-        dyn = {resolve(m, t, file_nodes) for m in sigs.get((P, t), {}).get("dyn", [])}
+        dyn = {m for m in sigs.get((P, t), {}).get("dyn", [])}  # already repo-relative paths
         mocks = set()
         for m in sigs.get((P, t), {}).get("mocks", []):
             if not m.startswith("module:"):

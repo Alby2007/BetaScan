@@ -157,17 +157,18 @@ warranted. Single-repo CV does NOT establish cross-repo transfer (P3's job).
 
 ## Phase 2 corrections, round 2 (post-review)
 
-**Residual fully closed.** Two more bugs found: `imp_specs`'s FROM regex used `.`
-(no newline match) so multi-line `export { ... } from './x'` was never counted as
-runtime — its spec was left only in the type set via a neighbouring `export type`.
-Fixed to `[\s\S]+?`. Extractor gained in-repo workspace-package resolution
-(name->dir from package.json files, subpath + src/index fallbacks); trpc
-re-extracted to `data/trpc_graphs_ws.db` (old db kept for frozen-eval
-reproducibility). trpc residual is now **0** — runtime import closure explains
-100% of covered files; C1 precision 0.392, recall 1.000, fn=0. Earlier claim that
-the residual was module-edge/workspace resolution was wrong: trpc resolved
-workspace specs via tsconfig paths already; the residual was the multi-line-export
-parse bug (typeonly-path classification). h3 re-run pending same impclass fix.
+**Residual fully closed on both repos.** Three causes, all ours not the
+extractor's: (a) `imp_specs`'s FROM regex used `.` (no newline match) so
+multi-line `export { ... } from './x'` was never counted as runtime — fixed to
+`[\s\S]+?`; (b) (src,dst)-granularity type-only filtering (fixed earlier,
+statement level); (c) dynamic `import()` calls are not graph edges — the signals
+sidecar's per-test dyn specs now seed the closure BFS (h3's sole residual was
+`test/happydom.test.ts` -> `await import('../src/index.ts')`). Extractor also
+gained in-repo workspace-package resolution (name->dir, subpath+src fallbacks);
+trpc re-extracted to `data/trpc_graphs_ws.db` (old db kept for frozen evals).
+Final: **residual 0 on both repos** — runtime closure explains 100% of covered
+files; C1 precision 0.333 h3 / 0.392 trpc, recall 1.000 both. The learnable zone
+is entirely within-closure precision.
 
 **CV, honest version.** The by-test split (0.848) was partly memorisation —
 dropping fingerprint features (func_size/file_size/fan_in/fan_out/exports_hit_frac)

@@ -105,6 +105,12 @@ for P, test_rows in by_snap.items():
     print(f"snapshot {P}: {len(test_rows)} tests, {len(files)} files, {len(pkgdir)} pkgs", flush=True)
     for t, rows in test_rows:
         idist = bfs(imp_rt, f"file:{t}")
+        # dynamic import() edges are not in the graph (extractor walks declarations
+        # only); signals sidecar has per-test specs — treat as runtime edges at d=1+
+        for m in sigs.get((P, t), {}).get("dyn", []):
+            if m in files:
+                for n, dd in bfs(imp_rt, f"file:{m}").items():
+                    if dd + 1 < idist.get(n, INF): idist[n] = dd + 1
         for n, d in list(idist.items()):
             if n.startswith("module:") and n[7:] in pkgdir:
                 dd = pkgdir[n[7:]] + "/"
