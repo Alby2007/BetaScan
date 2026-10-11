@@ -50,7 +50,8 @@ served `gemini-3.5-flash-lite`, temp 0, 380 calls, 0 parse failures; prompt in `
 - **FROZEN scored set**: `data/m1/trpc_ids_frozen.json` (233 change_ids, sha256 `ec4ecc72`).
   Scored subset = killed + >10 covering tests; M1 scored on it ONCE.
 - Go/no-go GO (clean + worst-case). Ordering FLIPS vs h3: **B4 is the bar** (n95 28.88),
-  B8 ties it (27.92), B3-A worse (+1.96 [+0.17,+3.84]).
+  B8 ties it (27.92), B3-A directionally worse but no detectable difference under file
+  clustering (+1.96 [−0.15,+4.24] includes 0; commit-clustered excludes it).
 - Edge-type ablation: imports carry most of B4 (B1 = 86% of n95 gain; calls-only B4c = 35%);
   calls add ~+1 n95 unit. Controlled miss analysis (`--max-frac 0.5`): registration-layer
   hypothesis survives control — see `data/b4_misses.md`.

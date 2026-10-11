@@ -18,7 +18,8 @@ free and deterministic.
 
 **trpc cross-repo result (the headline):** the ordering flips. On the frozen scored set
 (233 mutants, 184 killed, `data/m1/trpc_ids_frozen.json`), **B4 is the best baseline** (n95 28.88),
-B8 ties it (27.92), and B3-A is *worse* on n95 (29.88, paired diff +1.96 [+0.17,+3.84]). A lite
+B8 ties it (27.92), and B3-A shows **no detectable difference** (29.88; paired n95 diff +1.96,
+file-clustered CI [−0.15,+4.24] includes 0 — commit-clustered excludes it). A lite
 diff-reading LLM helped on h3 but adds nothing beyond B4 on trpc — the call/import-graph heuristic
 is the only ranker that is consistently strong on both repos.
 

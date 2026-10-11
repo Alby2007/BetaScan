@@ -60,12 +60,18 @@ Pilot complete: 7 commits, 141 mutants, 110 killed, 58 distinct src files. Go/no
 
 - **B4 vs B5a**: n95 −8.13, recall@5 +0.201, APFD +0.153 — survives source-file and function
   clustering (n95 file [−11.70, −4.96]); 7 commits is too few to cluster on, 50 files is the unit.
-- **Ordering flips vs h3**: there B3-A ≈ B8 > B4; on trpc B4 ≈ B8 and B3-A is *worse* than B4 on
-  n95 (+2.67, CI excludes 0; ties on recall@5/APFD). The structural heuristic is the cross-repo
-  stable ranker; the diff-reading LLM is not. trpc contamination risk applies to B3's favour, so
-  this is conservative evidence for structure.
-- **Gap-closed share by B4** (random→oracle): recall@5 ~47% (h3 ~47%), APFD ~53% (h3 ~51%),
-  n95 ~41% (h3 ~47%) — the cross-repo consistency is the headline result.
+- **Ordering flips vs h3**: there B3-A ≈ B8 > B4; on trpc B4 ≈ B8 and B3-A shows **no
+  detectable difference** from B4 — directionally worse on n95 but the file-clustered CI
+  includes 0 (+1.96 [−0.15, +4.24] on the 117 common set; the commit-clustered CI excludes 0;
+  ties on recall@5/APFD). The structural heuristic is the cross-repo stable ranker; the
+  diff-reading LLM is not. trpc contamination risk applies to B3's favour, so this is
+  conservative evidence for structure.
+- **Gap-closed share by B4** (random→oracle): trpc ~33% n95 / ~39% recall@5 / ~45% APFD;
+  h3 ~half — i.e. "a third to a half", not "about half" on both.
+- **B4 decomposition** (edge-type ablation, `data/b4_misses.md`): import proximity (B1)
+  delivers ~74% (h3) / ~86% (trpc) of B4's n95 gain; call edges add ~+1 n95 unit, significant
+  but small — the working signal is mostly **coarse module distance**, not deep program
+  reasoning, consistent with the miss analysis (failing tests rarely import the mutant file).
 
 ## M1 — trained on h3, frozen before trpc scoring
 

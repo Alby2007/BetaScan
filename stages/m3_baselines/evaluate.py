@@ -54,9 +54,11 @@ def hist_model(train_changes):
     return key
 
 B3 = {}
-for _f in glob.glob(a.b3dir + "/b3_*.jsonl"):
+for _d in a.b3dir.split(","):
+ for _f in glob.glob(_d + "/b3_*.jsonl"):
     for _l in open(_f):
-        _j = json.loads(_l); B3.setdefault(f"B3 LLM variant {_j['variant']} ({_j['model']})", {})[_j["change_id"]] = {t: i for i, t in enumerate(_j["ranking"])}
+        _j = json.loads(_l); _nm = f"B3 LLM variant {_j['variant']} ({_j['model']})" if not _j["variant"].startswith("M1") else f"M1 {_j['variant']} ({_j['model']})"
+        B3.setdefault(_nm, {})[_j["change_id"]] = {t: i for i, t in enumerate(_j["ranking"])}
 
 STOP_TOK = {"src", "test", "tests", "index", "ts", "d", "mts", "cts", "unit", "mod", "main"}
 import re as _re
