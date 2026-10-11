@@ -8,6 +8,7 @@ Usage: residual.py NAME M2DIRS DB REPO PAIRS.jsonl[.gz] SIGNALS.jsonl --out rep.
 import argparse, collections, gzip, glob, json, os, pathlib, re, sqlite3, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from impclass import imp_specs
+from domains import DOMAINS
 ap = argparse.ArgumentParser()
 for x in ["name","m2dirs","db","repo","pairs","signals"]: ap.add_argument(x)
 ap.add_argument("--out", default="")
@@ -136,6 +137,7 @@ if a.meta:
     res_n = sum(causes.values())
     mp = pathlib.Path(a.meta)
     meta = json.loads(mp.read_text(encoding="utf-8")) if mp.exists() else {"repo": a.name}
+    meta.setdefault("domain", DOMAINS.get(a.name, DOMAINS.get(a.name.split("/")[-1], "?")))
     # coverage selectivity: mean fraction of a snapshot's tests covering a covered function
     tests_per_snap = collections.defaultdict(set); func_cov = collections.defaultdict(set)
     for (P_, t_), rows in pair_rows.items():

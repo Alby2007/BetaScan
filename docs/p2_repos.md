@@ -6,7 +6,9 @@ In: TypeScript source, Vitest suite, public GitHub repo, `pnpm`/`npm`/`yarn` ins
 suite ≤ ~10 min wall, deterministic (no external services/keys/models), not a fork.
 Out (logged with reason): non-Vitest runners (jest/mocha/ava/tap/bun:test/deno/node:test),
 heavy external deps (playwright downloads, model weights, API keys), rust/go build steps,
->10 min suites, near-duplicates/forks, flaky suite (any differing result across 2 runs).
+>10 min suites, near-duplicates/forks. Per-file flakiness/failures are handled at
+file level: a repo passes if ≥90% of test files are green identically in both runs
+(flaky + consistently-failing files excluded at harvest, as on trpc).
 
 ## Validation grouping: maintainer ecosystem, cap 2
 
@@ -29,12 +31,19 @@ it is never in a training fold when trpc is the held-out target.
 ## Automated screen → final list
 
 `stages/p2_covpred/screen_repo.py` (Docker, same images as the coverage harness) does,
-per candidate: shallow clone at pinned sha → detect runner from package.json scripts +
-vitest config → install → run suite **twice** → record
-`{repo, runner, install_ok, suite_wall_s, n_test_files, flaky, reason}` to
-`screen.jsonl`. The screen output IS the final list — anything with `runner != vitest`,
-`install_ok = false`, `flaky = true`, or `suite_wall_s > 600` is logged in
-`exclusions.jsonl` with its reason.
+per candidate: shallow clone (HEAD sha recorded — harvest checks out that sha) →
+detect runner → install → repo's own `test` script once (chains logged) →
+`vitest run --reporter=json` **twice** for per-file pass/fail → coverage smoke on
+5 size-stratified test files (median secs/file × n_files = projected harvest) →
+`screen.jsonl`. The screen output IS the final list. **PASS = ≥90% of test files
+green identically in both vitest runs** (`frac_green_both`); flaky files
+(differing results) and consistently-failing files are excluded at harvest, not
+repo-fatal — consistent failures are classified per file
+(`network`/`dom`/`missing-build`/`missing-tool`/`other`) and reported so a generic
+prebuild step can be evaluated. Repo-level rejects: `runner != vitest`,
+`install_ok = false`, `frac_green_both < 0.9`, `vitest_s > 600`, coverage smoke
+failed, or `proj_harvest_s > 5400` (90 min). Every row carries `sha`, `domain`,
+image digest, node/pnpm versions.
 
 ## Candidate pool (~35 → screen decides final ~24)
 
@@ -101,7 +110,8 @@ universe.
 
 ```
 data/covpred/repos/<org>__<name>/
-  meta.json        {ecosystem, repo, pinned_sha, node_image, suite_wall_s, n_tests,
+  meta.json        {ecosystem, domain, repo, pinned_sha, node_image, image_digest,
+                    node/pnpm versions, extractor_version, suite_wall_s, n_tests,
                     n_pairs, pos_rate, coverage_selectivity, c1_recall, residual_n}
   baseline.json    empty-test covered files (setup mask)
   pairs.jsonl.gz   same schema as h3/trpc (+ "weight" only if sampling ever used)

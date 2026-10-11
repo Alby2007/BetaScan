@@ -7,7 +7,7 @@ Exclusions appended to exclusions.jsonl with {repo, reason, stage:screen}.
 Usage: screen_repo.py --list repos.txt [--timeout 1500]
 repos.txt lines: <org>/<name> [<sha>]   (# comments ok)
 """
-import argparse, json, pathlib, shutil, subprocess, tarfile, tempfile, time
+import argparse, collections, json, pathlib, re, shutil, subprocess, tarfile, tempfile, time
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--list", required=True)
@@ -20,7 +20,19 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v4-sha5cov"   # v3 + head SHA, 5-file coverage median, A:-pause, 90min projection
+CMD_VERSION = "v5-perfile"   # v4 + per-test-file pass/flaky/fail from 2 vitest JSON runs; PASS = >=90% files green identically both runs
+
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+from domains import DOMAINS
+
+def reason_of(msg):
+    m = msg.lower()
+    if re.search(r"econnrefused|enotfound|eai_again|fetch failed|socket|etimedout|\bnetwork\b", m): return "network"
+    if re.search(r"jsdom|happy-dom|playwright|puppeteer|chromium|webgl|\bbrowser\b|document is not defined|window is not defined|localstorage", m): return "dom/browser"
+    if re.search(r"cannot find module|err_module_not_found|no such file|/dist/|/build/", m): return "missing-build"
+    if re.search(r"command not found|enoent|docker|permission denied", m): return "missing-tool"
+    return "other"
 RETRY = {"install_or_suite_fail", "timeout", "error", "clone_fail", "disk_guard"}
 ROOT = pathlib.Path(a.clone_dir); ROOT.mkdir(exist_ok=True)
 pathlib.Path(a.pnpm_store).mkdir(parents=True, exist_ok=True)
@@ -56,9 +68,9 @@ IMG = img_meta(a.image)
 CHAIN_HINTS = ("lint", "tsc", "typecheck", "type-check", "format", "build", "attw", "publint")
 def emit(rec):
     screen.write(json.dumps(rec) + "\n"); screen.flush()
-    ok = (rec["install_ok"] and (rec["runner"] == "vitest") and not rec["flaky"]
+    ok = (rec["install_ok"] and (rec["runner"] == "vitest")
+          and (rec.get("frac_green_both") or 0) >= 0.9
           and (rec["vitest_s"] or 1e9) <= 600 and rec.get("cov_ok")
-          and (rec["vitest_rc"] == 0)
           and (rec.get("proj_harvest_s") or 1e9) <= 5400)
     if not ok:
         excl.write(json.dumps({"repo": rec["repo"], "reason": rec["reason"], "stage": "screen"}) + "\n"); excl.flush()
@@ -71,20 +83,20 @@ case "$PM_ENV" in
   npm)  npm ci >&2 || npm install >&2 ;;
   yarn) yarn install --frozen-lockfile >&2 || yarn install >&2 ;;
 esac || exit 9
-# repo's own test command x2 (flaky check + wall)
+# repo's own test command once (chain logging)
+s=$(date +%s)
+case "$PM_ENV" in
+  pnpm) pnpm test >/out/test.log 2>&1 ;;
+  npm)  npm test >/out/test.log 2>&1 ;;
+  yarn) yarn test >/out/test.log 2>&1 ;;
+esac
+echo "t $? $(( $(date +%s)-s ))" >> /out/_runs.txt
+# plain vitest run x2 with per-file JSON — per-file pass/fail + flakiness (harvest uses vitest directly)
 for run in 1 2; do
   s=$(date +%s)
-  case "$PM_ENV" in
-    pnpm) pnpm test >/out/test$run.log 2>&1 ;;
-    npm)  npm test >/out/test$run.log 2>&1 ;;
-    yarn) yarn test >/out/test$run.log 2>&1 ;;
-  esac
-  echo "$run $? $(( $(date +%s)-s ))" >> /out/_runs.txt
+  npx vitest run --reporter=json --outputFile=/out/vitest$run.json >/out/vitest$run.log 2>&1
+  echo "v$run $? $(( $(date +%s)-s ))" >> /out/_runs.txt
 done
-# plain vitest run (what harvest uses) — always, for classification + timing
-s=$(date +%s)
-npx vitest run --reporter=json --outputFile=/out/vitest.json >/out/vitest.log 2>&1
-echo "v $? $(( $(date +%s)-s ))" >> /out/_runs.txt
 # coverage smoke: ~5 test files stratified by size (harvest-critical)
 find . -path ./node_modules -prune -o \( -name '*.test.*' -o -name '*.spec.*' \) -printf '%s %p\n' | sort -n > /tmp/tf.txt
 wc -l < /tmp/tf.txt > /out/_ntests.txt
@@ -115,8 +127,10 @@ for line in open(a.list, encoding="utf-8"):
     dest = ROOT / repo.replace("/", "__")
     rec = {"repo": repo, "cmd": CMD_VERSION, **IMG, "runner": None, "pm": None, "sha": None,
            "test_script": None, "chains": [], "install_ok": False, "suite_wall_s": None,
-           "runs": [], "vitest_rc": None, "vitest_s": None, "cov_ok": None, "cov_files": [],
-           "proj_harvest_s": None, "flaky": None, "n_test_files": None, "reason": None}
+           "test_rc": None, "test_s": None, "vitest_runs": {}, "vitest_s": None,
+           "cov_ok": None, "cov_files": [], "proj_harvest_s": None,
+           "frac_green_both": None, "n_files_run": None, "files_flaky": [], "files_fail": {},
+           "fail_reasons": {}, "domain": DOMAINS.get(repo, "?"), "n_test_files": None, "reason": None}
     try:
         if not dest.exists():
             r = run(["git", "clone", "--depth", "1", f"https://github.com/{repo}.git", str(dest)], timeout=300)
@@ -149,29 +163,49 @@ for line in open(a.list, encoding="utf-8"):
             if not runs_txt.exists():
                 rec["reason"] = "install_or_suite_fail"; emit(rec); continue
             rec["install_ok"] = True
-            passes = []
             for l in runs_txt.read_text().splitlines():
                 p_ = l.split()
                 if p_[0] == "c":
                     rec["cov_files"].append({"rc": int(p_[1]), "secs": int(p_[2]), "ok": int(p_[3])})
-                    continue
-                if p_[0] == "v":
-                    rec["vitest_rc"] = int(p_[1]); rec["vitest_s"] = int(p_[2]); continue
-                res = {"run": int(p_[0]), "rc": int(p_[1]), "secs": int(p_[2])}
-                rec["runs"].append(res)
-                # classify pass/fail from the repo command's exit codes only (log text varies)
-                passes.append(int(p_[1]))
+                elif p_[0] == "t":
+                    rec["test_rc"], rec["test_s"] = int(p_[1]), int(p_[2])
+                else:  # v1, v2
+                    rec["vitest_runs"][p_[0]] = {"rc": int(p_[1]), "secs": int(p_[2])}
             nt = tmp / "out/_ntests.txt"
             rec["n_test_files"] = int(nt.read_text().strip()) if nt.exists() else None
-            covs = [c for c in rec["cov_files"]]
+
+            def filestatus(f):
+                try: j = json.loads(f.read_text(encoding="utf-8"))
+                except Exception: return {}
+                out = {}
+                for tr in j.get("testResults", []):
+                    name = tr.get("name", "").split("/repo/")[-1]
+                    out[name] = (tr.get("status") == "passed", json.dumps(tr)[:4000])
+                return out
+            r1 = filestatus(tmp / "out/vitest1.json"); r2 = filestatus(tmp / "out/vitest2.json")
+            if r1 and r2:
+                allf = set(r1) | set(r2)
+                green = {f for f in allf if r1.get(f, (0,))[0] and r2.get(f, (0,))[0]}
+                flaky = {f for f in allf if ((f in r1) != (f in r2)) or
+                         (f in r1 and f in r2 and r1[f][0] != r2[f][0])}
+                failf = allf - green - flaky
+                rec["n_files_run"] = len(allf)
+                rec["files_green_both"] = len(green)
+                rec["frac_green_both"] = round(len(green) / max(1, len(allf)), 3)
+                rec["files_flaky"] = sorted(flaky)
+                rec["files_fail"] = {f: reason_of(r1.get(f, (0, ""))[1] + r2.get(f, (0, ""))[1])
+                                     for f in sorted(failf)}
+                rec["fail_reasons"] = dict(collections.Counter(rec["files_fail"].values()))
+                rec["vitest_s"] = rec["vitest_runs"].get("v1", {}).get("secs")
+            covs = rec["cov_files"]
             if covs:
                 med = sorted(c["secs"] for c in covs)[len(covs) // 2]
                 rec["cov_ok"] = sum(c["ok"] for c in covs) > 0
-                rec["proj_harvest_s"] = med * (rec["n_test_files"] or 0)
-            rec["flaky"] = len(set(passes)) > 1 if len(passes) == 2 else None
-            if rec["flaky"]: rec["reason"] = "flaky: run1!=run2"
+                rec["proj_harvest_s"] = med * (rec["n_files_run"] or rec["n_test_files"] or 0)
+            frac = rec.get("frac_green_both")
+            if frac is None: rec["reason"] = "vitest produced no JSON (crash/config)"
+            elif frac < 0.9: rec["reason"] = f"only {frac:.0%} files green both runs {rec['fail_reasons']}"
             elif (rec["vitest_s"] or 1e9) > 600: rec["reason"] = f"suite {rec['vitest_s']}s > 600s"
-            elif rec["vitest_rc"] != 0: rec["reason"] = f"vitest rc={rec['vitest_rc']}"
             elif not rec["cov_ok"]: rec["reason"] = "coverage smoke failed"
             elif (rec["proj_harvest_s"] or 1e9) > 5400: rec["reason"] = f"projected harvest {rec['proj_harvest_s']}s > 5400s"
             emit(rec)
