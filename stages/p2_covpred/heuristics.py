@@ -7,23 +7,29 @@ Usage: heuristics.py PAIRS.jsonl[.gz] SIGNALS.jsonl DB REPO --out report.md"""
 import argparse, collections, gzip, json, random, re, sqlite3, subprocess
 import numpy as np
 ap = argparse.ArgumentParser(); ap.add_argument("pairs"); ap.add_argument("signals"); ap.add_argument("db"); ap.add_argument("repo")
-ap.add_argument("--out", default="")
+ap.add_argument("--rows", default=""); ap.add_argument("--out", default="")
 a = ap.parse_args()
 
 op = gzip.open if a.pairs.endswith(".gz") else open
 pairs = [json.loads(l) for l in op(a.pairs, "rt")]
 con = sqlite3.connect(a.db)
 
-TYPONLY = re.compile(r"^\s*import\s+type\s*(?:\{[^}]*\}|\*\s*as\s*\w+|\w+)?\s*from\s*['\"]([^'\"]+)['\"]", re.M)
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from impclass import imp_specs
+
 def git_show(P, f):
     return subprocess.run(["git", "-C", a.repo, "show", f"{P}:{f}"], capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
-def resolve(spec, frm):
+def resolve(spec, frm, files=()):
     if not spec.startswith("."): return "module:" + (spec if spec.startswith("node:") else "/".join(spec.split("/")[:2]) if spec.startswith("@") else spec.split("/")[0])
     base = frm.rsplit("/", 1)[0]; out = []
     for p in (base + "/" + spec).split("/"):
         if p == "..": out = out[:-1]
         elif p != ".": out.append(p)
-    return "/".join(out)
+    stem = "/".join(out)
+    for cand in (stem + ".ts", stem + ".tsx", stem + "/index.ts", stem + "/index.tsx"):
+        if cand in files: return cand
+    return stem
 
 sigs = collections.defaultdict(dict)
 for l in open(a.signals):
@@ -50,10 +56,24 @@ INF = 10**6
 HEU = ["C0", "C1", "C2", "C3", "C4", "C5"]
 Y = {k: [] for k in HEU}; S = {k: [] for k in HEU}
 per_test = collections.defaultdict(lambda: {k: ([], []) for k in HEU})
+per_func = collections.defaultdict(lambda: {k: ([], []) for k in HEU})
+per_snap = collections.defaultdict(lambda: {k: ([], []) for k in HEU})
 by_test = collections.defaultdict(list)
 for p in pairs: by_test[(p["snapshot"], p["test"])].append(p)
 by_snap = collections.defaultdict(list)
 for (P, t), rows in by_test.items(): by_snap[P].append((t, rows))
+snap_pos = {P: sum(x["covered"] for _, rs in rs_ for x in rs) / max(1, sum(len(rs) for _, rs in rs_)) for P, rs_ in by_snap.items()}
+# mutation-target functions (optional --rows rows.jsonl): func ranges containing a mutant line
+mut_funcs = set()
+if a.rows:
+    pf = {}
+    for l in open(a.rows):
+        r = json.loads(l); P0, f0, ln = r["parent"], r["src_file"], r["line"]
+        if (P0, f0) not in pf:
+            pf[(P0, f0)] = [(s, e, i) for s, e, i in con.execute(
+                "SELECT start_line,end_line,id FROM nodes WHERE commit_hash=? AND kind='function' AND file=?", (P0, f0))]
+        for s, e, i in pf[(P0, f0)]:
+            if s <= ln <= e: mut_funcs.add(i)
 
 rng = random.Random(0)
 for P, test_rows in by_snap.items():
@@ -62,7 +82,11 @@ for P, test_rows in by_snap.items():
         (imp if ty == "imports" else call)[src].add(dst)
         if src.startswith("file:"): files.add(src[5:])
     for t, rows in test_rows: files |= {r["file"] for r in rows} | {t}
-    typeonly = {f: {resolve(m, f) for m in TYPONLY.findall(git_show(P, f))} for f in files}
+    typeonly = {}
+    for f in files:
+        run_specs, typ_specs = imp_specs(git_show(P, f))
+        tg = {resolve(m, f, files) for m in typ_specs} - {resolve(m, f, files) for m in run_specs}
+        if tg: typeonly[f] = tg
     imp_rt = collections.defaultdict(set)
     for src, ds in imp.items():
         for d in ds:
@@ -70,9 +94,23 @@ for P, test_rows in by_snap.items():
     fnodes = collections.defaultdict(list)
     for i, k, f in con.execute("SELECT id,kind,file FROM nodes WHERE commit_hash=?", (P,)):
         if k == "function": fnodes[f].append(i)
-    print(f"snapshot {P}: {len(test_rows)} tests, {len(files)} files", flush=True)
+    # workspace packages: in-repo package.json name -> dir; a module:X edge to a
+    # workspace package exposes all files under its dir at distance+1 (ts-morph may
+    # resolve the import via package exports instead of the workspace source)
+    pkgdir = {}
+    for pj in subprocess.run(["git", "-C", a.repo, "ls-tree", "-r", "--name-only", P], capture_output=True, text=True).stdout.splitlines():
+        if pj.endswith("package.json") and pj.count("/") <= 3 and "node_modules" not in pj:
+            try: nm = json.loads(git_show(P, pj)).get("name")
+            except Exception: nm = None
+            if nm and "/" in pj: pkgdir[nm] = pj.rsplit("/", 1)[0]
+    print(f"snapshot {P}: {len(test_rows)} tests, {len(files)} files, {len(pkgdir)} pkgs", flush=True)
     for t, rows in test_rows:
         idist = bfs(imp_rt, f"file:{t}")
+        for n, d in list(idist.items()):
+            if n.startswith("module:") and n[7:] in pkgdir:
+                dd = pkgdir[n[7:]] + "/"
+                for f in files:
+                    if f.startswith(dd) and d + 1 < idist.get(f"file:{f}", INF): idist[f"file:{f}"] = d + 1
         mocked = set()
         for m in sigs.get((P, t), {}).get("mocks", []):
             if not m.startswith("module:"):
@@ -95,7 +133,10 @@ for P, test_rows in by_snap.items():
             lex = float(len(tt & ft))
             for k, v in [("C0", rng.random()), ("C1", clo), ("C2", -impd), ("C3", -cal),
                          ("C4", lex), ("C5", -10 * impd - cal + 0.01 * lex)]:
-                Y[k].append(y); S[k].append(v); per_test[(P, t)][k][0].append(v); per_test[(P, t)][k][1].append(y)
+                Y[k].append(y); S[k].append(v)
+                per_test[(P, t)][k][0].append(v); per_test[(P, t)][k][1].append(y)
+                per_func[(P, fid)][k][0].append(v); per_func[(P, fid)][k][1].append(y)
+                per_snap[P][k][0].append(v); per_snap[P][k][1].append(y)
 
 from sklearn.metrics import average_precision_score, precision_recall_curve
 def AP(y, s): return average_precision_score(y, s) if any(y) else float("nan")
@@ -105,11 +146,26 @@ def pat_recall(y, s, rt):
     return float(ok.max()) if len(ok) else float("nan")
 
 lines = ["# P1 heuristic baselines — coverage prediction\n",
-         "| ranker | pooled AP | per-test AP | P@R50 | P@R80 | n pairs |", "|---|---|---|---|---|---|"]
+         "C5 is a FIXED lexicographic formula `-10*impd - calld + 0.01*lex` — no fitting on labels (not in-sample).\n",
+         "| ranker | pooled AP | snap-macro AP | per-test AP | per-func AP | per-func AP (mutants) | P@R50 | P@R80 |",
+         "|---|---|---|---|---|---|---|---|"]
 for k in HEU:
     y = np.array(Y[k]); s = np.array(S[k], dtype=float)
     pt = [AP(v[k][1], v[k][0]) for v in per_test.values() if any(v[k][1])]
-    lines.append(f"| {k} | {AP(y, s):.3f} | {np.mean(pt):.3f} | {pat_recall(y, s, .5):.3f} | {pat_recall(y, s, .8):.3f} | {len(y)} |")
+    pf = [AP(v[k][1], v[k][0]) for v in per_func.values() if any(v[k][1])]
+    pfm = [AP(v[k][1], v[k][0]) for (P, fid), v in per_func.items() if fid in mut_funcs and any(v[k][1])]
+    ps = [AP(v[k][1], v[k][0]) for v in per_snap.values() if any(v[k][1])]
+    lines.append(f"| {k} | {AP(y, s):.3f} | {np.mean(ps):.3f} | {np.mean(pt):.3f} | {np.mean(pf):.3f} | {np.mean(pfm) if pfm else float('nan'):.3f} | {pat_recall(y, s, .5):.3f} | {pat_recall(y, s, .8):.3f} |")
+lines.append("\n## era bands (snap-macro AP by snapshot positive rate)\n")
+bands = sorted({("low" if snap_pos[P] < .3 else "high") for P in snap_pos})
+lines.append("| ranker | " + " | ".join(f"pos{b} n={sum(1 for P in snap_pos if (snap_pos[P]<.3)==(b=='low'))}" for b in bands) + " |")
+lines.append("|---|" + "---|" * len(bands))
+for k in HEU:
+    cells = []
+    for b in bands:
+        vals = [AP(per_snap[P][k][1], per_snap[P][k][0]) for P in snap_pos if (snap_pos[P] < .3) == (b == "low") and any(per_snap[P][k][1])]
+        cells.append(f"{np.mean(vals):.3f}" if vals else "-")
+    lines.append(f"| {k} | " + " | ".join(cells) + " |")
 rep = "\n".join(lines) + "\n"
 print(rep)
 if a.out: open(a.out, "w").write(rep)

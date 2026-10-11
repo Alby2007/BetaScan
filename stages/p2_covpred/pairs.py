@@ -6,7 +6,9 @@ in test files themselves, .d.ts, and files with no executable lines (never cover
 Also emits per-snapshot sidecars: type-only import targets per file, vi/jest mock targets and
 dynamic import() targets per test file (resolved from `git show` source, repo-relative paths).
 Usage: pairs.py REPO_NAME M2DIRS DB REPO OUT.jsonl --baseline BL.json [--report OUT.md]"""
-import argparse, bisect, collections, glob, json, re, sqlite3, subprocess
+import argparse, bisect, collections, glob, json, re, sqlite3, subprocess, sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from impclass import imp_specs
 ap = argparse.ArgumentParser(); ap.add_argument("name"); ap.add_argument("m2dirs"); ap.add_argument("db"); ap.add_argument("repo"); ap.add_argument("out")
 ap.add_argument("--baseline", default=""); ap.add_argument("--report", default="")
 a = ap.parse_args()
@@ -19,7 +21,6 @@ recs = [r for r in recs if "cov_P" in r and "parent" in r]
 # ---------- sidecar source scans ----------
 MOCK = re.compile(r"(?:vi|jest)\.mock\(\s*['\"]([^'\"]+)['\"]")
 DYNI = re.compile(r"\bimport\(\s*['\"]([^'\"]+)['\"]")
-TYPONLY = re.compile(r"^\s*import\s+type\s*(?:\{[^}]*\}|\*\s*as\s*\w+|\w+)?\s*from\s*['\"]([^'\"]+)['\"]", re.M)
 def git_show(P, f):
     return subprocess.run(["git", "-C", a.repo, "show", f"{P}:{f}"], capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
 def resolve(spec, frm, files):
@@ -64,12 +65,14 @@ for r in sorted(recs, key=lambda r: r["parent"]):
     imp = collections.defaultdict(set)
     for src, dst in con.execute("SELECT src,dst FROM edges WHERE commit_hash=? AND type='imports'", (P,)):
         imp[src].add(dst)
-    # type-only targets per file (source scan; needed by heuristics C1)
+    # type-only targets per file (statement-level: a dst is type-only iff NO runtime
+    # statement in the same file references it; fixes (src,dst) over-exclusion)
     all_files = {n[1] for n in nodes.values()} | set(tests)
     typeonly = {}
     for f in all_files:
-        src = git_show(P, f)
-        tg = {resolve(m, f, file_nodes | set(tests)) for m in TYPONLY.findall(src)}
+        run_specs, typ_specs = imp_specs(git_show(P, f))
+        fs = file_nodes | set(tests)
+        tg = {resolve(m, f, fs) for m in typ_specs} - {resolve(m, f, fs) for m in run_specs}
         if tg: typeonly[f] = sorted(tg)
     covered_any = set()
     for t, v in tests.items():
