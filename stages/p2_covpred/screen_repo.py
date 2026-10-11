@@ -20,7 +20,7 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v8-provider"  # v7d + coverage provider auto-installed at installed vitest version (harness patch, logged); UNSCORED verdict for tests-ran-no-JSON
+CMD_VERSION = "v8b-coverr"   # v8 + cov_err tail captured on coverage-smoke failure
 
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -285,7 +285,11 @@ for line in open(a.list, encoding="utf-8"):
             elif frac < 0.9: rec["reason"] = (f"only {frac:.0%} files green both runs {rec['fail_reasons']}"
                                             f" sigs={rec.get('fail_sigs')}")
             elif (rec["vitest_s"] or 1e9) > 600: rec["reason"] = f"suite {rec['vitest_s']}s > 600s"
-            elif not rec["cov_ok"]: rec["reason"] = "coverage smoke failed"
+            elif not rec["cov_ok"]:
+                lg = next((p for p in sorted(tmp.glob("out/cov_*.log"))), None)
+                tail = lg.read_text(encoding="utf-8", errors="replace")[-300:] if lg else ""
+                rec["cov_err"] = " ".join(tail.split())
+                rec["reason"] = "coverage smoke failed"
             elif (rec["proj_harvest_s"] or 1e9) > 5400: rec["reason"] = f"projected harvest {rec['proj_harvest_s']}s > 5400s"
             emit(rec)
     except subprocess.TimeoutExpired:
