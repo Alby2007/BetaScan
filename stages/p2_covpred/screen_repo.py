@@ -20,7 +20,7 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v8e-faildetail" # v8d + fail/signature detail taken from the best available attempt (canonical fail -> alt still gets classified)
+CMD_VERSION = "v8f-covcwd"   # v8e + coverage binary runs under the same cwd prefix as the derived invocation (monorepo package dirs)
 
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -139,9 +139,10 @@ for i in 0 1 2 3 4; do
   [ "$n" -gt 0 ] || break
   idx=$(( 1 + i*(n-1)/4 )); [ "$idx" -gt "$n" ] && idx=$n
   f=$(awk "NR==$idx" /tmp/tf.txt | cut -d' ' -f2-)
-  s=$(date +%s); rm -rf coverage
+  [ -n "$COV_WD" ] && f="${f#./$COV_WD/}"
+  s=$(date +%s); covdir="${COV_WD:-.}/coverage"; rm -rf "$covdir"
   timeout 300 bash -c "$COV_CMD --coverage --coverage.reporter=json --coverage.all=false \"$f\" --reporter=json --outputFile=/out/covres_$i.json" >/out/cov_$i.log 2>&1
-  ok=0; [ -f coverage/coverage-final.json ] && ok=1 && cp coverage/coverage-final.json /out/cov_$i.json
+  ok=0; [ -f "$covdir/coverage-final.json" ] && ok=1 && cp "$covdir/coverage-final.json" /out/cov_$i.json
   echo "c $? $(( $(date +%s)-s )) $ok" >> /out/_runs.txt
 done
 '''
@@ -189,7 +190,9 @@ for line in open(a.list, encoding="utf-8"):
             rec["reason"] = f"runner={rec['runner']}"; emit(rec); continue
         rec["pm"] = "pnpm" if (dest / "pnpm-lock.yaml").exists() else "yarn" if (dest / "yarn.lock").exists() else "npm"
         vpre, alt, prebuild, src, cand, scope = derive_invocation(dest, rec["pm"])
-        cov_cmd = (f"{rec['pm']} exec vitest run" if rec["pm"] == "pnpm"
+        cdp = re.match(r"cd (\S+) && ", vpre)
+        cov_cmd = (cdp.group(0) if cdp else "") + \
+                  (f"{rec['pm']} exec vitest run" if rec["pm"] == "pnpm"
                    else "yarn vitest run" if rec["pm"] == "yarn" else "npx --no-install vitest run")
         rec.update({"invoke": vpre, "invoke_src": src, "invoke_alt": alt,
                     "prebuild": prebuild, "prebuild_s": 0, "ci_steps": cand,
@@ -202,7 +205,7 @@ for line in open(a.list, encoding="utf-8"):
                  "-v", f"{a.pnpm_store}:/root/.local/share/pnpm",
                  "-e", "CI=true", "-e", f"PM_ENV={rec['pm']}", "-e", f"VITEST_CMD={vpre}",
                  "-e", f"ALT_VITEST_CMD={alt}", "-e", f"PREBUILD_CMD={prebuild}", "-e", f"COV_DIR={scope}",
-                 "-e", f"COV_CMD={cov_cmd}",
+                 "-e", f"COV_CMD={cov_cmd}", "-e", f"COV_WD={cdp.group(1) if cdp else ''}",
                  a.image, "bash", "-c", LOOP], timeout=a.timeout)
             rec["suite_wall_s"] = round(time.time() - t0, 1)
             runs_txt = tmp / "out/_runs.txt"
