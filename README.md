@@ -28,13 +28,14 @@ Edge-type ablation (both repos): B4's signal is mostly **import distance** (B1 a
 Controlled error analysis (`--max-frac 0.5`): B4 misses concentrate in registration/indirection
 layers — hypothesis, not yet proven. See `data/b4_misses.md`.
 
-**State:** trpc scored set frozen (sha256 `ec4ecc72`); M1 trained on h3 and frozen
-(`data/m1/m1_h3.pkl` + spec, hashes in `DECISIONS.md`). B3-A trpc coverage 117/184 (max
-achievable 173; 56 calls blocked by the Gemini 500/day free-tier cap, 11 non-regenerable).
-Scoring is two-tier (pre-registered): **primary** = M1 vs B4 on all 184 frozen mutants;
-**secondary (partial)** = M1 vs best-of {B3-A,B4,B7,B8} on the 117-mutant common set.
-A later B3 addendum cannot change the primary verdict. **Stopped for review before M1
-is scored on trpc** (score-once rule).
+**M1 scored once on trpc** (`data/trpc_eval_m1.md`). PRIMARY (M1 vs B4, all 184, file-clustered):
+n95 29.95 vs 28.88, paired diff **+1.07 [−0.74, +2.93]** — verdict **INCONCLUSIVE** on a knife
+edge (point estimate +3.7% inside the ±2.89 margin, but the CI is not entirely within it;
+commit clustering would read LOSS). SECONDARY (117 common set, bar = B8): **LOSS**
+(M1 +2.31 [+1.07, +3.75]; the B3-stack variant also loses, +1.44 [+0.40, +2.60]).
+Takeaway: **ship the heuristic** — B4 alone, or B8 where B3 rankings already exist; the
+h3-trained learner adds nothing that transfers, consistent with the measured covariate
+shift in its top features (`data/m1/` importances in DECISIONS.md).
 
 ## Layout
 

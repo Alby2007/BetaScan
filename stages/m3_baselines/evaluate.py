@@ -6,6 +6,7 @@ import argparse, collections, json, math, os, random, sqlite3, statistics, sys
 ap = argparse.ArgumentParser(); ap.add_argument("rows"); ap.add_argument("db"); ap.add_argument("out")
 ap.add_argument("--m2dir", default="data/m2"); ap.add_argument("--test-parents", type=int, default=4); ap.add_argument("--seeds", type=int, default=5)
 ap.add_argument("--b3dir", default="data/b3")
+ap.add_argument("--pair", default="", help="semicolon-separated 'RANKER|BASE' paired-diff reports")
 a = ap.parse_args()
 rows = [json.loads(l) for l in open(a.rows)]
 changes = collections.OrderedDict()
@@ -184,6 +185,7 @@ def boot(accs, name, bucket, metric, base=None, B=2000, seed=0, key="_p"):
     if base: bm = {x["_c"]: x for x in accs[base][bucket]}
     for x in xs:
         if metric in KMIN and not x["ncov"] > KMIN[metric]: continue
+        if base and x["_c"] not in bm: continue  # paired diff restricted to the common mutant set
         byp[x[key]].append(x[metric] - (bm[x["_c"]][metric] if base else 0))
     ps = list(byp); rng = random.Random(seed); ms = []
     for _ in range(B):
@@ -238,3 +240,14 @@ for name in ["B4 reverse-call reachability", "B4c calls-only (no import tiebreak
             d4 = boot(accR, name, ">10", metric, "B4 reverse-call reachability", key=key) if name != "B4 reverse-call reachability" else None
             rob.append(f"| {name.split(' (')[0]} | {metric} | {lab} | {d[0]:+.3f} [{d[1]:+.3f}, {d[2]:+.3f}] | {f'{d4[0]:+.3f} [{d4[1]:+.3f}, {d4[2]:+.3f}]' if d4 else '-'} |")
 open(a.out + ".md", "a").write("\n".join(rob) + "\n"); print("\n".join(rob))
+
+if a.pair:
+    pr_out = ["\n## Custom paired diffs (inside covering set, >10 stratum, common mutant set)\n",
+              "| pair (X - Y) | metric | cluster by | diff [95% CI] |", "|---|---|---|---|"]
+    for pr in a.pair.split(";"):
+        x, y = pr.split("|")
+        for metric in ["n95", "recall@5", "APFD"]:
+            for lab, key in [("commit", "_p"), ("source file", "_f"), ("function", "_fn")]:
+                d = boot(accR, x, ">10", metric, y, key=key)
+                pr_out.append(f"| {x.split(' (')[0]} - {y.split(' (')[0]} | {metric} | {lab} | {d[0]:+.3f} [{d[1]:+.3f}, {d[2]:+.3f}] |")
+    open(a.out + ".md", "a").write("\n".join(pr_out) + "\n"); print("\n".join(pr_out))

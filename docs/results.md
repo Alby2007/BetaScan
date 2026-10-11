@@ -83,9 +83,19 @@ h3 grouped-CV sanity (`>10`, n=280): no-B3 variant n95 12.59 / r@5 0.494 / APFD 
 harvest". Pre-registered trpc tiers: **WIN** paired n95 CI excludes 0 in M1's favour; **MATCH**
 within ±10% of best-of-B3-A/B8 n95 (zero inference cost); **LOSS** otherwise → ship B4.
 
+## M1 on trpc — scored once, frozen set
+
+`data/trpc_eval_m1.md`. PRIMARY (M1 vs B4, all 184, file-clustered): n95 29.95 vs 28.88,
+paired +1.07 [−0.74, +2.93] → **INCONCLUSIVE** (point +3.7% inside ±2.89 margin, CI not
+entirely within; commit clustering would read LOSS). recall@5/APFD directionally worse.
+SECONDARY (117 common set, bar B8): **LOSS** for both M1 (+2.31) and the B3-stack (+1.44).
+M1 ≈ B3-A on n95 (tie) but worse on recall@5/APFD. Consistent with the pre-registered
+covariate-shift caveat: top features `log_ncov`/`targeted_lines` shifted out of their h3
+ranges. Conclusion: ship the heuristic (B4, or B8 where B3 rankings exist).
+
 ## What has NOT been measured yet
 
-- M1 on trpc (stop gate: after augment batch + B3 delta, before scoring)
 - Reverse direction (train trpc → test h3) — secondary check
+- B3 addendum on the remaining 56 quota-blocked mutants (cannot change the primary verdict)
 - Stronger-model B3 rerun on trpc (prompts now persisted; explicit versioned model name)
 - Real-commit stratum (coverage undefined: config/fixtures) — h3 has 3/12 commits, 0 labels; too thin
