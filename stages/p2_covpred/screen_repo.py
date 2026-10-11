@@ -20,7 +20,7 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v8d-covcmd"   # v8c + coverage smoke uses repo's vitest binary directly (no flag collision with script's own --coverage)
+CMD_VERSION = "v8e-faildetail" # v8d + fail/signature detail taken from the best available attempt (canonical fail -> alt still gets classified)
 
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -260,6 +260,12 @@ for line in open(a.list, encoding="utf-8"):
                 rec.setdefault("attempts", []).append({"invoke": alt, "src": "alt-fallback", "frac": fa, "runs": 1})
                 if fa > (rec.get("frac_green_both") or 0):
                     rec["frac_green_both"], rec["n_files_run"], rec["rescue"] = fa, len(allfa), True
+            if not rec.get("files_fail") and not rec.get("files_flaky"):
+                best = ralt or (r1 if len(r1) >= len(r2) else r2)
+                failf = {f for f, (ok, _) in best.items() if not ok}
+                rec["files_fail"] = {f: reason_of(best[f][1]) for f in sorted(failf)}
+                rec["fail_reasons"] = dict(collections.Counter(rec["files_fail"].values()))
+                rec["fail_sigs"] = dict(collections.Counter(normsig(best[f][1]) for f in failf).most_common(5))
             covs = rec["cov_files"]
             if covs:
                 med = sorted(c["secs"] for c in covs)[len(covs) // 2]
