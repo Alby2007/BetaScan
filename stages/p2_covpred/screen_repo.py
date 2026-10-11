@@ -20,7 +20,7 @@ ap.add_argument("--pnpm-store", default="A:/pnpm-store")
 ap.add_argument("--c-min-gb", type=float, default=10.0)
 a = ap.parse_args()
 
-CMD_VERSION = "v8b-coverr"   # v8 + cov_err tail captured on coverage-smoke failure
+CMD_VERSION = "v8c-coverr2"  # v8b + cov_err captures first error lines, not stack tail
 
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
@@ -287,8 +287,10 @@ for line in open(a.list, encoding="utf-8"):
             elif (rec["vitest_s"] or 1e9) > 600: rec["reason"] = f"suite {rec['vitest_s']}s > 600s"
             elif not rec["cov_ok"]:
                 lg = next((p for p in sorted(tmp.glob("out/cov_*.log"))), None)
-                tail = lg.read_text(encoding="utf-8", errors="replace")[-300:] if lg else ""
-                rec["cov_err"] = " ".join(tail.split())
+                txt = lg.read_text(encoding="utf-8", errors="replace") if lg else ""
+                errs = [l.strip() for l in txt.splitlines()
+                        if re.search(r"error|Error|Cannot|MISSING|missing|failed|not found", l)]
+                rec["cov_err"] = " | ".join(errs[:3])[:400] if errs else " ".join(txt.split())[-300:]
                 rec["reason"] = "coverage smoke failed"
             elif (rec["proj_harvest_s"] or 1e9) > 5400: rec["reason"] = f"projected harvest {rec['proj_harvest_s']}s > 5400s"
             emit(rec)
