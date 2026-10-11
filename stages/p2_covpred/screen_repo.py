@@ -146,6 +146,8 @@ for line in open(a.list, encoding="utf-8"):
            "frac_green_both": None, "n_files_run": None, "files_flaky": [], "files_fail": {},
            "fail_reasons": {}, "domain": DOMAINS.get(repo, "?"), "n_test_files": None, "reason": None}
     try:
+        if dest.exists() and run(["git", "-C", str(dest), "rev-parse", "--verify", "HEAD"]).returncode:
+            shutil.rmtree(dest, ignore_errors=True)  # stale/mid-clone leftover
         if not dest.exists():
             r = run(["git", "clone", "--depth", "1", f"https://github.com/{repo}.git", str(dest)], timeout=300)
             if r.returncode: rec["reason"] = "clone_fail: " + r.stderr.strip()[:200]; emit(rec); continue
