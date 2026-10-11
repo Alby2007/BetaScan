@@ -93,3 +93,18 @@ The stages were written on Linux; three classes of fixes were needed on Windows 
 
 All tar/pnpm/vitest commands inside `bash -c "..."` scripts run in Linux containers and are
 unaffected.
+
+## Disk layout (P2+)
+
+Docker's data disk lives on A: (external USB HDD) via an NTFS junction at
+`%LOCALAPPDATA%\Docker\wsl\disk -> A:\DockerWSL\disk`. Screen clones go to
+`A:\BetaScan_screen` and the pnpm store to `A:\pnpm-store` (host mount).
+To keep A: awake during unattended runs, USB selective suspend and disk sleep
+are disabled on AC power:
+
+    powercfg -SETACVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 0
+    powercfg -SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0
+    powercfg -SETACTIVE SCHEME_CURRENT
+
+If A: is absent at start, the screen pauses up to 2h rather than failing repos.
+Revert: stop Docker, delete the junction, recreate the `disk` folder.

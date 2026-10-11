@@ -5,12 +5,13 @@ closure by cause: DYN (dynamic import in test), MOCK (vi/jest.mock'd), MISSING_E
 under a workspace package whose name is a module: node in closure), OTHER.
 Also reports C1 (runtime closure) function-level precision/recall from the pairs table.
 Usage: residual.py NAME M2DIRS DB REPO PAIRS.jsonl[.gz] SIGNALS.jsonl --out rep.md"""
-import argparse, collections, gzip, glob, json, os, re, sqlite3, subprocess, sys
+import argparse, collections, gzip, glob, json, os, pathlib, re, sqlite3, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from impclass import imp_specs
 ap = argparse.ArgumentParser()
 for x in ["name","m2dirs","db","repo","pairs","signals"]: ap.add_argument(x)
 ap.add_argument("--out", default="")
+ap.add_argument("--meta", default="")  # per-repo meta.json: QA gate fields merged in
 a = ap.parse_args()
 isTest = re.compile(r"\.(test|spec)\.[cm]?[tj]sx?$")
 con = sqlite3.connect(a.db)
@@ -127,3 +128,25 @@ rep.append(f"\n## C1 runtime-closure classifier, function level\n\n- precision {
 out = "\n".join(rep)
 print(out)
 if a.out: open(a.out, "w", encoding="utf-8").write(out)
+# QA gate (P2): recall < 0.98 or any residual -> repo quarantined pending diagnosis.
+if a.meta:
+    import hashlib
+    ext_v = hashlib.sha256(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "..", "m1_extractor", "extract.mjs"), "rb").read()).hexdigest()[:12]
+    res_n = sum(causes.values())
+    mp = pathlib.Path(a.meta)
+    meta = json.loads(mp.read_text(encoding="utf-8")) if mp.exists() else {"repo": a.name}
+    # coverage selectivity: mean fraction of a snapshot's tests covering a covered function
+    tests_per_snap = collections.defaultdict(set); func_cov = collections.defaultdict(set)
+    for (P_, t_), rows in pair_rows.items():
+        tests_per_snap[P_].add(t_)
+        for r_ in rows:
+            if r_["covered"]: func_cov[(P_, r_["file"])].add(t_)
+    sel = [len(ts) / len(tests_per_snap[P_]) for (P_, _), ts in func_cov.items()]
+    meta.update({"c1_precision": round(p, 4), "c1_recall": round(rc, 4),
+                 "residual_n": res_n, "residual_causes": dict(causes),
+                 "coverage_selectivity": round(sum(sel) / max(1, len(sel)), 4),
+                 "extractor_version": ext_v,
+                 "qa_quarantined": bool(rc < 0.98 or res_n > 0)})
+    mp.parent.mkdir(parents=True, exist_ok=True)
+    mp.write_text(json.dumps(meta, indent=1) + "\n", encoding="utf-8")
