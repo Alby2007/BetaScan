@@ -41,22 +41,23 @@ best of B3/B4/B7/B8 → effectively B3-A ≈ B8. B4 stays reported separately (f
 Full tables + all clusterings: `data/m3_b3.md`. B3 logs: `data/b3/` (model `gemini-flash-lite-latest`,
 served `gemini-3.5-flash-lite`, temp 0, 380 calls, 0 parse failures; prompt in `data/b3/SYSTEM_PROMPT.txt`).
 
-### trpc — labelled + baselined; augment batch running
+### trpc — labelled, augmented, baselined; scored set FROZEN
 
 - `data/trpc_pilot/*.json`, one record per commit, resumable (existing records are skipped).
-- DONE: 7 commits, 141 mutants, 110 killed clean / 113 worst-case, 58 distinct src files.
+- DONE + augmented: 241 mutants total, 233 clean / 184 killed, 63 distinct src files
+  (augment added mutants but few NEW files — same ~68 eligible files exist per parent).
   Rows `data/trpc_rows{,_worst}.jsonl`, graphs `data/trpc_graphs.db`, eval `data/trpc_eval.md`.
-- Go/no-go GO (clean + worst-case). B4 beats B5a (n95 −8.13, r@5 +0.20, APFD +0.15); the
-  random→oracle gap-closed share ≈ h3's on every metric — the cross-repo headline.
-- **B3-A on trpc DONE** (99/110 regenerable killed mutants; identical model `gemini-flash-lite-latest`,
-  variant A, prompts persisted in `data/trpc_b3/b3_A.jsonl`). Ordering FLIPS vs h3:
-  B4 ≈ B8 and B3-A is WORSE than B4 on n95 (+2.67, CI excl. 0; ties r@5/APFD).
-- Cluster CIs by source file (50) / function (69), not commit (7): B4-vs-B5a still excludes 0.
-- Regeneration integrity: 176 mutants verify byte-identical, 0 mismatches, 15 non-regenerable
-  (all in the 2 old-config records; 11 of them are the B3 dropped set).
-- Augment in flight: `pilot.py --augment 25` adds mutants on not-yet-mutated files for the 4
-  records carrying `suite_P`/`cov_P` (~+100 mutants expected). Afterwards: rebuild rows,
-  B3-A delta on the new change_ids (resumable), re-eval — then STOP before M1-on-trpc.
+- **FROZEN scored set**: `data/m1/trpc_ids_frozen.json` (233 change_ids, sha256 `ec4ecc72`).
+  Scored subset = killed + >10 covering tests; M1 scored on it ONCE.
+- Go/no-go GO (clean + worst-case). Ordering FLIPS vs h3: **B4 is the bar** (n95 28.88),
+  B8 ties it (27.92), B3-A worse (+1.96 [+0.17,+3.84]).
+- Edge-type ablation: imports carry most of B4 (B1 = 86% of n95 gain; calls-only B4c = 35%);
+  calls add ~+1 n95 unit. Controlled miss analysis (`--max-frac 0.5`): registration-layer
+  hypothesis survives control — see `data/b4_misses.md`.
+- Regeneration integrity: 176 verify byte-identical, 0 mismatches, 15 non-regenerable
+  (all in the 2 old-config records).
+- B3-A coverage 117/184 killed. Resumed run filling the ~67 remainder after a Gemini
+  500/day quota window; new records log `served_model` (first 117 predate the field).
 
 ### M1 — trained on h3, FROZEN (not yet scored on trpc)
 
@@ -64,8 +65,11 @@ served `gemini-3.5-flash-lite`, temp 0, 380 calls, 0 parse failures; prompt in `
   features, GroupKFold(5) by src_file. Spec `data/m1/m1_spec.json`; models `data/m1/m1_h3{,_b3stack}.pkl`.
 - Features/graphs versioned: ts-morph pinned 28.0.0; h3 re-extracted → `data/graphs_v28_h3.db`.
 - h3 grouped-CV: no-B3 ≈ B4 (12.59/0.494/0.641); +B3-stack below B3-A (11.62/0.533/0.663).
-- Pre-registered tiers (DECISIONS.md): WIN paired n95 CI excl. 0; MATCH within ±10% of
-  best-of-B3-A/B8 n95; LOSS → ship B4.
+- Pre-registered tiers (DECISIONS.md, precedence): WIN (paired n95 CI excl. 0 for M1) →
+  LOSS (CI excl. 0 against) → MATCH (CI inside ±10% of bar's n95) → INCONCLUSIVE.
+  Bar = best baseline per repo by rule → **trpc bar is B4**. Frozen artifacts hashed:
+  m1_h3.pkl `758def7e`, b3stack `947b9ddd`, spec `f3f687db`. Real file-cluster count 59
+  → paired-CI hw ~2.12 vs MATCH margin ±2.89.
 
 ## What is NOT in this repo (restore on the PC)
 
@@ -105,9 +109,10 @@ python3 stages/m3_baselines/evaluate.py data/trpc_rows.jsonl data/trpc_graphs.db
 
 ## Next steps (agreed order)
 
-1. Augment lands → rebuild rows → B3-A delta (new change_ids only, resumable) → re-eval.
-2. **STOP for review before scoring M1 on trpc** (features/hyperparams already frozen; nothing
-   about M1 may be tuned against trpc numbers).
+1. B3-A delta completes (~67 calls, running) → re-eval → report final table + file-clustered
+   paired CIs (B3-A vs B4, B8 vs B4) and served-model split (first 117 have no field).
+2. **STOP for review before scoring M1 on trpc** (features/hyperparams frozen, artifacts hashed;
+   nothing about M1 may be tuned against trpc numbers).
 3. Score M1 (h3-trained, frozen) on trpc → report vs pre-registered WIN/MATCH/LOSS tiers;
    report B5b-style `targeted_*` features separately (sign unstable across repos).
 4. Reverse direction: train trpc → test h3, secondary check (trpc is small; weaker evidence).
